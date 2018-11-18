@@ -7,21 +7,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Stellar Admin</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="node_modules/simple-line-icons/css/simple-line-icons.css">
-  <link rel="stylesheet" href="node_modules/flag-icon-css/css/flag-icon.min.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/mdi/css/materialdesignicons.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/simple-line-icons/css/simple-line-icons.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/flag-icon-css/css/flag-icon.min.css')}}">
   <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
 
 
   <!-- endinject -->
   <!-- plugin css for this page -->
-  <link rel="stylesheet" href="node_modules/chartist/dist/chartist.min.css" />
-  <link rel="stylesheet" href="node_modules/jvectormap/jquery-jvectormap.css" />
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/chartist/dist/chartist.min.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/jvectormap/jquery-jvectormap.css')}}" />
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="images/favicon.png" />
+  <link rel="shortcut icon" href="{{url_for('static',filename='images/favicon.png')}}" />
 
   <!-- functionality -->
   <script type="text/javascript">
@@ -37,8 +37,8 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper">
           <i class="icon-anchor icons"></i>
-        <a class="navbar-brand brand-logo" href="dashboard.html"><img src="images/logo.png" alt="logo"></a>
-        <a class="navbar-brand brand-logo-mini" href="dashboard.html"><img src="images/logo_mini.svg" alt="logo"></a>
+        <a class="navbar-brand brand-logo" href="dashboard.html"><img src="{{url_for('static',filename='images/logo.png')}}" alt="logo"></a>
+        <a class="navbar-brand brand-logo-mini" href="dashboard.html"><img src="{{url_for('static',filename='images/logo_mini.svg')}}" alt="logo"></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <p class="page-name d-none d-lg-block">Hi, Dave Mattew</p>
@@ -52,7 +52,7 @@
             <div class="dropdown-menu navbar-dropdown mail-notification dropdownAnimation" aria-labelledby="MailDropdown">
               <a class="dropdown-item" href="#">
                 <div class="sender-img">
-                  <img src="images/faces/face6.jpg" alt="">
+                  <img src="{{url_for('static',filename='images/faces/face6.jpg')}}" alt="">
                   <span class="badge badge-success">&nbsp;</span>
                 </div>
                 <div class="sender">
@@ -62,7 +62,7 @@
               </a>
               <a class="dropdown-item" href="#">
                 <div class="sender-img">
-                  <img src="images/faces/face2.jpg" alt="">
+                  <img src="{{url_for('static',filename='images/faces/face2.jpg')}}" alt="">
                   <span class="badge badge-success">&nbsp;</span>
                 </div>
                 <div class="sender">
@@ -72,7 +72,7 @@
               </a>
               <a class="dropdown-item" href="#">
                 <div class="sender-img">
-                  <img src="images/faces/face3.jpg" alt="">
+                  <img src="{{url_for('static',filename='images/faces/face3.jpg')}}" alt="">
                   <span class="badge badge-primary">&nbsp;</span>
                 </div>
                 <div class="sender">
@@ -82,7 +82,7 @@
               </a>
               <a class="dropdown-item" href="#">
                 <div class="sender-img">
-                  <img src="images/faces/face4.jpg" alt="">
+                  <img src="{{url_for('static',filename='images/faces/face4.jpg')}}" alt="">
                   <span class="badge badge-warning">&nbsp;</span>
                 </div>
                 <div class="sender">
@@ -147,7 +147,7 @@
           </li>
           <li class="nav-item d-none d-sm-block profile-img">
             <a class="nav-link profile-image" href="#">
-              <img src="images/faces/face4.jpg" alt="profile-img">
+              <img src="{{url_for('static',filename='images/faces/face4.jpg')}}" alt="profile-img">
               <span class="online-status online bg-success"></span>
             </a>
           </li>
@@ -333,7 +333,7 @@
                   <tbody>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-1.png')}}" alt="image"/>
                       </td>
                       <td>
                         Herman Beck
@@ -352,7 +352,7 @@
                     </tr>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-2.png" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-2.png')}}" alt="image"/>
                       </td>
                       <td>
                         Messsy Adam
@@ -371,7 +371,7 @@
                     </tr>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-3.png" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-3.png')}}" alt="image"/>
                       </td>
                       <td>
                         John Richards
@@ -390,7 +390,7 @@
                     </tr>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-4.png" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-4.png')}}" alt="image"/>
                       </td>
                       <td>
                         Peter Meggik
@@ -409,7 +409,7 @@
                     </tr>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-1.png')}}" alt="image"/>
                       </td>
                       <td>
                         Edward
@@ -428,7 +428,7 @@
                     </tr>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-2.png" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-2.png')}}" alt="image"/>
                       </td>
                       <td>
                         John Doe
@@ -447,7 +447,7 @@
                     </tr>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-3.png" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-3.png')}}" alt="image"/>
                       </td>
                       <td>
                         Henry Tom
@@ -490,21 +490,21 @@
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="{{url_for('static',filename='node_modules/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
   <!-- endinject -->
   <!-- Plugin js for this page-->
-  <script src="node_modules/flot/jquery.flot.js"></script>
-  <script src="node_modules/flot/jquery.flot.resize.js"></script>
-  <script src="node_modules/flot.curvedlines/curvedLines.js"></script>
+  <script src="{{url_for('static',filename='node_modules/flot/jquery.flot.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/flot/jquery.flot.resize.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/flot.curvedlines/curvedLines.js')}}"></script>
   <!-- End plugin js for this page-->
   <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/misc.js"></script>
+  <script src="{{url_for('static',filename='js/off-canvas.js')}}"></script>
+  <script src="{{url_for('static',filename='js/misc.js')}}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="js/dashboard.js"></script>
+  <script src="{{url_for('static',filename='js/dashboard.js')}}"></script>
   <!-- End custom js for this page-->
 </body>
 
