@@ -217,3 +217,12 @@
       });
     }
 })(jQuery);
+function submit()
+{
+var myEditor = document.querySelector('#editor');
+var html = myEditor.children[0].innerHTML;
+var out=document.getElementById('output');
+out.innerHTML=html;
+out.style.display="block";
+}
+
