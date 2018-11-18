@@ -17,7 +17,9 @@ from app import db
 class User(db.Model, UserMixin):
 	__tablename__ = "users"
 
-	id = db.Column(db.String(128), primary_key=True)
+	__abstract__ = True
+
+	# college_id = db.Column(db.String(128), primary_key=True)
 	name = db.Column(db.String(128), nullable=False)
 	email = db.Column(db.String(128), nullable=False, unique = True)
 	branch = db.Column(db.String(128))
@@ -25,15 +27,21 @@ class User(db.Model, UserMixin):
 
 
 
+
+
 class Student(User):
 	__tablename__ = "student"
 
-	usn = db.Column(db.String(128), db.ForeignKey('users.id'), primary_key = True )
+	usn = db.Column(db.String(128), primary_key = True )
 	semester = db.Column(db.Integer)
-	section = db.Column(db.String(2))
+	section = db.Column(db.String(2), nullable = False)
 	# A key value pair where the key would the course id and the value denotes team_id
 	has_team = db.Column(db.JSON) 
 	marks = db.Column(db.JSON)
+
+	__mapper_args__ = {
+		'polymorphic_identity': 'student',
+	}
 
 	def __init__(self, usn, name, email, branch, semester, section):
 		self.usn = usn
@@ -50,9 +58,13 @@ class Student(User):
 class Teacher(User):
 	__tablename__ = "teacher"
 	
-	f_id = db.Column(db.String(128))
+	f_id = db.Column(db.String(128), primary_key = True)
 	position = db.Column(db.String(128))
 	course_to_section = db.Column(db.JSON)
+
+	__mapper_args__ = {
+		'polymorphic_identity': 'teacher',
+	}
 
 	def __init__(self, f_id, name, email, branch, position):
 		self.f_id = f_id
