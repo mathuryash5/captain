@@ -8,29 +8,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Stellar Admin</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="node_modules/simple-line-icons/css/simple-line-icons.css">
-  <link rel="stylesheet" href="node_modules/flag-icon-css/css/flag-icon.min.css">
-  <link rel="stylesheet" href="node_modules/perfect-scrollbar/css/perfect-scrollbar.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/mdi/css/materialdesignicons.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/simple-line-icons/css/simple-line-icons.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/flag-icon-css/css/flag-icon.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/perfect-scrollbar/css/perfect-scrollbar.css')}}">
   <!-- endinject -->
   <!-- plugin css for this page -->
-  <link rel="stylesheet" href="node_modules/dragula/dist/dragula.min.css" />
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/dragula/dist/dragula.min.css')}}" />
 
-  <link rel="stylesheet" href="node_modules/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
-  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="node_modules/jsgrid/dist/jsgrid.min.css" />
-  <link rel="stylesheet" href="node_modules/jsgrid/dist/jsgrid-theme.min.css" />
-  <link rel="stylesheet" href="node_modules/quill/dist/quill.snow.css">
-  <link rel="stylesheet" href="node_modules/dropify/dist/css/dropify.min.css">
-  <link rel="stylesheet" href="css/table.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/font-awesome/css/font-awesome.min.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/jsgrid/dist/jsgrid.min.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/jsgrid/dist/jsgrid-theme.min.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/quill/dist/quill.snow.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/dropify/dist/css/dropify.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/table.css')}}">
  
   
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 
   <!-- endinject -->
-  <link rel="shortcut icon" href="images/favicon.png" />
+  <link rel="shortcut icon" href="{{url_for('static',filename='images/favicon.png')}}" />
 </head>
 
 <body>
@@ -39,8 +39,8 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper">
             <i class="icon-anchor icons"></i>
-        <a class="navbar-brand brand-logo" href="admin.html"><img src="images/logo.png" alt="logo"></a>
-        <a class="navbar-brand brand-logo-mini" href="admin.html"><img src="images/logo_mini.svg" alt="logo"></a>
+        <a class="navbar-brand brand-logo" href="admin.html"><img src="{{url_for('static',filename='images/logo.png')}}" alt="logo"></a>
+        <a class="navbar-brand brand-logo-mini" href="admin.html"><img src="{{url_for('static',filename='images/logo_mini.svg')}}" alt="logo"></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <button class="navbar-toggler navbar-toggler d-none d-lg-block align-self-center mr-2" type="button" data-toggle="minimize">
@@ -64,7 +64,7 @@
             <div class="dropdown-menu navbar-dropdown mail-notification dropdownAnimation" aria-labelledby="MailDropdown">
               <a class="dropdown-item" href="#">
                 <div class="sender-img">
-                  <img src="images/faces/face6.jpg" alt="">
+                  <img src="{{url_for('static',filename='images/faces/face6.jpg')}}" alt="">
                   <span class="badge badge-success">&nbsp;</span>
                 </div>
                 <div class="sender">
@@ -74,7 +74,7 @@
               </a>
               <a class="dropdown-item" href="#">
                 <div class="sender-img">
-                  <img src="images/faces/face2.jpg" alt="">
+                  <img src="{{url_for('static',filename='images/faces/face2.jpg')}}" alt="">
                   <span class="badge badge-success">&nbsp;</span>
                 </div>
                 <div class="sender">
@@ -84,7 +84,7 @@
               </a>
               <a class="dropdown-item" href="#">
                 <div class="sender-img">
-                  <img src="images/faces/face3.jpg" alt="">
+                  <img src="{{url_for('static',filename='images/faces/face3.jpg')}}" alt="">
                   <span class="badge badge-primary">&nbsp;</span>
                 </div>
                 <div class="sender">
@@ -94,7 +94,7 @@
               </a>
               <a class="dropdown-item" href="#">
                 <div class="sender-img">
-                  <img src="images/faces/face4.jpg" alt="">
+                  <img src="{{url_for('static',filename='images/faces/face4.jpg')}}" alt="">
                   <span class="badge badge-warning">&nbsp;</span>
                 </div>
                 <div class="sender">
@@ -159,7 +159,7 @@
           </li>
           <li class="nav-item d-none d-sm-block profile-img">
             <a class="nav-link profile-image" href="#">
-              <img src="images/faces/face4.jpg" alt="profile-img">
+              <img src="{{url_for('static',filename='static',filename='images/faces/face4.jpg')}}" alt="profile-img">
               <span class="online-status online bg-success"></span>
             </a>
           </li>
@@ -274,6 +274,44 @@
                               </div>
                             </div>
                           </div>
+                          <div class="row">
+                              <div class="col-lg-12 grid-margin stretch-card">
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <div class="card-title">
+                                        <h4>List of teachers</h4>
+                                      </div>
+                                        <div class="table-sorter-wrapper col-lg-12 table-responsive">
+                                            <table id="sortable-table-2" class="table table-striped">
+                                              <thead>
+                                                <tr>
+                                                  <th>#</th>
+                                                  <th class="sortStyle">F_id<i class="mdi mdi-chevron-down"></i></th>
+                                                  <th class="sortStyle">Name<i class="mdi mdi-chevron-down"></i></th>
+                                                  <th class="sortStyle">Email<i class="mdi mdi-chevron-down"></i></th>
+                                                  <th class="sortStyle">Branch<i class="mdi mdi-chevron-down"></i></th>
+                                                  <th class="sortStyle">Position<i class="mdi mdi-chevron-down"></i></th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr>
+                                                  <td>1</td>
+                                                  <td>01FB15ECS343</td>
+                                                  <td>Herman Beck</td>
+                                                  <td>herman@gmail.com</td>
+                                                  <td>Computer Science</td>
+                                                  <td>Position</td>
+                                                  
+                                                </tr>
+  
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                      </div>
+                                      </div>
+                                      </div>
+  
+                          </div>
                      
 
         </div>  
@@ -295,30 +333,30 @@
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+  <script src="{{url_for('static',filename='node_modules/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js')}}"></script>
   
   <!-- endinject -->
   <!-- Plugin js for this page-->
-  <script src="node_modules/dragula/dist/dragula.min.js"></script>
-  <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="node_modules/dropify/dist/js/dropify.min.js"></script>
+  <script src="{{url_for('static',filename='node_modules/dragula/dist/dragula.min.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/sweetalert/dist/sweetalert.min.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/dropify/dist/js/dropify.min.js')}}"></script>
 
   <!-- End plugin js for this page-->
   <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/hoverable-collapse.js"></script>
-  <script src="js/misc.js"></script>
+  <script src="{{url_for('static',filename='js/off-canvas.js')}}"></script>
+  <script src="{{url_for('static',filename='js/hoverable-collapse.js')}}"></script>
+  <script src="{{url_for('static',filename='js/misc.js')}}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
 
-  <script src="js/teachergrid.js"></script>
-  <script src="js/teacherdb.js"></script>
-  <script src="js/dropify.js"></script>
-  <script src="js/etable.js"></script>
- 
+  <script src="{{url_for('static',filename='js/teachergrid.js')}}"></script>
+  <script src="{{url_for('static',filename='js/teacherdb.js')}}"></script>
+  <script src="{{url_for('static',filename='js/dropify.js')}}"></script>
+  <script src="{{url_for('static',filename='js/etable.js')}}"></script>
+  <script src="{{url_for('static',filename='js/tablesorter.js')}}"></script>
 
  
   <!-- End custom js for this page-->
