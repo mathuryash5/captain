@@ -33,6 +33,8 @@ def seed_db():
 	"""Seeds the database."""
 	init_data.student_data()
 	init_data.teacher_data()
+	init_data.coursebase_data()
+	init_data.course_data()
 
 	
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 from app import db
-from app.models import User, Student, Teacher  
+from app.models import User, Student, Teacher, CourseBase, Course
 
 
 def student_data():
@@ -18,6 +18,26 @@ def teacher_data():
 	db.session.add(Teacher(f_id = "f004", name="Teacher3", email="teacher3@abc.com", branch="EEE", position="Professor"))
 	db.session.commit()
 
+def coursebase_data():
+	"""Seeds the CourseBase Table."""
+	db.session.add(CourseBase(course_name = "Unix System Programming", course_code = "UE15CS101", description = "Text1", semester = 6, branch = "CSE", no_of_max_members = 3, calendar_id = "xyz"))
+	db.session.add(CourseBase(course_name = "Introduction to Data Science", course_code = "UE15CS201", description = "Text2", semester = 3, branch = "CSE", no_of_max_members = 3, calendar_id = "xyz"))
+	db.session.add(CourseBase(course_name = "Operating Systems", course_code = "UE15CS301", description = "Text3", semester = 5, branch = "CSE", no_of_max_members = 3, calendar_id = "xyz"))
+	db.session.add(CourseBase(course_name = "Software Engineering", course_code = "UE15CS401", description = "Text4", semester = 7, branch = "CSE", no_of_max_members = 3, calendar_id = "xyz"))
+	db.session.commit()
+
 def course_data():
 	"""Seeds the Course Table."""
+	db.session.add(Course(course_code = "UE15CS101", deliverables = "del1", deliverable_deadline = ""))
+	db.session.add(Course(course_code = "UE15CS101", deliverables = "del2", deliverable_deadline = ""))
+	db.session.add(Course(course_code = "UE15CS301", deliverables = "del1", deliverable_deadline = ""))
+	db.session.add(Course(course_code = "UE15CS401", deliverables = "del1", deliverable_deadline = ""))
+	db.session.commit()
+
+def team_data():
+	"""Seeds the Team Table."""
+	
+
+
+
 
