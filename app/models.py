@@ -8,24 +8,29 @@
 ## Have timestamp associated with project eval to store the feedback from the teacher.
 
 from sqlalchemy.sql import func
+from sqlalchemy.ext.declarative import AbstractConcreteBase
 
 from flask_login import UserMixin
 
 # from app import login_manager
 from app import db
 
-class User(db.Model, UserMixin):
+class User(db.Model, UserMixin, AbstractConcreteBase):
 	__tablename__ = "users"
 
-	__abstract__ = True
+	# __abstract__ = True
 
 	# college_id = db.Column(db.String(128), primary_key=True)
 	name = db.Column(db.String(128), nullable=False)
 	email = db.Column(db.String(128), nullable=False, unique = True)
 	branch = db.Column(db.String(128))
 	role = db.Column(db.String(128))
+	active = db.Column(db.Boolean(), default=True, nullable=False)
 
 
+	def get_id(self):
+		"""Return the email address to satisfy Flask-Login's requirements."""
+		return self.email
 
 
 
@@ -49,11 +54,12 @@ class Student(User):
 		self.email = email
 		self.branch = branch
 		self.semester = semester
-		self.section = section 
+		self.section = section
+		self.active = True 
 		self.role = "Student"
 
 	def __repr__(self):
-		return '<UserProfile {}>'.format(self.name)
+		return '<UserProfile {}>'.format(self.email)
 
 class Teacher(User):
 	__tablename__ = "teacher"
@@ -73,88 +79,89 @@ class Teacher(User):
 		self.email = email
 		self.branch = branch
 		self.position = position
+		self.active = True
 		self.role = "Teacher"
 
 	def __repr__(self):
-		return '<TeacherProfile {}>'.format(self.name)
+		return '<TeacherProfile {}>'.format(self.email)
 
-class CourseBase(db.Model):
-	__tablename__ = "course_base"
+# class CourseBase(db.Model):
+# 	__tablename__ = "course_base"
 
-	course_name = db.Column(db.String, primary_key = True)
-	course_code = db.Column(db.Integer, unique = True, primary_key = True )
-	description = db.Column(db.Text, nullable = False)
-	semester = db.Column(db.Integer)
-	# The constraint on the max number of team members.
-	no_of_max_members = db.Column(db.Integer)
-	calendar_id = db.Column(db.String(128))
-	# teams = db.relationship('Team', backref = 'course', lazy = True)
+# 	course_name = db.Column(db.String, primary_key = True)
+# 	course_code = db.Column(db.Integer, unique = True, primary_key = True )
+# 	description = db.Column(db.Text, nullable = False)
+# 	semester = db.Column(db.Integer)
+# 	# The constraint on the max number of team members.
+# 	no_of_max_members = db.Column(db.Integer)
+# 	calendar_id = db.Column(db.String(128))
+# 	# teams = db.relationship('Team', backref = 'course', lazy = True)
 
-	def __init__(self, course_name, course_code, course_id, description, semester, no_of_max_members, calendar_id):
-		self.course_name = course_name
-		self.course_code = course_code
-		self.course_id = course_id
-		self.description = description
-		self.semester = semester
-		self.no_of_max_members = no_of_max_members
-		## Add the calendar initialization code here
-		self.calendar_id = calendar_id
+# 	def __init__(self, course_name, course_code, course_id, description, semester, no_of_max_members, calendar_id):
+# 		self.course_name = course_name
+# 		self.course_code = course_code
+# 		self.course_id = course_id
+# 		self.description = description
+# 		self.semester = semester
+# 		self.no_of_max_members = no_of_max_members
+# 		## Add the calendar initialization code here
+# 		self.calendar_id = calendar_id
 
-	def __repr__(self):
-		return '<CourseBase {}>'.format(self.course_name)
-
-
-class Course(db.Model):
-	__tablename__ = "course"
-
-	course_code = db.Column(db.Integer, db.ForeignKey('coursebase.course_code'), primary_key = True)
-	deliverable_id = db.Column(db.Integer, nullable = False, primary_key = True)
-	deliverables = db.Column(db.String(256))
-	deliverable_deadline = db.Column(db.DateTime(timezone = True))
-	# Resources supplied by the teacher for the students. 
-	teacher_resources = db.Column(db.JSON)
-
-	def __init__(self, course_id, deliverables, deliverable_deadline, teacher_resources):
-		self.course_id = course_id
-		# self.deliverable_id = deliverable_id
-		self.deliverables = deliverables
-		self.deliverable_deadline = deliverable_deadline
-		# self.teacher_resources = teacher_resources
-
-	def __repr__(self):
-		return '<Course {}>'.format(self.course_name)
+# 	def __repr__(self):
+# 		return '<CourseBase {}>'.format(self.course_name)
 
 
-class Team(db.Model):
-	__tablename__ = "team"
+# class Course(db.Model):
+# 	__tablename__ = "course"
 
-	team_id = db.Column(db.Integer, primary_key = True)
-	# , autoincrement = True)
-	course_code = db.Column(db.String, db.ForeignKey('coursebase.course_code'), primary_key = True)
-	# IDs required for chat sessions.
-	session_id = db.Column(db.Integer, nullable = False, autoincrement =  True)
-	usn_list = db.Column(db.JSON)
-	github_user = db.Column(db.String(64))
-	github_repo = db.Column(db.String(128))
-	marks = db.Column(db.Integer)
+# 	course_code = db.Column(db.Integer, db.ForeignKey('coursebase.course_code'), primary_key = True)
+# 	deliverable_id = db.Column(db.Integer, nullable = False, primary_key = True)
+# 	deliverables = db.Column(db.String(256))
+# 	deliverable_deadline = db.Column(db.DateTime(timezone = True))
+# 	# Resources supplied by the teacher for the students. 
+# 	teacher_resources = db.Column(db.JSON)
 
-	def __init__(self, team_id, course_id, session_id, usn_list, github_user, github_repo):
-		self.team_id = team_id
-		self.course_id = course_id
-		self.session_id = session_id
-		self.usn_list = usn_list
-		self.github_user = github_user
-		self.github_repo = github_repo
+# 	def __init__(self, course_id, deliverables, deliverable_deadline, teacher_resources):
+# 		self.course_id = course_id
+# 		# self.deliverable_id = deliverable_id
+# 		self.deliverables = deliverables
+# 		self.deliverable_deadline = deliverable_deadline
+# 		# self.teacher_resources = teacher_resources
 
-class TeamSubmissions(db.Model):
-	__tablename__ = "team_submissions"
+# 	def __repr__(self):
+# 		return '<Course {}>'.format(self.course_name)
 
-	team_id = db.Column(db.Integer, db.ForeignKey('team.team_id'), primary_key = True)
-	course_code = db.Column(db.String, db.ForeignKey('course_base.course_code'), primary_key = True)
-	deliverable_id = db.Column(db.Integer, primary_key = True)
-	resource_url = db.Column(db.String(128))
-	grading_status = db.Column(db.Boolean, default = True)
-	submission_time = db.Column(db.DateTime(timezone = True))
+
+# class Team(db.Model):
+# 	__tablename__ = "team"
+
+# 	team_id = db.Column(db.Integer, primary_key = True)
+# 	# , autoincrement = True)
+# 	course_code = db.Column(db.String, db.ForeignKey('coursebase.course_code'), primary_key = True)
+# 	# IDs required for chat sessions.
+# 	session_id = db.Column(db.Integer, nullable = False, autoincrement =  True)
+# 	usn_list = db.Column(db.JSON)
+# 	github_user = db.Column(db.String(64))
+# 	github_repo = db.Column(db.String(128))
+# 	marks = db.Column(db.Integer)
+
+# 	def __init__(self, team_id, course_id, session_id, usn_list, github_user, github_repo):
+# 		self.team_id = team_id
+# 		self.course_id = course_id
+# 		self.session_id = session_id
+# 		self.usn_list = usn_list
+# 		self.github_user = github_user
+# 		self.github_repo = github_repo
+
+# class TeamSubmissions(db.Model):
+# 	__tablename__ = "team_submissions"
+
+# 	team_id = db.Column(db.Integer, db.ForeignKey('team.team_id'), primary_key = True)
+# 	course_code = db.Column(db.String, db.ForeignKey('coursebase.course_code'), primary_key = True)
+# 	deliverable_id = db.Column(db.Integer, primary_key = True)
+# 	resource_url = db.Column(db.String(128))
+# 	grading_status = db.Column(db.Boolean, default = True)
+# 	submission_time = db.Column(db.DateTime(timezone = True))
 
 
 
