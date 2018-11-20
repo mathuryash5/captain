@@ -45,113 +45,15 @@
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <p class="page-name d-none d-lg-block">Hi, Dave Mattew</p>
         <ul class="navbar-nav ml-lg-auto">
-         
-          <li class="nav-item dropdown mail-dropdown">
-            <a class="nav-link count-indicator" id="MailDropdown" href="#" data-toggle="dropdown">
-                <i class="icon-envelope-letter icons"></i>
-                <span class="count bg-danger"></span>
-            </a>
-            <div class="dropdown-menu navbar-dropdown mail-notification dropdownAnimation" aria-labelledby="MailDropdown">
-              <a class="dropdown-item" href="#">
-                <div class="sender-img">
-                  <img src="{{url_for('static',filename='images/faces/face6.jpg')}}" alt="">
-                  <span class="badge badge-success">&nbsp;</span>
-                </div>
-                <div class="sender">
-                  <p class="Sende-name">John Doe</p>
-                  <p class="Sender-message">Hey, We have a meeting planned at the end of the day.</p>
-                </div>
-              </a>
-              <a class="dropdown-item" href="#">
-                <div class="sender-img">
-                  <img src="{{url_for('static',filename='images/faces/face2.jpg')}}" alt="">
-                  <span class="badge badge-success">&nbsp;</span>
-                </div>
-                <div class="sender">
-                  <p class="Sende-name">Leanne Jones</p>
-                  <p class="Sender-message">Can we schedule a call this afternoon?</p>
-                </div>
-              </a>
-              <a class="dropdown-item" href="#">
-                <div class="sender-img">
-                  <img src="{{url_for('static',filename='images/faces/face3.jpg')}}" alt="">
-                  <span class="badge badge-primary">&nbsp;</span>
-                </div>
-                <div class="sender">
-                  <p class="Sende-name">Stella</p>
-                  <p class="Sender-message">Great presentation the other day. Keep up the good work!</p>
-                </div>
-              </a>
-              <a class="dropdown-item" href="#">
-                <div class="sender-img">
-                  <img src="{{url_for('static',filename='images/faces/face4.jpg')}}" alt="">
-                  <span class="badge badge-warning">&nbsp;</span>
-                </div>
-                <div class="sender">
-                  <p class="Sende-name">James Brown</p>
-                  <p class="Sender-message">Need the updates of the project at the end of the week.</p>
-                </div>
-              </a>
-              <a href="#" class="dropdown-item view-all">View all</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown notification-dropdown">
-            <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-toggle="dropdown">
-              <i class="icon-speech icons"></i>
-              <span class="count"></span>
-            </a>
-            <div class="dropdown-menu navbar-dropdown preview-list notification-drop-down dropdownAnimation" aria-labelledby="notificationDropdown">
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon">
-                    <i class="icon-info mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject font-weight-medium">Application Error</p>
-                  <p class="font-weight-light small-text">
-                    Just now
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon">
-                    <i class="icon-speech mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject">Settings</p>
-                  <p class="font-weight-light small-text">
-                    Private message
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon">
-                    <i class="icon-envelope mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject">New user registration</p>
-                  <p class="font-weight-light small-text">
-                    2 days ago
-                  </p>
-                </div>
-              </a>
-            </div>
-          </li>
-          <li class="nav-item lang-dropdown d-none d-sm-block">
-            <a class="nav-link" href="#">
-              <p class="mb-0">English <i class="flag-icon flag-icon-gb"></i></p>
-            </a>
-          </li>
+
           <li class="nav-item d-none d-sm-block profile-img">
             <a class="nav-link profile-image" href="#">
-              <img src="{{url_for('static',filename='images/faces/face4.jpg')}}" alt="profile-img">
+              <img src="{{url_for('static',filename='images/faces-clipart/pic-2.png')}}" alt="profile-img">
               <span class="online-status online bg-success"></span>
             </a>
+          </li>
+          <li>
+            <button type="button" class="btn btn-inverse-light btn-fw" onclick="signout()">Sign Out</button>
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center ml-auto" type="button" data-toggle="offcanvas">
@@ -169,13 +71,13 @@
               <span class="nav-link">GENERAL</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="dashboard.html">
+              <a class="nav-link" href="{{url_for('student.dashboard')}}">
                 <span class="menu-title">Dashboard</span>
                 <i class="icon-speedometer menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="classmembers.html">
+              <a class="nav-link" href="{{url_for('student.classmembers')}}">
                 <span class="menu-title">Classmates</span>
                 <i class="icon-people menu-icon"></i>
               </a>
@@ -185,27 +87,27 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="course.html">
+              <a class="nav-link" href="{{url_for('student.course')}}">
                 <span class="menu-title">Subject1</span>
                 <i class="icon-notebook menu-icon"></i>
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="course.html">
+              <a class="nav-link" href="{{url_for('student.course')}}">
                 <span class="menu-title">Subject2</span>
                 <i class="icon-notebook menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="course.html">
+              <a class="nav-link" href="{{url_for('student.course')}}">
                 <span class="menu-title">Subject3</span>
                 <i class="icon-notebook  menu-icon"></i>
               </a>
             </li>
             </li>
           </ul>
-        </nav>
+        </nav>  
         <!-- partial -->
         <div class= "content-wrapper">
         <div class="row">
@@ -528,11 +430,49 @@
                             <button type="button" class="btn btn-secondary btn-fw">Cancel</button>
                     
                         </div>
+                  
 
                         
                         
                       </div>
                   </div>
+                  <div class="row"><p>&nbsp;</p></div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="card">
+                      <div class="card-body">
+             
+                              <h4 class="mb-0 ">Feedback from the teacher</h4>
+                           
+                          
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="row"><p>&nbsp;</p></div>
+                <div class="row">
+                    <div class="col-lg-12">
+                      <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">
+  
+                                      <h4>FeedBack title</h4>
+
+                                
+                                
+                              </div> 
+
+                               
+                                  Feedback
+                            
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+
+                
             </div>
             <div class="tab-pane fade" id="team" role="tabpanel" aria-labelledby="team-tab">
                 <div class = "row">
@@ -568,9 +508,7 @@
                                           <div class="row">
                                               <div class="col-lg-3"><img src="{{url_for('static',filename='images/faces-clipart/pic-2.png')}}" alt="image"/></div>
                                               <div class="col-lg-9"> <h4>Member 1</h4></div>
-                                              <div class="row">
-                                                  <div class="col-lg-9 text-center card-subtitle"> <p>USN</p></div>
-                                              </div>
+                                           
                                                
               
                                         </div>
@@ -581,9 +519,7 @@
                                     <div class="row">
                                         <div class="col-lg-3"><img src="{{url_for('static',filename='images/faces-clipart/pic-1.png')}}" alt="image"/></div>
                                         <div class="col-lg-9"> <h4>Member 2</h4></div>
-                                        <div class="row">
-                                            <div class="col-lg-9 text-center card-subtitle"> <p>USN</p></div>
-                                        </div>
+                                      
                                          
                                     </div>
                                       
@@ -595,9 +531,7 @@
                                       <div class="row">
                                           <div class="col-lg-3"><img src="{{url_for('static',filename='images/faces-clipart/pic-3.png')}}" alt="image"/></div>
                                           <div class="col-lg-9"> <h4>Member 3  </h4></div>
-                                          <div class="row">
-                                              <div class="col-lg-9 text-center card-subtitle"> <p>USN</p></div>
-                                          </div>
+                                
               
                                     </div>
                              
@@ -676,6 +610,7 @@
   <script src="{{url_for('static',filename='node_modules/flot/jquery.flot.resize.js')}}"></script>
   <script src="{{url_for('static',filename='node_modules/flot.curvedlines/curvedLines.js')}}"></script>
   <script src="{{url_for('static',filename='node_modules/dropify/dist/js/dropify.min.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/sweetalert/dist/sweetalert.min.js')}}"></script>
   <!-- End plugin js for this page-->
   <!-- inject:js -->
   <script src="{{url_for('static',filename='js/off-canvas.js')}}"></script>
@@ -684,6 +619,37 @@
   <!-- Custom js for this page-->
   <script src="{{url_for('static',filename='js/dashboard.js')}}"></script>
   <script src="{{url_for('static',filename='js/dropify.js')}}"></script>
+  <script>
+    function signout(){
+     swal({
+           title: 'Sign out?',
+           icon: 'warning',
+           showCancelButton: true,
+           confirmButtonColor: '#3f51b5',
+           cancelButtonColor: '#ff4081',
+           cancelButtontext: 'Cancel',
+           buttons: {
+             cancel: {
+               text: "Cancel",
+               value: null,
+               visible: true,
+               className: "btn btn-danger",
+               closeModal: true,
+             },
+             confirm: {
+               text: "OK",
+               value: true,
+               visible: true,
+               className: "btn btn-primary",
+               closeModal: true
+               
+             }
+       }
+     }
+     )
+    }
+ 
+  </script>
   <!-- End custom js for this page-->
 </body>
 
