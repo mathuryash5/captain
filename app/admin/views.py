@@ -45,3 +45,21 @@ def dashboard():
 							# 			course_names = course_names,
 							# 			course_count = course_count,				
 							# )
+
+
+@admin.route('/courses', methods = ['GET', 'POST'])
+def courses():
+	print("Displaying Courses Page for the Admin")
+	return render_template('courselist.html')
+
+@admin.route('/students', methods = ['GET', 'POST'])
+def students():
+	print("Displaying Students Page for the Admin")
+	student_info = db.session.query(Student).filter(Student.role == 'Student').all()
+	print(student_info)
+	return render_template('studentlist.html')
+
+@admin.route('/teachers', methods = ['GET', 'POST'])
+def teachers():
+	print("Displaying Teachers Page for the Admin")
+	return render_template('teacherlist.html')
