@@ -1,6 +1,11 @@
 from requests_oauthlib import OAuth2Session
 
 from app import login_manager
+from app.models import User, Student, Teacher
+
+
+from . import db
+
 
 # Google Auth API details
 class Auth:
