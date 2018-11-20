@@ -1,6 +1,7 @@
 from flask import jsonify, request, render_template
 from flask import redirect, url_for, session
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user, UserMixin
+from flask import Response, make_response
 
 from . import home
 from .. import student, teacher
@@ -8,6 +9,7 @@ from .. import student, teacher
 from requests_oauthlib import OAuth2Session
 from requests.exceptions import HTTPError
 import simplejson as json
+import datetime
 
 from sqlalchemy import exc
 
@@ -188,6 +190,7 @@ def callback():
             # current_user.is_authenticated = True
             current_user.name = user_data['name']
             current_user.email = user_data['email']
+            current_user.tid = 2
             # current_user.token = token
             login_user(user)
             # except: 
@@ -211,3 +214,15 @@ def logout():
     # db.session.commit()
     logout_user()
     return redirect(url_for('index.html'))
+
+
+@home.route("/chat/<courseid>", methods=["GET"])
+@login_required
+def chat(courseid):
+    # Find which team id from querying current_user.has_team for courseid's teamValue.
+    teamID = "2"
+    response = make_response(render_template('chat.html'))
+    response.set_cookie('tid', str(teamID), max_age=60*2)
+    return response
+    # return redirect("http://localhost:")
+    # return jsonify({'name': current_user.email })
