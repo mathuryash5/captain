@@ -13,7 +13,36 @@ var global = -1;
             }
           })
 
-    	}else if(type === 'success-message'){
+      }
+      else if(type = 'sign-out'){
+        swal({
+          title: 'Sign out?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3f51b5',
+          cancelButtonColor: '#ff4081',
+          cancelButtontext: 'Cancel',
+          buttons: {
+            cancel: {
+              text: "Cancel",
+              value: null,
+              visible: true,
+              className: "btn btn-danger",
+              closeModal: true,
+            },
+            confirm: {
+              text: "OK",
+              value: true,
+              visible: true,
+              className: "btn btn-primary",
+              closeModal: true
+              
+            }
+      }
+    }
+    )
+      }
+      else if(type === 'success-message'){
         swal({
           title: 'Congratulations!',
           text: 'You entered the correct answer',
