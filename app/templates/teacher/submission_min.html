@@ -6,25 +6,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Course_MIN</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+  <script src="{{url_for('static',filename = 'js/angular.min.js')}}"></script>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="node_modules/simple-line-icons/css/simple-line-icons.css">
-  <link rel="stylesheet" href="node_modules/flag-icon-css/css/flag-icon.min.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/mdi/css/materialdesignicons.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/simple-line-icons/css/simple-line-icons.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/flag-icon-css/css/flag-icon.min.css')}}">
   <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
 
 
   <!-- endinject -->
   <!-- plugin css for this page -->
-  <link rel="stylesheet" href="node_modules/chartist/dist/chartist.min.css" />
-  <link rel="stylesheet" href="node_modules/jvectormap/jquery-jvectormap.css" />
-  <link rel="stylesheet" href="node_modules/dropify/dist/css/dropify.min.css">
-  <link rel="stylesheet" href="node_modules/jquery-file-upload/css/uploadfile.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/chartist/dist/chartist.min.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/jvectormap/jquery-jvectormap.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/dropify/dist/css/dropify.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/jquery-file-upload/css/uploadfile.css')}}">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="images/favicon.png" />
+  <link rel="shortcut icon" href="{{url_for('static',filename='images/favicon.png')}}" />
 
   <!-- functionality -->
   <script type="text/javascript">
@@ -63,9 +63,9 @@
                   <tbody>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
-                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
-                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-1.png')}}" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-1.png')}}" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-1.png')}}" alt="image"/>
                       </td>
                       <td>
                         Team 1
@@ -82,9 +82,9 @@
                     </tr>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-2.png" alt="image"/>
-                        <img src="images/faces-clipart/pic-2.png" alt="image"/>
-                        <img src="images/faces-clipart/pic-2.png" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-2.png')}}" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-2.png')}}" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-2.png')}}" alt="image"/>
                       </td>
                       <td>
                         Team 2
@@ -101,9 +101,9 @@
                     </tr>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-3.png" alt="image"/>
-			<img src="images/faces-clipart/pic-3.png" alt="image"/>
-			<img src="images/faces-clipart/pic-3.png" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-3.png')}}" alt="image"/>
+			<img src="{{url_for('static',filename='images/faces-clipart/pic-3.png')}}" alt="image"/>
+			<img src="{{url_for('static',filename='images/faces-clipart/pic-3.png')}}" alt="image"/>
                       </td>
                       <td>
                         Team 3
@@ -120,9 +120,9 @@
                     </tr>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-4.png" alt="image"/>
-                        <img src="images/faces-clipart/pic-4.png" alt="image"/>
-                        <img src="images/faces-clipart/pic-4.png" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-4.png')}}" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-4.png')}}" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-4.png')}}" alt="image"/>
                       </td>
                       <td>
                         Team 4
@@ -139,9 +139,9 @@
                     </tr>
                     <tr>
                       <td class="py-1">
-                        <img src="images/faces-clipart/pic-1.png" alt="image"/>
-			<img src="images/faces-clipart/pic-1.png" alt="image"/>
-			<img src="images/faces-clipart/pic-1.png" alt="image"/>
+                        <img src="{{url_for('static',filename='images/faces-clipart/pic-1.png')}}" alt="image"/>
+			<img src="{{url_for('static',filename='images/faces-clipart/pic-1.png')}}" alt="image"/>
+			<img src="{{url_for('static',filename='images/faces-clipart/pic-1.png')}}" alt="image"/>
                       </td>
                       <td>
                         Team 5
@@ -164,23 +164,23 @@
 	</div>      
 
   <!-- plugins:js -->
-  <script src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="{{url_for('static',filename='node_modules/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
   <!-- endinject -->
   <!-- Plugin js for this page-->
-  <script src="node_modules/flot/jquery.flot.js"></script>
-  <script src="node_modules/flot/jquery.flot.resize.js"></script>
-  <script src="node_modules/flot.curvedlines/curvedLines.js"></script>
-  <script src="node_modules/dropify/dist/js/dropify.min.js"></script>
+  <script src="{{url_for('static',filename='node_modules/flot/jquery.flot.js')}}"></script>
+  <script src="node_modules/flot/jquery.flot.resize.js')}}"></script>
+  <script src="node_modules/flot.curvedlines/curvedLines.js')}}"></script>
+  <script src="node_modules/dropify/dist/js/dropify.min.js')}}"></script>
   <!-- End plugin js for this page-->
   <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/misc.js"></script>
+  <script src="{{url_for('static',filename='js/off-canvas.js')}}"></script>
+  <script src="{{url_for('static',filename='js/misc.js')}}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="js/dashboard.js"></script>
-  <script src="js/dropify.js"></script>
+  <script src="{{url_for('static',filename='js/dashboard.js')}}"></script>
+  <script src="{{url_for('static',filename='js/dropify.js')}}"></script>
   <!-- End custom js for this page-->
 
 
