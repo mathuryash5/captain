@@ -87,12 +87,13 @@ class Teacher(User):
 		'polymorphic_identity': 'teacher',
 	}
 
-	def __init__(self, f_id, name, email, branch, position):
+	def __init__(self, f_id, name, email, branch, position, course_to_section):
 		self.f_id = f_id
 		self.name = name
 		self.email = email
 		self.branch = branch
 		self.position = position
+		self.course_to_section = course_to_section
 		self.role = "Teacher"
 
 	def __repr__(self):
