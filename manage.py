@@ -31,8 +31,11 @@ def test():
 @cli.command()
 def seed_db():
 	"""Seeds the database."""
+	init_data.coursebase_data()
+	init_data.course_data()
 	init_data.student_data()
 	init_data.teacher_data()
+	init_data.team_data()
 
 	
 if __name__ == '__main__':

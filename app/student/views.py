@@ -25,7 +25,7 @@ headers = "application/json"
 def dashboard():
 	print("Displaying the Student dashboard")
 	user_info = db.session.query(Student).filter(Student.email == current_user.email).first()
-	course_names = db.session.query(CourseBase.course_name).filter(CourseBase.semester == user_info.semester)
+	course_names = db.session.query(CourseBase.course_name).filter(CourseBase.semester == user_info.semester).all()
 	all_course_names = db.session.query(CourseBase.course_name).all()
 	print("="*30)
 	print(user_info)
