@@ -1,5 +1,5 @@
 from app import db
-from app.models import User, Student, Teacher, CourseBase, Course, Team
+from app.models import User, Student, Teacher, Admin, CourseBase, Course, Team
 
 
 def student_data():
@@ -119,3 +119,6 @@ def team_data():
 	db.session.add(Team(course_code = "UE15CS403", session_id = "25", usn_list = "{member_1 : Aditya Ramani, member_2 : Anvith Shetty, member_3 : Saket Golyan}", github_user = "Aditya Ramani", github_repo = "https://github.com/AdityaRamani/captain"))
 	db.session.add(Team(course_code = "UE15CS403", session_id = "26", usn_list = "{member_1 : Aayushman Arora, member_2 : Rahil Arora ,member_3 : Armaan Imaam}", github_user = "Rahil Arora", github_repo = "https://github.com/RahilArora/captain"))
 	db.session.add(Team(course_code = "UE15CS403", session_id = "27", usn_list = "{member_1 : Yash Mathur, member_2 : Varuni Sutrave, member_3 : Srishti Mishra}", github_user = "Yash Mathur", github_repo = "https://github.com/mathuryash5/captain"))
+
+def admin_data():
+	db.session.add(Admin(roleno = "a1", password = "secret"))

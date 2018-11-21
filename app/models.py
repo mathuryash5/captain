@@ -35,7 +35,27 @@ class User(db.Model, UserMixin, AbstractConcreteBase):
 		"""Return the email address to satisfy Flask-Login's requirements."""
 		return self.email
 
+class Admin(User):
+	__tablename__ = "admin"
 
+	roleno = db.Column(db.String(128), primary_key = True)
+	password = db.Column(db.String(128), nullable=False)
+
+	__mapper_args__ = {
+		'polymorphic_identity': 'admin',
+	}
+
+	def __init__(self, roleno, password):
+		self.roleno = roleno
+		self.name = "admin"
+		self.email = "admin@captain.edu"
+		self.branch = "NA"
+		self.role = "Admin"
+		self.active = True
+		self.password = password
+
+	def __repr__(self):
+		return '<AdminProfile {}>'.format(self.email)
 
 class Student(User):
 	__tablename__ = "student"

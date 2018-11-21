@@ -36,6 +36,7 @@ def seed_db():
 	init_data.student_data()
 	init_data.teacher_data()
 	init_data.team_data()
+	init_data.admin_data()
 
 	
 if __name__ == '__main__':
