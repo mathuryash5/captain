@@ -8,7 +8,7 @@ app = Flask(__name__)
 def main():
 	user = 'mathuryash5'
 	repo = 'captain'
-	return jsonify(get_stat(user,repo))
+	return json.dumps(get_stat(user,repo))
 
 
 
@@ -27,7 +27,6 @@ def parseJSON(a,b):
 	for i in range(len(cont)):
 		temp = cont[i]["login"]
 		final_cont[temp] = cont[i]["contributions"]
-	print(final_cont)
 	for i in range(len(stats)):
 		temp = stats[i]["total"]
 		login = stats[i]["author"]["login"]
