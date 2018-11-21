@@ -38,7 +38,6 @@ def parseJSON(a,b):
 	for i in range(len(cont)):
 		temp = cont[i]["login"]
 		final_cont[temp] = cont[i]["contributions"]
-	print(final_cont)
 	for i in range(len(stats)):
 		temp = stats[i]["total"]
 		login = stats[i]["author"]["login"]
@@ -67,7 +66,10 @@ def dashboard():
 
 @teacher.route('/course', methods = ['GET', 'POST'])
 @login_required
-def course():
+def course(variable):
+
+	
+
 	return render_template("course.html")
 
 @teacher.route('/evaluate', methods = ['GET', 'POST'])
@@ -101,6 +103,9 @@ def stats():
 	# replace with db calls
 	user = 'mathuryash5'
 	repo = 'captain'
-	return render_template("gitstats.html", response = json.dumps(get_stat(user,repo)))
+	response = get_stat(user,repo)
+	response['repo_name'] = repo
+	print(response, "\n\n")
+	return render_template("gitstats.html", response = response)
 
 
