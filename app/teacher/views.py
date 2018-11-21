@@ -12,6 +12,7 @@ from . import teacher
 from app.models import Student, Teacher, CourseBase, Course
 
 from sqlalchemy import func, distinct
+import json, requests
 
 from .. import db
 
@@ -19,6 +20,32 @@ from .. import db
 from app.login import get_google_auth, checkUser, load_user
 
 headers = "application/json" 
+
+
+# helper functions for gitstats
+def get_stat(user, repo):
+	request = 'https://api.github.com/repos/'+user+'/'+repo
+	a = requests.get(request+'/stats/contributors').content
+	b = requests.get(request+'/contributors').content
+	return parseJSON(a,b)
+
+
+def parseJSON(a,b):
+	stats = json.loads(a)
+	cont = json.loads(b)
+	final_stats = {}
+	final_cont = {}
+	for i in range(len(cont)):
+		temp = cont[i]["login"]
+		final_cont[temp] = cont[i]["contributions"]
+	for i in range(len(stats)):
+		temp = stats[i]["total"]
+		login = stats[i]["author"]["login"]
+		final_stats[login] = temp
+	final = {}
+	final["contributions"]=final_cont
+	final["commits"]=final_stats
+	return final
 
 @teacher.route('/dashboard', methods = ['GET', 'POST'])
 @login_required
@@ -39,7 +66,10 @@ def dashboard():
 
 @teacher.route('/course', methods = ['GET', 'POST'])
 @login_required
-def course():
+def course(variable):
+
+	
+
 	return render_template("course.html")
 
 @teacher.route('/evaluate', methods = ['GET', 'POST'])
@@ -67,3 +97,15 @@ def evaluate():
 	print("="*30)
 	response = {"teacher_name" : user_info.name, "courses_taken" : courses_taken, "course_to_section" : user_info.course_to_section, "students_taught" : students_taught}
 	return render_template("marks.html")
+
+@teacher.route('/gitstats', methods = ['GET', 'POST'])
+def stats():
+	# replace with db calls
+	user = 'mathuryash5'
+	repo = 'captain'
+	response = get_stat(user,repo)
+	response['repo_name'] = repo
+	print(response, "\n\n")
+	return render_template("gitstats.html", response = response)
+
+
