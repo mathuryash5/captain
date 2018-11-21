@@ -2,7 +2,7 @@
 
 
 # Import flask dependencies
-from flask import request, render_template, \
+from flask import request, render_template, make_response, \
 					session, redirect, url_for, Response, jsonify
 
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user, UserMixin
@@ -14,7 +14,7 @@ from app.models import Student, Teacher, CourseBase, Course
 from sqlalchemy import func, distinct
 
 from .. import db
-
+import random
 # Import login related functionality
 from app.login import get_google_auth, checkUser, load_user
 
@@ -48,8 +48,14 @@ def course():
 	print(user_info.lab_marks)
 	print(course_info)
 	print("="*30)
-	response = {"student_name" : user_info.name, "lab_marks" : user_info.lab_marks, "course_info" : course_info}
-	return render_template("course.html", response = response)
+	results = {"student_name" : user_info.name, "lab_marks" : user_info.lab_marks, "course_info" : course_info}
+
+	#Set cookies for team info
+	teamID = random.randint(1,2)
+	response = make_response(render_template("course.html", response = results))
+	response.set_cookie('tid', str(teamID), max_age=60*5)
+	response.set_cookie('usn', str(current_user.email), max_age=60*5)
+	return response
 
 @student.route('/classmembers', methods = ['GET', 'POST'])
 @login_required
