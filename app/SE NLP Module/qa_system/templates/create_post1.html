@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<ul class="nav nav-tabs">
+    <li class="content-section "><a href="#tab1" data-toggle="tab" onclick="document.getElementById('form1').style.display = 'block'; document.getElementById('form2').style.display = 'none'; document.getElementById('form3').style.display = 'none';">Enter Content</a></li>
+    <li class="content-section "><a href="#tab2" data-toggle="tab" onclick="document.getElementById('form2').style.display = 'block'; document.getElementById('form1').style.display = 'none'; document.getElementById('form3').style.display = 'none';" >Upload PDF</a></li>
+    <li class="content-section "><a href="#tab3" data-toggle="tab"  onclick="document.getElementById('form3').style.display = 'block'; document.getElementById('form2').style.display = 'none'; document.getElementById('form1').style.display = 'none';" >Upload Txt</a></li>
+</ul>
+<div class="content-section">
+    <form method="POST" action="upload_inputted_txt" id="form1">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                {{ form.title.label(class="form-control-label") }}
+                {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.content.label(class="form-control-label") }}
+                {% if form.content.errors %}
+                    {{ form.content(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.content.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.content(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+
+    <form method="POST" action="upload_pdf" id="form2" enctype="multipart/form-data" onsubmit = "submitForm(document.getElementById('form2'))">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                {{ form.title.label(class="form-control-label") }}
+                {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <input name = 'type_of_upload' type = "text" hidden></input>
+            <div class="form-group">
+                <div class="content-section ">
+                            Upload PDF
+                            <input type="file" name='file'/>
+                        </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+
+    <form method="POST" action="upload_txt" id="form3" enctype="multipart/form-data" onsubmit = "submitForm(document.getElementById('form3'))">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                {{ form.title.label(class="form-control-label") }}
+                {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <input name = 'type_of_upload' type = "text" hidden></input>
+            <div class="form-group">
+                <div class="content-section ">
+                            Upload Txt
+                            <input type="file" name='file'/>
+                        </div>
+            </div>
+            
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    document.getElementById('form1').style.display = 'none'; 
+    document.getElementById('form2').style.display = 'block'; 
+    document.getElementById('form3').style.display = 'none';
+    function submitForm(form){
+        var form = document.getElementById(form)
+        var urlEncodedDataPairs = []
+        var urlEncodedData = ""
+
+        for(name in data){
+            urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
+        }
+
+        urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+
+        var xhr = new XMLHttpRequest()
+        xhr.open("POST", "/post/new/form")
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(urlEncodedData)
+        return true
+    }
+</script>
+{% endblock content %}
