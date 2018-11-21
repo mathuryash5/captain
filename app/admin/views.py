@@ -74,10 +74,10 @@ def students():
 	return render_template('studentlist.html', response = student_info)
 
 @admin.route('/add/<type>', methods = ['POST'])
-def add_user():
+def add_user(type):
 	print("Adding new user")
-	data = request.get_json(force = True)
-	print(data)
+	data = request.get_json(force = True)	
+	print(type(data))
 	if(type == "student"):
 		exists = db.session.query(Student.usn).filter_by(usn=data['usn']).scalar() is not None
 		# If student exists

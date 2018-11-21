@@ -55,11 +55,11 @@ $BTN.click(function () {
   contentType: "application/json; charset=utf-8"
   });
   // Output the result
- // $EXPORT.text(JSON.stringify(data));
+  $EXPORT.text(JSON.stringify(data));
   console.log(data);
   console.log(JSON.stringify(data));
 
-  $.post("/admin/add/student", JSON.stringify(data), function(){
+  $.post("/admin/add/teacher", JSON.stringify(data), function(){
 
   });
   // stop link reloading the page
