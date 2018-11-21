@@ -74,7 +74,7 @@ def students():
 	return render_template('studentlist.html', response = student_info)
 
 @admin.route('/add/<type>', methods = ['POST'])
-def add_user(type):
+def add_data(type):
 	print("Adding new user")
 	data = request.get_json(force = True)	
 	print(type(data))
@@ -86,7 +86,7 @@ def add_user(type):
 		#add student
 		else:
 			flash("New User added")
-			db.session.add(Student(usn = data['usn'], name=data['name'], email=data['email'], branch=data['branch'], semester=data['semester'], section=data['section']))
+			db.session.add(Student(usn=data['usn'], name=data['name'], email=data['email'], branch=data['branch'], semester=data['semester'], section=data['section']))
 			db.session.commit()
 		student_info = db.session.query(Student).filter(Student.role == 'Student').all()
 		return render_template('studentlist.html', response = student_info)
