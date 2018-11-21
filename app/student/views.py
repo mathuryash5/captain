@@ -9,7 +9,7 @@ from flask_login import LoginManager, login_required, login_user, logout_user, c
 
 from . import student
 
-from app.models import Student, Teacher, CourseBase, Course
+from app.models import Student, Teacher, CourseBase
 
 from sqlalchemy import func, distinct
 

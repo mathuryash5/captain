@@ -11,11 +11,11 @@ from app.models import Student, Teacher, CourseBase
 
 from sqlalchemy import func, distinct
 
-from .. import db
+from .. import db, mail
 
 headers = "application/json"
 
-@admin.route('/dashboard', methods = ['GET', 'POST'])
+@admin.route('/dashboard', methods = ['GET'])
 def dashboard():
 	print("Displaying Admin Dashboard")
 	student_count = db.session.query(func.count(Student.usn)).first()
@@ -60,6 +60,20 @@ def dashboard():
 							# 			course_count = course_count,				
 							# )
 
+@admin.route('/dashboard', methods = ['POST'])
+def send_mail():
+	print("Sending Users email notification")
+	data = request.get_json(force = True)
+	users = ["mathuryash5@gmail.com"]
+	with mail.connect() as conn:
+	    for user in users:
+	        message = '...'
+	        subject = "hello, %s" % user.name
+	        msg = Message(recipients=[user.email],
+	                      body=message,
+	                      subject=subject)
+
+	        conn.send(msg)
 
 @admin.route('/courses', methods = ['GET', 'POST'])
 def courses():
@@ -122,3 +136,6 @@ def teachers():
 	teacher_info = db.session.query(Teacher).filter(Teacher.role == 'Teacher').all()
 	print(teacher_info)
 	return render_template('teacherlist.html', response = teacher_info)
+
+
+

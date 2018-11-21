@@ -87,12 +87,13 @@ class Teacher(User):
 		'polymorphic_identity': 'teacher',
 	}
 
-	def __init__(self, f_id, name, email, branch, position):
+	def __init__(self, f_id, name, email, branch, position, course_to_section):
 		self.f_id = f_id
 		self.name = name
 		self.email = email
 		self.branch = branch
 		self.position = position
+		self.course_to_section = course_to_section
 		self.role = "Teacher"
 
 	def __repr__(self):
@@ -127,26 +128,23 @@ class CourseBase(db.Model):
 
 
 
-class Course(db.Model):
-	__tablename__ = "course"
+class CourseDeliverable(db.Model):
+	__tablename__ = "course_deliverable"
 
 	course_code = db.Column(db.String, db.ForeignKey('course_base.course_code'))
 	global_deliverable_id = db.Column(db.Integer, unique = True, autoincrement = True) 
 	deliverable_id = db.Column(db.Integer, nullable = False)
-	deliverables = db.Column(db.String(256))
+	deliverable = db.Column(db.String(256))
 	deliverable_deadline = db.Column(db.DateTime(timezone = True))
-	# Resources supplied by the teacher for the students. 
-	teacher_resources = db.Column(db.JSON)
 
-	def __init__(self, course_code, deliverables, deliverable_deadline, teacher_resources):
+	def __init__(self, course_code, deliverable, deliverable_deadline):
 		self.course_code = course_code
-		self.deliverables = deliverables
+		self.deliverable = deliverable
 		self.deliverable_deadline = deliverable_deadline
-		self.teacher_resources = teacher_resources
 
 		def get_deliverables_count():
 			# print(course_code)
-			deliverables_count = db.session.query(Course).filter(Course.course_code == course_code).count()
+			deliverables_count = db.session.query(CourseDeliverable).filter(CourseDeliverable.course_code == course_code).count()
 			# print(deliverables_count)
 			return deliverables_count
 
@@ -156,7 +154,26 @@ class Course(db.Model):
 	def __repr__(self):
 		return '<Course {}>'.format(self.course_name)
 
-	__table_args__ = (PrimaryKeyConstraint(course_code, global_deliverable_id),) 
+	__table_args__ = (PrimaryKeyConstraint(course_code, global_deliverable_id),)
+
+class CourseResource(db.Model):
+	__tablename__ = "course_resource"
+
+	course_code = db.Column(db.String, db.ForeignKey('course_base.course_code'))
+	# Resources supplied by the teacher for the students. 
+	resource_desc = db.Column(db.String(256))
+	resource_url = db.Column(db.String(256))
+	upload_time = db.Column(db.DateTime(timezone = True), default=datetime.datetime.utcnow)
+
+	def __init__(self, course_code, resource_desc, resource_url):
+		self.course_code = course_code
+		self.rsource_desc = resource_desc
+		self.resource_url = resource_url
+
+	def __repr__(self):
+		return '<CourseResources{}>'.format(self.course_name)
+
+	__table_args__ = (PrimaryKeyConstraint(course_code, resource_url),) 	 
 
 class Team(db.Model):
 	__tablename__ = "team"
@@ -186,17 +203,18 @@ class Team(db.Model):
 	__table_args__ = (PrimaryKeyConstraint(global_team_id, course_code),) 
 	
 
-class TeamSubmissions(db.Model):
-	__tablename__ = "team_submissions"
+class TeamSubmission(db.Model):
+	__tablename__ = "team_submission"
 
 	global_team_id = db.Column(db.Integer, db.ForeignKey('team.global_team_id'))
 	course_code = db.Column(db.String, db.ForeignKey('course_base.course_code'))
-	global_deliverable_id = db.Column(db.Integer, db.ForeignKey('course.global_deliverable_id'))
+	global_deliverable_id = db.Column(db.Integer, db.ForeignKey('course_deliverable.global_deliverable_id'))
 	resource_url = db.Column(db.String(128))
 	grading_status = db.Column(db.Boolean, default = False)
 	submission_time = db.Column(db.DateTime(timezone = True), default=datetime.datetime.utcnow)
 	teacher_eval = db.Column(db.String(256))
 	teacher_eval_time = db.Column(db.DateTime())
+
 	def __init__(self, global_team_id, course_code, global_deliverable_id, resource_url, grading_status, submission_time):
 		self.global_team_id = global_team_id
 		self.course_code = course_code
@@ -204,13 +222,3 @@ class TeamSubmissions(db.Model):
 		self.resource_url = resource_url
 
 	__table_args__ = (PrimaryKeyConstraint(global_team_id, course_code, global_deliverable_id),) 
-
-
-
-
-# # @login_manager.user_loader
-# # def load_user(id):
-# # 	try: 
-# # 		return User.query.get(int(id))
-# # 	except:
-# # 		return None
