@@ -43,7 +43,7 @@
         <a class="navbar-brand brand-logo-mini" href="dashboard.html"><img src="{{url_for('static',filename='images/logo_mini.svg')}}" alt="logo"></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
-        <p class="page-name d-none d-lg-block">Hi, Dave Mattew</p>
+        <p class="page-name d-none d-lg-block">Hi, {{response.student_name}}</p>
         <ul class="navbar-nav ml-lg-auto">
          
           <li class="nav-item dropdown mail-dropdown">
@@ -250,7 +250,7 @@
                             <div class="d-flex">
                               
                             </div>
-                            <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam volutpat quam est, non mollis massa commodo quis. Nullam pharetra, metus sit amet dictum molestie, ipsum ante consectetur nulla, quis fermentum tellus nulla tristique erat. Phasellus cursus mauris at erat efficitur, quis molestie mauris iaculis. Curabitur et malesuada massa. Aliquam quis pretium ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis consequat dui. Duis risus purus, egestas vel aliquet ac, porta fringilla nibh. Nam ut nibh vehicula dui rutrum interdum. Duis tincidunt suscipit lectus ut fringilla. Donec non nisi vel orci molestie luctus quis venenatis justo. Suspendisse fermentum, orci in efficitur rhoncus, turpis eros imperdiet magna, in tempus lectus urna id dolor. Morbi commodo suscipit leo in fringilla.</p>
+                            <p >{{response.course_info}}</p>
                           </div>
           
                         </div>

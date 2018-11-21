@@ -215,16 +215,18 @@
                 <div class="card-body">
                     <h4 class="card-title">Lab Marks</h4>
                   <div class="row">
-                    <div class="col d-flex flex-row justify-content-center align-items-center">
-                      <div class="wrapper icon-circle bg-success">
-                        <i class="icon-chart icons"></i>
+                    {% for course in response.course_names %}
+                      <div class="col d-flex flex-row justify-content-center align-items-center">
+                        <div class="wrapper icon-circle bg-success">
+                          <i class="icon-chart icons"></i>
+                        </div>
+                        <div class="wrapper text-wrapper">
+                          <p class="text-dark">{{response.lab_marks[course.course_name]}}</p>
+                          <p>{{course.course_name}}</p>
+                        </div>
                       </div>
-                      <div class="wrapper text-wrapper">
-                        <p class="text-dark">89</p>
-                        <p>Subject 1</p>
-                      </div>
-                    </div>
-                    <div class="col d-flex flex-row justify-content-center align-items-center">
+                    {% endfor %}
+<!--                     <div class="col d-flex flex-row justify-content-center align-items-center">
                       <div class="wrapper icon-circle bg-danger">
                         <i class="icon-chart icons"></i>
                       </div>
@@ -242,7 +244,7 @@
                         <p class="text-dark">65</p>
                         <p>Subject 3</p>
                       </div>
-                    </div>
+                    </div> -->
 
                   </div>
                 </div>

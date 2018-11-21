@@ -216,26 +216,13 @@
                       <div class="bg-light p-4">
                         <h6 class="card-title">Classmates </h6>
                         <div id="profile-list-all1" class="py-2">
-                          <div class="card rounded mb-2">
-                            <div class="card-body p-3">
-                                  <h6 class="mb-1">Rebecca young</h6>
-                            </div>
-                          </div>
-                          <div class="card rounded mb-2">
-                              <div class="card-body p-3">
-                                    <h6 class="mb-1">Dumb guy</h6>
-                              </div>
-                            </div>
+                          {% for class_mate in response.class_mates %}
                             <div class="card rounded mb-2">
-                                <div class="card-body p-3">
-                                      <h6 class="mb-1">Cool Guy</h6>
-                                </div>
+                              <div class="card-body p-3">
+                                  <h6 class="mb-1">{{class_mate.name}}</h6>
                               </div>
-                              <div class="card rounded mb-2">
-                                  <div class="card-body p-3">
-                                        <h6 class="mb-1">Dumb Chick</h6>
-                                  </div>
-                                </div>
+                            </div>
+                          {% endfor %}
 
                         </div>
                       </div>

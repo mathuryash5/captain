@@ -10,7 +10,6 @@ from .. import student, teacher
 from requests.exceptions import HTTPError
 import simplejson as json
 import datetime
-import random
 
 from sqlalchemy import exc
 
@@ -83,9 +82,29 @@ def callback():
         print("is auth already")
         u, isTeacher = checkUser(current_user.email)
         if isTeacher:
-            return render_template("Teacher.html")
+            print("Displaying the Teacher dashboard")
+            user_info = db.session.query(Teacher).filter(Teacher.email == current_user.email).first()
+            courses_taken = user_info.course_to_section.keys()
+            print("="*30)
+            print(user_info)
+            # print(all_course_names)
+            print("="*30)
+            response = {"teacher_name" : user_info.name, "courses_taken" : courses_taken, "course_to_section" : user_info.course_to_section}
+            return render_template("Teacher.html", response = response)
+
         else:
-            return render_template("dashboard.html")
+            user_info = db.session.query(Student).filter(Student.email == current_user.email).first()
+            course_names = db.session.query(CourseBase.course_name).filter(CourseBase.semester == user_info.semester)
+            all_course_names = db.session.query(CourseBase.course_name).all()
+            print("="*30)
+            print(user_info)
+            print(user_info.semester)
+            print(user_info.lab_marks)
+            # print(course_names)
+            print(all_course_names)
+            print("="*30)
+            response = {"student_name" : user_info.name, "lab_marks" : user_info.lab_marks, "course_names" : course_names}
+            return render_template("dashboard.html", response = response)
     if 'error' in request.args:
         print("some error")
         if request.args.get('error') == 'access_denied':
@@ -138,14 +157,35 @@ def callback():
             #     print("Error adding user details and logging in")
             #     return 'Error adding user details and logging in'
             if isTeacher:
-                return render_template("Teacher.html")
+                print("Displaying the Teacher dashboard")
+                user_info = db.session.query(Teacher).filter(Teacher.email == current_user.email).first()
+                courses_taken = user_info.course_to_section.keys()
+
+                print("="*30)
+                print(user_info)
+                print(user_info.semester)
+                print(user_info.lab_marks)
+                # print(course_names)
+                # print(all_course_names)
+                print("="*30)
+                response = {"teacher_name" : user_info.name, "courses_taken" : courses_taken, "course_to_section" : user_info.course_to_section}
+                return render_template("Teacher.html", response = response)
             else:
                 print("Displaying the Student dashboard")
-                response = {"student_name" : current_user.name}
+                user_info = db.session.query(Student).filter(Student.email == current_user.email).first()
+                course_names = db.session.query(CourseBase.course_name).filter(CourseBase.semester == user_info.semester)
+                all_course_names = db.session.query(CourseBase.course_name).all()
+                print("="*30)
+                print(user_info)
+                print(user_info.semester)
+                print(user_info.lab_marks)
+                print(course_names)
+                # print(all_course_names)
+                print("="*30)
+                response = {"student_name" : user_info.name, "lab_marks" : user_info.lab_marks, "course_names" : course_names}
                 return render_template("dashboard.html", response = response)
 
         return 'Could not fetch your information.'
-
 
 @home.route("/logout", methods=["GET"])
 @login_required
