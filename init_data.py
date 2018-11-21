@@ -1,5 +1,5 @@
 from app import db
-from app.models import User, Student, Teacher, Admin, CourseBase, Course, Team
+from app.models import User, Student, Teacher, Admin, CourseBase, CourseDeliverable, CourseResource, Team
 
 
 def student_data():
@@ -69,26 +69,49 @@ def coursebase_data():
 	db.session.add(CourseBase(course_name = "Machine Learning", course_code = "UE15CS403", description = "Understanding the elementary parts of Machine Learning", semester = 7, branch = "CSE", no_of_max_members = 3, calendar_id = "xyz"))
 	db.session.commit()
 
-def course_data():
+def course_deliverable_data():
 	"""Seeds the Course Table."""
-	db.session.add(Course(course_code = "UE15CS201", deliverables = "Creation of a working Binary Search Tree", deliverable_deadline = "2018-11-30", teacher_resources = "xyz.com"))
+	db.session.add(CourseDeliverable(course_code = "UE15CS201", deliverable = "Creation of a working Binary Search Tree", deliverable_deadline = "2018-11-30"))
 	db.session.commit()
-	db.session.add(Course(course_code = "UE15CS202", deliverables = "Study the speeds of multiple sorting algorithms", deliverable_deadline = "2018-11-29", teacher_resources = "xyz.com"))
+	db.session.add(CourseDeliverable(course_code = "UE15CS202", deliverable = "Study the speeds of multiple sorting algorithms", deliverable_deadline = "2018-11-29"))
 	db.session.commit()
-	db.session.add(Course(course_code = "UE15CS203", deliverables = "Study and list the teams in order of probability of winning in IPL", deliverable_deadline = "2018-11-28", teacher_resources = "xyz.com"))
+	db.session.add(CourseDeliverable(course_code = "UE15CS203", deliverable = "Study and list the teams in order of probability of winning in IPL", deliverable_deadline = "2018-11-28"))
 	db.session.commit()
-	db.session.add(Course(course_code = "UE15CS301", deliverables = "Finding the current date and time from the terminal", deliverable_deadline = "2018-11-30", teacher_resources = "xyz.com"))
+	db.session.add(CourseDeliverable(course_code = "UE15CS301", deliverable = "Finding the current date and time from the terminal", deliverable_deadline = "2018-11-30"))
 	db.session.commit()
-	db.session.add(Course(course_code = "UE15CS302", deliverables = "Creating and managing a Resaturant Database", deliverable_deadline = "2018-11-29", teacher_resources = "xyz.com"))
+	db.session.add(CourseDeliverable(course_code = "UE15CS302", deliverable = "Creating and managing a Resaturant Database", deliverable_deadline = "2018-11-29"))
 	db.session.commit()
-	db.session.add(Course(course_code = "UE15CS303", deliverables = "Making an algorithm to find the shortest distance to a router from another in a a mesh of routers", deliverable_deadline = "2018-11-28", teacher_resources = "xyz.com"))
+	db.session.add(CourseDeliverable(course_code = "UE15CS303", deliverable = "Making an algorithm to find the shortest distance to a router from another in a a mesh of routers", deliverable_deadline = "2018-11-28"))
 	db.session.commit()
-	db.session.add(Course(course_code = "UE15CS401", deliverables = "Make an automata for a slot machine with code", deliverable_deadline = "2018-11-30", teacher_resources = "xyz.com"))
+	db.session.add(CourseDeliverable(course_code = "UE15CS401", deliverable = "Make an automata for a slot machine with code", deliverable_deadline = "2018-11-30"))
 	db.session.commit()
-	db.session.add(Course(course_code = "UE15CS402", deliverables = "Creating a well defined dynamic website", deliverable_deadline = "2018-11-29", teacher_resources = "xyz.com"))
+	db.session.add(CourseDeliverable(course_code = "UE15CS402", deliverable = "Creating a well defined dynamic website", deliverable_deadline = "2018-11-29"))
 	db.session.commit()
-	db.session.add(Course(course_code = "UE15CS403", deliverables = "Make a system to predict the kind of song that is played", deliverable_deadline = "2018-11-28", teacher_resources = "xyz.com"))
+	db.session.add(CourseDeliverable(course_code = "UE15CS403", deliverable = "Make a system to predict the kind of song that is played", deliverable_deadline = "2018-11-28"))
 	db.session.commit()
+
+def course_resource_data():
+	db.session.add(CourseResource(course_code = "UE15CS201", resource_url = "xyz.com", resource_desc = "A"))
+	db.session.add(CourseResource(course_code = "UE15CS201", resource_url = "xydsafz.com", resource_desc = "B"))
+	db.session.add(CourseResource(course_code = "UE15CS202", resource_url = "xydasfz.com", resource_desc = "C"))
+	db.session.add(CourseResource(course_code = "UE15CS202", resource_url = "xyadfsz.com", resource_desc = "D"))
+	db.session.add(CourseResource(course_code = "UE15CS202", resource_url = "xydagz.com", resource_desc = "E"))
+	db.session.add(CourseResource(course_code = "UE15CS202", resource_url = "sdxyz.com", resource_desc = "F"))
+	db.session.add(CourseResource(course_code = "UE15CS203", resource_url = "xgdyz.com", resource_desc = "G"))
+	db.session.add(CourseResource(course_code = "UE15CS203", resource_url = "xgadsyz.com", resource_desc = "H"))
+	db.session.add(CourseResource(course_code = "UE15CS203", resource_url = "xyasdz.com", resource_desc = "I"))
+	db.session.add(CourseResource(course_code = "UE15CS301", resource_url = "xysadz.com", resource_desc = "J"))
+	db.session.add(CourseResource(course_code = "UE15CS301", resource_url = "xyxbz.com", resource_desc = "K"))
+	db.session.add(CourseResource(course_code = "UE15CS302", resource_url = "xycz.com", resource_desc = "L"))
+	db.session.add(CourseResource(course_code = "UE15CS302", resource_url = "xyasz.com", resource_desc = "M"))
+	db.session.add(CourseResource(course_code = "UE15CS303", resource_url = "xybxz.com", resource_desc = "N"))
+	db.session.add(CourseResource(course_code = "UE15CS303", resource_url = "xyasdz.com", resource_desc = "O"))
+	db.session.add(CourseResource(course_code = "UE15CS401", resource_url = "xy12z.com", resource_desc = "P"))
+	db.session.add(CourseResource(course_code = "UE15CS401", resource_url = "xy42z.com", resource_desc = "Q"))
+	db.session.add(CourseResource(course_code = "UE15CS402", resource_url = "xy53z.com", resource_desc = "R"))
+	db.session.add(CourseResource(course_code = "UE15CS403", resource_url = "xy35z.com", resource_desc = "S"))
+	db.session.add(CourseResource(course_code = "UE15CS403", resource_url = "xy24z.com", resource_desc = "T"))
+
 
 def team_data():
 	"""Seeds the Team Table."""
@@ -119,6 +142,3 @@ def team_data():
 	db.session.add(Team(course_code = "UE15CS403", session_id = "25", usn_list = "{member_1 : Aditya Ramani, member_2 : Anvith Shetty, member_3 : Saket Golyan}", github_user = "Aditya Ramani", github_repo = "https://github.com/AdityaRamani/captain"))
 	db.session.add(Team(course_code = "UE15CS403", session_id = "26", usn_list = "{member_1 : Aayushman Arora, member_2 : Rahil Arora ,member_3 : Armaan Imaam}", github_user = "Rahil Arora", github_repo = "https://github.com/RahilArora/captain"))
 	db.session.add(Team(course_code = "UE15CS403", session_id = "27", usn_list = "{member_1 : Yash Mathur, member_2 : Varuni Sutrave, member_3 : Srishti Mishra}", github_user = "Yash Mathur", github_repo = "https://github.com/mathuryash5/captain"))
-
-def admin_data():
-	db.session.add(Admin(roleno = "a1", password = "secret"))

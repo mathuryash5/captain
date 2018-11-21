@@ -3,7 +3,7 @@
 
 # Import flask dependencies
 from flask import request, render_template, \
-      				session, redirect, url_for, Response, jsonify
+      				session, redirect, url_for, Response, jsonify, flash
 
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 
@@ -83,18 +83,57 @@ def courses():
 		renders dashboard to manage students
 '''
 
-@admin.route('/students', methods = ['GET', 'POST'])
+@admin.route('/students', methods = ['GET'])
 def students():
 	print("Displaying Students Page for the Admin")
 	student_info = db.session.query(Student).filter(Student.role == 'Student').all()
 	print(student_info)
 	return render_template('studentlist.html', response = student_info)
 
-'''
-	This function
-		renders dashboard to manage teachers
-'''
-@admin.route('/teachers', methods = ['GET', 'POST'])
+@admin.route('/add/<type>', methods = ['POST'])
+def add_data(type):
+	print("Adding new user")
+	data = request.get_json(force = True)	
+	print(type(data))
+	if(type == "student"):
+		exists = db.session.query(Student.usn).filter_by(usn=data['usn']).scalar() is not None
+		# If student exists
+		if exists:
+			flash("User already exists!")
+		#add student
+		else:
+			flash("New User added")
+			db.session.add(Student(usn=data['usn'], name=data['name'], email=data['email'], branch=data['branch'], semester=data['semester'], section=data['section']))
+			db.session.commit()
+		student_info = db.session.query(Student).filter(Student.role == 'Student').all()
+		return render_template('studentlist.html', response = student_info)
+	elif(type == "teacher"):
+		exists = db.session.query(Teacher.f_id).filter_by(f_id=data['f_id']).scalar() is not None
+		#If teacher exists
+		if exists:
+			flash("User already exists!")
+		#add teacher
+		else:
+			flash("New User added")
+			db.session.add(Teacher(f_id = data['f_id'], name=data['name'], email=data['email'], branch=data['branch'], position=data['position']))
+			db.session.commit()
+		teacher_info = db.session.query(Teacher).filter(Teacher.role == 'Teacher').all()
+		return render_template('teacherlist.html', response = teacher_info)
+	elif(type == "course"):
+		exists = db.session.query(CourseBase.course_code).filter_by(course_code=data['course_code']).scalar() is not None
+		#If teacher exists
+		if exists:
+			flash("Course already exists!")
+		#add teacher
+		else:
+			flash("New Course added")
+			db.session.add(CourseBase(course_name = data['course_name'], course_code = data['course_code'], description = data['description'], semester = data['semester'], branch = data['branch'], no_of_max_members = data['no_of_max_members'], calendar_id = "xyz"))
+			db.session.commit()
+		print("Displaying Courses Page for the Admin")
+		return render_template('courselist.html')
+			
+
+@admin.route('/teachers', methods = ['GET'])
 def teachers():
 	print("Displaying Teachers Page for the Admin")
 	teacher_info = db.session.query(Teacher).filter(Teacher.role == 'Teacher').all()
