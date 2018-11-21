@@ -24,6 +24,7 @@ def dashboard():
 	teacher_names = db.session.query(Teacher.name).all()
 	sections = db.session.query(distinct(Student.section)).all()
 	course_names = db.session.query(CourseBase.course_name).all()
+	semester = db.session.query(distinct(Student.semester)).all()
 
 	teacher_list = []
 	for obj in teacher_names:
@@ -37,6 +38,13 @@ def dashboard():
 		section_list.append(obj[0])
 	section_list.sort()
 
+	semester_count = {}
+	for obj in semester:
+		student_sem_cnt = db.session.query(Student).filter(Student.semester == obj[0]).count()
+		semester_count[str(obj[0])] = student_sem_cnt
+
+	print(semester_count)
+
 	course_list = []
 	for obj in course_names:
 		course_list.append(obj[0])
@@ -46,7 +54,7 @@ def dashboard():
 				 "teacher_names" : teacher_list, "sections" : section_list, "course_names" : course_list}
 
 	# return str(response)
-	return render_template('admin.html', response = response)
+	return render_template('admin.html', response = response, bar_chart = semester_count)
 							#  ,
 							# 			course_names = course_names,
 							# 			course_count = course_count,				
