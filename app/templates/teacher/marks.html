@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="{{url_for('static',filename = 'node_modules/chartist/dist/chartist.min.css')}}" />
   <link rel="stylesheet" href="{{url_for('static',filename = 'node_modules/jvectormap/jquery-jvectormap.css')}}" />
   <link rel="stylesheet" href="{{url_for('static',filename = 'node_modules/jquery-bar-rating/dist/themes/bars-1to10.css')}}">
-  <link rel="stylesheet" href="{{url_for('static',filename = '{{url_for('static',filename = 'node_modules/fullcalendar/dist/fullcalendar.min.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename = 'node_modules/fullcalendar/dist/fullcalendar.min.css')}}" />
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{{url_for('static',filename = 'css/style.css')}}">
@@ -54,7 +54,7 @@
             <div class="dropdown-menu navbar-dropdown mail-notification dropdownAnimation" aria-labelledby="MailDropdown">
               <a class="dropdown-item" href="#">
                 <div class="sender-img">
-                  <img src="images/faces/face6.jpg')}}" alt="">
+                  <img src="{{url_for('static',filename = 'images/faces/face6.jpg')}}" alt="">
                   <span class="badge badge-success">&nbsp;</span>
                 </div>
                 <div class="sender">
@@ -149,7 +149,7 @@
           </li>
           <li class="nav-item d-none d-sm-block profile-img">
             <a class="nav-link profile-image" href="#">
-              <img src="{{url_for('static','images/faces/face4.jpg')}}" alt="profile-img">
+              <img src="{{url_for('static',filename = 'images/faces/face4.jpg')}}" alt="profile-img">
               <span class="online-status online bg-success"></span>
             </a>
           </li>

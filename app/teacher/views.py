@@ -26,14 +26,44 @@ def dashboard():
 	print("Displaying the Teacher dashboard")
 	user_info = db.session.query(Teacher).filter(Teacher.email == current_user.email).first()
 	courses_taken = user_info.course_to_section.keys()
-	
+
 	print("="*30)
 	print(user_info)
 	print(user_info.semester)
 	print(user_info.lab_marks)
-	print(course_names)
+	# print(course_names)
 	# print(all_course_names)
 	print("="*30)
 	response = {"teacher_name" : user_info.name, "courses_taken" : courses_taken, "course_to_section" : user_info.course_to_section}
 	return render_template("Teacher.html", response = response)
 
+@teacher.route('/course', methods = ['GET', 'POST'])
+@login_required
+def course():
+	return render_template("course.html")
+
+@teacher.route('/evaluate', methods = ['GET', 'POST'])
+@login_required
+def evaluate():
+	print("Displaying the Teacher evaluation page")
+	user_info = db.session.query(Teacher).filter(Teacher.email == current_user.email).first()
+	courses_taken = user_info.course_to_section.keys()
+
+	# Get all users regiestered for their course
+	sections_taught = user_info.course_to_section.values()
+	print(sections_taught)
+	students_taught = []
+	for course_code in courses_taken:
+		semester_taught = db.session.query(CourseBase.semester).filter(CourseBase.course_code == course_code).first()
+		print(semester_taught)
+		temp_student = db.session.query(Student).filter(Student.semester == semester_taught[0] and Student.section in sections_taught).all()
+		students_taught += temp_student
+	print("="*30)
+	print(user_info)
+	# print(user_info.semester)
+	print(students_taught[0].name)
+	# print(course_names)
+	# print(all_course_names)
+	print("="*30)
+	response = {"teacher_name" : user_info.name, "courses_taken" : courses_taken, "course_to_section" : user_info.course_to_section, "students_taught" : students_taught}
+	return render_template("marks.html")

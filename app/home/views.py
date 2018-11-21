@@ -15,7 +15,7 @@ import random
 from sqlalchemy import exc
 
 from app import login_manager
-from app.models import User, Student, Teacher
+from app.models import User, Student, Teacher, CourseBase
 
 from .. import db
 
