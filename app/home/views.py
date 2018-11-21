@@ -10,6 +10,7 @@ from .. import student, teacher
 from requests.exceptions import HTTPError
 import simplejson as json
 import datetime
+import random
 
 from sqlalchemy import exc
 
@@ -162,9 +163,10 @@ def logout():
 @login_required
 def chat(courseid):
     # Find which team id from querying current_user.has_team for courseid's teamValue.
-    teamID = "2"
+    teamID = random.randint(1,2)
     response = make_response(render_template('chat.html'))
-    response.set_cookie('tid', str(teamID), max_age=60*2)
+    response.set_cookie('tid', str(teamID), max_age=60*5)
+    response.set_cookie('usn', str(current_user.email), max_age=60*5)
     return response
     # return redirect("http://localhost:")
     # return jsonify({'name': current_user.email })
