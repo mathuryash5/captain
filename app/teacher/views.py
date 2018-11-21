@@ -26,7 +26,7 @@ def dashboard():
 	print("Displaying the Teacher dashboard")
 	user_info = db.session.query(Teacher).filter(Teacher.email == current_user.email).first()
 	courses_taken = user_info.course_to_section.keys()
-
+	
 	print("="*30)
 	print(user_info)
 	print(user_info.semester)
@@ -36,3 +36,4 @@ def dashboard():
 	print("="*30)
 	response = {"teacher_name" : user_info.name, "courses_taken" : courses_taken, "course_to_section" : user_info.course_to_section}
 	return render_template("Teacher.html", response = response)
+
