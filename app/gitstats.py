@@ -1,5 +1,5 @@
 import requests
-from flask import Flask
+from flask import Flask, jsonify
 import json
 app = Flask(__name__)
 @app.route("/")
@@ -8,7 +8,7 @@ app = Flask(__name__)
 def main():
 	user = 'mathuryash5'
 	repo = 'captain'
-	return get_stat(user,repo)
+	return jsonify(get_stat(user,repo))
 
 
 
@@ -16,8 +16,7 @@ def get_stat(user, repo):
 	request = 'https://api.github.com/repos/'+user+'/'+repo
 	a = requests.get(request+'/stats/contributors').content
 	b = requests.get(request+'/contributors').content
-	parseJSON(a,b)
-	return a, b
+	return parseJSON(a,b)
 
 
 def parseJSON(a,b):
@@ -33,13 +32,10 @@ def parseJSON(a,b):
 		temp = stats[i]["total"]
 		login = stats[i]["author"]["login"]
 		final_stats[login] = temp
-	f= open("temp.txt","w+")
-	f.write("contributions:\n")
-	f.write(str(final_cont)+"\n")
-	f.write("commits:\n")
-	f.write(str(final_stats))
-	f.close()
-	return
+	final = {}
+	final["contributions"]=final_cont
+	final["commits"]=final_stats
+	return final
 	
 if __name__ == '__main__':
     app.run(debug=True)
