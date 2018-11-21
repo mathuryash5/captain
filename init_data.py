@@ -27,10 +27,23 @@ def student_data():
 	db.session.add(Student(usn = "01FB15ECS021", name="Srishti Mishra", email="srishti.mishra@gmail.com", branch="CSE", semester=7, section="C"))
 	db.session.add(Student(usn = "01FB15ECS022", name="Saksham Arya", email="saksham.arya@gmail.com", branch="CSE", semester=5, section="C"))
 	db.session.add(Student(usn = "01FB15ECS023", name="Josh Pasricha", email="josh.pasricha@gmail.com", branch="CSE", semester=5, section="C"))
+<<<<<<< HEAD
 	db.session.add(Student(usn = "01FB15ECS024", name="Arjun Singh Mann", email="arjun.singh.mann@gmail.com", branch="CSE", semester=5, section="C"))
 	db.session.add(Student(usn = "01FB15ECS025", name="Anant Singh Mann", email="anant.singh.mann@gmail.com", branch="CSE", semester=3, section="C"))
 	db.session.add(Student(usn = "01FB15ECS026", name="Dilsher Brar", email="dilsher.brar@gmail.com", branch="CSE", semester=3, section="C"))
 	db.session.add(Student(usn = "01FB15ECS027", name="Abhinav Kejriwal", email="abhinav.kejriwal@gmail.com", branch="CSE", semester=3, section="C"))
+=======
+	db.session.add(Student(usn = "01FB15ECS024", name="Dilsher Brar", email="dilsher.brar@gmail.com", branch="CSE", semester=3, section="C"))
+	db.session.add(Student(usn = "01FB15ECS025", name="Saksham Arya", email="saksham.arya@gmail.com", branch="CSE", semester=5, section="C"))
+	db.session.add(Student(usn = "01FB15ECS026", name="Yash Upadhyay", email="yash.upadhyay@gmail.com", branch="CSE", semester=7, section="C"))
+	db.session.add(Student(usn = "01FB15ECS027", name="Abhinav Kejriwal", email="abhinav.kejriwal@gmail.com", branch="CSE", semester=7, section="C"))
+	db.session.add(Student(usn = "01FB15ECS028", name="Yash Mathur", email="yash.mathur@gmail.com", branch="CSE", semester=3, section="C"))
+	db.session.add(Student(usn = "01FB15ECS029", name="Varuni Sutrave", email="varunisutrave4@gmail.com", branch="CSE", semester=7, section="C"))
+	db.session.add(Student(usn = "01FB15ECS310", name="Srishti Mishra", email="srishtimishra56@gmail.com", branch="CSE", semester=7, section="C"))
+	db.session.add(Student(usn = "01FB15ECS000", name="Test Student", email="captain.se6@gmail.com", branch="CSE", semester=7, section="C"))
+	db.session.add(Student(usn = "01FB15ECS341", name="Aria Ly", email="air72659@gmail.com", branch="CSE", semester=7, section="C"))
+	db.session.add(Student(usn = "01FB15ECS346", name="Neha H", email="srishtimishra@pesu.pes.edu", branch="CSE", semester=7, section="C"))
+>>>>>>> 87ae59fc631b30ab3a35b839b934c5e7a0790e48
 	db.session.commit()
 
 def teacher_data():
