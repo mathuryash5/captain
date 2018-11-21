@@ -7,6 +7,10 @@ Note: If your gmail id does not exist in init_data.py, you cannot sign in. Add i
    
 Start up postgres database   
 $ ./startup.sh   
+   
+Initialize node modules in app/static   
+$ cd app/static   
+$ npm install   
 
 Run the app   
 $ python3 manage.py run --cert app/ssl/server.crt --key app/ssl/server.key

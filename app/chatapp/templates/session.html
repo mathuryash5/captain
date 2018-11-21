@@ -1,20 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="gr__bootstrapdash_com">
+<style type="text/css" id="night-mode-pro-style">html {background-color: white !important; filter: brightness(0.94) !important} body {background-color: white}</style>
+<link type="text/css" rel="stylesheet" id="night-mode-pro-link">
 <head>
-  <title>Flask_Chat_App</title>
+  <title>Realtime Chat</title>
+
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="../static/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../static/css/simple-line-icons.css">
+  <link rel="stylesheet" href="../static/css/flag-icon.min.css">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../static/css/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../static/images/favicon.png" />
+
 </head>
-<body onload="enter()">
+<body onload="enter()" style="background-color: #eff3f9">
 
   <h3 style='color: #ccc;font-size: 30px;'>No message yet..</h3>
   <div class="message_holder"></div>
 
-  <form action="" method="POST" id="chatForm">
+  <form action="" method="POST" id="chatForm" class="form-sample">
     <!-- <input type="text" class="username" placeholder="User Name"/> -->
-    <input type="text" class="message" placeholder="Messages"/>
-    <input type="submit"/>
+<!--     <div class="form-group">
+      <span> <input type="text" class="message form-control form-control-sm col-sm-9" placeholder="Messages"/>
+      <input class="btn btn-success btn-sm mt-3 mb-4 ml-2" type="submit" value="Send"/>
+      </span>
+    </div> -->
+
+    <div class="input-group">
+      <input type="text" class="message form-control">
+      <span class="input-group-btn ">
+        <button class="btn btn-success mt-1 mb-1" type="button">Send!</button>
+      </span>
+    </div>
+
   </form>
-  <button id="leave-btn" onclick="leave()">Leave room</button>
-  <button id="enter-btn" onclick="enter()" disabled="disabled"> Enter room</button>
+  <p>
+    <button class="btn btn-info  mt-3 mb-3 ml-1 mr-1" id="leave-btn" onclick="leave()">Leave room</button>
+    <button class="btn btn-success mt-3 mb-3 ml-1" id="enter-btn" onclick="enter()" disabled="disabled"> Enter room</button>
+  </p>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
@@ -79,7 +107,24 @@
       console.log( msg )
       if( typeof msg.user_name !== 'undefined' ) {
         $( 'h3' ).remove()
-        $( 'div.message_holder' ).append( '<div><b style="color: #000">'+msg.user_name+'</b> '+msg.message+'</div>' )
+        // $( 'div.message_holder' ).append( '<div><b style="color: #000">'+msg.user_name+'</b> '+msg.message+'</div>' )
+        $('div.message_holder').append(
+          '<div class="preview-item border-bottom px-0">\
+                      </div>\
+                      <div class="preview-item-content d-flex flex-grow">\
+                        <div class="flex-grow">\
+                          <h6 class="preview-subject">' + msg.user_name.replace(/^"(.+(?="$))"$/, '$1') +
+                            '<span class="float-right small">\
+                              <span class="text-muted pr-3">' + new Date().toLocaleTimeString() + '</span>\
+                            </span>\
+                          </h6>\
+                          <p>' + msg.message + '</p>\
+                        </div>\
+                      </div>\
+                    </div>'
+          )
+
+
       }
     })
     }

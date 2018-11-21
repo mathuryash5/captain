@@ -20,9 +20,9 @@
   <link rel="stylesheet" href="{{url_for('static',filename = 'node_modules/fullcalendar/dist/fullcalendar.min.css')}}" />
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="css/style.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="images/favicon.png')}}" />
+  <link rel="shortcut icon" href="{{url_for('static',filename='images/favicon.png')}}" />
 
   <!-- functionality -->
   <script type="text/javascript">
@@ -42,7 +42,7 @@
         <a class="navbar-brand brand-logo-mini" href="Teacher.html"><img src="{{url_for('static',filename = 'images/logo_mini.svg')}}" alt="logo"></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
-        <p class="page-name d-none d-lg-block">Hi, Dave Mattew</p>
+        <p class="page-name d-none d-lg-block">Hi, {{response.teacher_name}}</p>
         <ul class="navbar-nav ml-lg-auto">
 
           <li class="nav-item dropdown mail-dropdown">
@@ -198,7 +198,7 @@
               </a>
             </li>
             </li>
-	<li class="nav-item nav-category">
+  <li class="nav-item nav-category">
               <span class="nav-link">STUDENTS</span>
             </li>
 
@@ -221,71 +221,46 @@
                 <div class="card-body">
                     <h4 class="card-title">My Courses</h4>
                   <div class="row">
-                    <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe(this);">
-                      <div class="wrapper icon-circle bg-success">
-                        <i class="icon-chart icons"></i>
+                    {% for course in response.courses_taken %}
+                      <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe(this);">
+                        <div class="wrapper icon-circle bg-success">
+                          <i class="icon-chart icons"></i>
+                        </div>
+                        <div class="wrapper text-wrapper">
+                          <p class="text-dark">{{course}}</p>
+                          <p>{{response.course_to_section[course]}}</p>
+                          
+                        </div>
                       </div>
-                      <div class="wrapper text-wrapper">
-                        <p class="text-dark">Lab Course 1</p>
-			<p> Sec A,Sec F</p>
-                        
-                      </div>
-                    </div>
-                    <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe(this);">
-                      <div class="wrapper icon-circle bg-danger">
-                        <i class="icon-chart icons"></i>
-                      </div>
-                      <div class="wrapper text-wrapper">
-                        <p class="text-dark">Lab Course 2</p>
-			<p>Sec B</p>
-                        
-                      </div>
-                    </div> 
-
-                    
-
+                      {% endfor %} 
                   </div>
                 </div>
               </div>
             </div>
 
 <div class="row">
-	<div class="col-lg-12 grid-margin">
-		<iframe  height="720px" width="1280px" style="display:none;" id="frame" src="">
-		</iframe>
+  <div class="col-lg-12 grid-margin">
+    <iframe  height="720px" width="1280px" style="display:none;" id="frame" src="">
+    </iframe>
 
-		
-	</div>
+    
+  </div>
 </div>
             <div class="col-lg-12 grid-margin">
                 <div class="card performance-cards">
                   <div class="card-body">
                       <h4 class="card-title">My Sections</h4>
                     <div class="row">
-                      <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe_sec(this);">
-                        <div class="wrapper icon-circle bg-success">
-                          <i class="icon-rocket icons"></i>
-                        </div>
-                        <div class="wrapper text-wrapper">
-                          <p  class="text-dark">Sec A</p>
-                        </div>
+                      {% for course in response.courses_taken %}
+                         <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe_sec(this);">
+                          <div class="wrapper icon-circle bg-success">
+                            <i class="icon-rocket icons"></i>
+                          </div>
+                          <div class="wrapper text-wrapper">
+                            <p class="text-dark">{{response.course_to_section[course]}}</p>
+                          </div>
                       </div>
-                      <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe_sec(this);">
-                        <div class="wrapper icon-circle bg-danger">
-                          <i class="icon-rocket icons"></i>
-                        </div>
-                        <div class="wrapper text-wrapper">
-                          <p  class="text-dark">Sec B</p>
-                        </div>
-                      </div> 
-  
-                      <div class="col d-flex flex-row justify-content-center align-items-center" onclick="fillframe_sec(this);">
-                        <div class="wrapper icon-circle bg-warning">
-                          <i class="icon-rocket icons"></i>
-                        </div>
-                        <div class="wrapper text-wrapper">
-                          <p  class="text-dark">Sec F</p>
-                        </div>
+                      {% endfor %} 
                       </div>
   
                     </div>
@@ -295,12 +270,12 @@
           </div>
 
 <div class="row">
-	<div class="col-lg-12 grid-margin">
-		<iframe  height="720px" width="1280px" style="display:none;" id="frame_sec" src="">
-		</iframe>
+  <div class="col-lg-12 grid-margin">
+    <iframe  height="720px" width="1280px" style="display:none;" id="frame_sec" src="">
+    </iframe>
 
-		
-	</div>
+    
+  </div>
 </div>
           <!-- ROW ENDS -->
            
@@ -326,10 +301,10 @@
                       <th>
                         Subject
                       </th>
-			<th>
+      <th>
                         View
                       </th>
-			<th>
+      <th>
                         Evaluate
                       </th>
                      
@@ -351,12 +326,12 @@
                       <td>
                         <label class="badge badge-success">Subject1</label>
                       </td>
-			<td>
-			<button class="btn btn-info"  >View</button>
-			</td>
-			<td>
-			<button class="btn btn-primary">Evaluate</button>
-			</td>	
+      <td>
+      <button class="btn btn-info"  >View</button>
+      </td>
+      <td>
+      <button class="btn btn-primary">Evaluate</button>
+      </td> 
                      
                     </tr>
                     <tr>
@@ -364,7 +339,7 @@
                         <img src="{{url_for('static',filename = 'images/faces-clipart/pic-2.png')}}" alt="image"/>
                         <img src="{{url_for('static',filename = 'images/faces-clipart/pic-2.png')}}" alt="image"/>
                         <img src="{{url_for('static',filename = 'images/faces-clipart/pic-2.png')}}" alt="image"/>
-                      </td>')}}
+                      </td>
                       <td>
                         Team 3
                       </td>
@@ -374,19 +349,19 @@
                       <td>
                         <label class="badge badge-warning">Subject2</label>
                       </td>
-			<td>
-			<button class="btn btn-info"  >View</button>
-			</td>
-			<td>
-			<button class="btn btn-primary">Evaluate</button>
-			</td>	
+      <td>
+      <button class="btn btn-info"  >View</button>
+      </td>
+      <td>
+      <button class="btn btn-primary">Evaluate</button>
+      </td> 
                      
                     </tr>
                     <tr>
                       <td class="py-1">
                         <img src="{{url_for('static',filename = 'images/faces-clipart/pic-3.png')}}" alt="image"/>
-			<img src="{{url_for('static',filename = 'images/faces-clipart/pic-3.png')}}" alt="image"/>
-			<img src="{{url_for('static',filename = 'images/faces-clipart/pic-3.png')}}" alt="image"/>
+      <img src="{{url_for('static',filename = 'images/faces-clipart/pic-3.png')}}" alt="image"/>
+      <img src="{{url_for('static',filename = 'images/faces-clipart/pic-3.png')}}" alt="image"/>
                       </td>
                       <td>
                         Team 12
@@ -397,12 +372,12 @@
                       <td>
                         <label class="badge badge-danger">Subject3</label>
                       </td>
-			<td>
-			<button class="btn btn-info"  >View</button>
-			</td>
-			<td>
-			<button class="btn btn-primary">Evaluate</button>
-			</td>	
+      <td>
+      <button class="btn btn-info"  >View</button>
+      </td>
+      <td>
+      <button class="btn btn-primary">Evaluate</button>
+      </td> 
                      
                     </tr>
                     <tr>
@@ -420,19 +395,19 @@
                       <td>
                         <label class="badge badge-danger">Subject3</label>
                       </td>
-			<td>
-			<button class="btn btn-info"  >View</button>
-			</td>
-			<td>
-			<button class="btn btn-primary">Evaluate</button>
-			</td>	
+      <td>
+      <button class="btn btn-info"  >View</button>
+      </td>
+      <td>
+      <button class="btn btn-primary">Evaluate</button>
+      </td> 
                       
                     </tr>
                     <tr>
                       <td class="py-1">
                         <img src="{{url_for('static',filename = 'images/faces-clipart/pic-1.png')}}" alt="image"/>
-			<img src="{{url_for('static',filename = 'images/faces-clipart/pic-1.png')}}" alt="image"/>
-			<img src="{{url_for('static',filename = 'images/faces-clipart/pic-1.png')}}" alt="image"/>
+      <img src="{{url_for('static',filename = 'images/faces-clipart/pic-1.png')}}" alt="image"/>
+      <img src="{{url_for('static',filename = 'images/faces-clipart/pic-1.png')}}" alt="image"/>
                       </td>
                       <td>
                         Team 1
@@ -443,12 +418,12 @@
                       <td>
                         <label class="badge badge-danger">Subject3</label>
                       </td>
-			<td>
-			<button class="btn btn-info"  >View</button>
-			</td>
-			<td>
-			<button class="btn btn-primary">Evaluate</button>
-			</td>	
+      <td>
+      <button class="btn btn-info"  >View</button>
+      </td>
+      <td>
+      <button class="btn btn-primary">Evaluate</button>
+      </td> 
                       
                     </tr>
                     
@@ -492,7 +467,7 @@
   <!-- inject:js -->
   <script src="{{url_for('static',filename = 'js/off-canvas.js')}}"></script>
   <script src="{{url_for('static',filename = 'js/misc.js')}}"></script>
-  <!-- endinject -->')}}
+  <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{{url_for('static',filename = 'js/dashboard.js')}}"></script>
   <!-- End custom js for this page-->
@@ -501,20 +476,20 @@
 
 function fillframe(e)
 {
-	var f =document.getElementById("frame");
-	if(f.style.display=='block')
-	{	f.style.display='none';return;}
-	f.src="course_min.html";
-	f.style.display='block';
+  var f =document.getElementById("frame");
+  if(f.style.display=='block')
+  { f.style.display='none';return;}
+  f.src="course_min.html";
+  f.style.display='block';
 }
 
 function fillframe_sec(e)
 {
-	var f =document.getElementById("frame_sec");
-	if(f.style.display=='block')
-	{	f.style.display='none';return;}
-	f.src="submission_min.html";
-	f.style.display='block';
+  var f =document.getElementById("frame_sec");
+  if(f.style.display=='block')
+  { f.style.display='none';return;}
+  f.src="submission_min.html";
+  f.style.display='block';
 }
 
 

@@ -37,6 +37,7 @@ def student_data():
 	db.session.add(Student(usn = "01FB15ECS000", name="Test Student", email="captain.se6@gmail.com", branch="CSE", semester=7, section="C"))
 	db.session.add(Student(usn = "01FB15ECS341", name="Aria Ly", email="air72659@gmail.com", branch="CSE", semester=7, section="C"))
 	db.session.add(Student(usn = "01FB15ECS346", name="Neha H", email="srishtimishra@pesu.pes.edu", branch="CSE", semester=7, section="C"))
+	# db.session.add(Student(usn = "01FB15ECS000", name="Test Student", email="captain.se6@gmail.com", branch="CSE", semester=7, section="C"))
 	db.session.commit()
 
 def teacher_data():
@@ -50,6 +51,7 @@ def teacher_data():
 	db.session.add(Teacher(f_id = "F007", name="Kishan Soni", email="kishan.soni@gmail.com", branch="CSE", position="Professor"))
 	db.session.add(Teacher(f_id = "F008", name="Sarthak Banka", email="sarthak.banka@gmail.com", branch="CSE", position="Assistant Professor"))
 	db.session.add(Teacher(f_id = "F009", name="Kritagya Jain", email="kritagya.jain@gmail.com", branch="CSE", position="Assistant Professor"))
+	db.session.add(Teacher(f_id = "F000", name="Test Teeacher", email="captain.se6@gmail.com", branch="CSE", position="Professor"))
 	db.session.commit()
 
 def coursebase_data():
