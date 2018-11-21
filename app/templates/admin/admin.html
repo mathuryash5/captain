@@ -142,7 +142,7 @@
                             <i class="icon-notebook icons"></i>
                           </div>
                           <div class="wrapper text-wrapper">
-                            <p class="text-dark">50</p>
+                            <p class="text-dark">{{response.course_count}}</p>
                             <p>Courses</p>
                           </div>
                         </div>
@@ -206,11 +206,9 @@
 <div class="col-md-4">
 	<h4 class="card-title">Courses</h4>
 	 <select name="Subject" size="5"  style="width:200px;">
-  <option value="volvo">Sub 1</option>
-  <option value="saab">Sub 2</option>
-  <option value="fiat">Sub 3</option>
-  <option value="audi">Sub 4</option>
-  <option value="audi">Sub 5</option>
+      {% for course in response.course_names %}
+        <option value="{{course}}">{{course}}</option>
+      {% endfor %}
 </select> 
 </div>
 <div class="col-md-4">
