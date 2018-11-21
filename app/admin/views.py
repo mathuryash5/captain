@@ -76,8 +76,8 @@ def students():
 @admin.route('/add/<type>', methods = ['POST'])
 def add_data(type):
 	print("Adding new user")
-	data = request.get_json(force = True)
-	print(data)
+	data = request.get_json(force = True)	
+	print(type(data))
 	if(type == "student"):
 		exists = db.session.query(Student.usn).filter_by(usn=data['usn']).scalar() is not None
 		# If student exists
