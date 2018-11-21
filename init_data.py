@@ -33,8 +33,10 @@ def student_data():
 	db.session.add(Student(usn = "01FB15ECS027", name="Abhinav Kejriwal", email="abhinav.kejriwal@gmail.com", branch="CSE", semester=7, section="C"))
 	db.session.add(Student(usn = "01FB15ECS028", name="Yash Mathur", email="yash.mathur@gmail.com", branch="CSE", semester=3, section="C"))
 	db.session.add(Student(usn = "01FB15ECS029", name="Varuni Sutrave", email="varuni.sutrave@gmail.com", branch="CSE", semester=7, section="C"))
-	db.session.add(Student(usn = "01FB15ECS310", name="Srishti Mishra", email="srishtimishra56@gmail.com", branch="CSE", semester=7, section="C"))
+	db.session.add(Student(usn = "01FB15ECS340", name="Srishti Mishra", email="srishtimishra56@gmail.com", branch="CSE", semester=7, section="C"))
 	db.session.add(Student(usn = "01FB15ECS000", name="Test Student", email="captain.se6@gmail.com", branch="CSE", semester=7, section="C"))
+	db.session.add(Student(usn = "01FB15ECS341", name="Aria Ly", email="air72659@gmail.com", branch="CSE", semester=7, section="C"))
+	db.session.add(Student(usn = "01FB15ECS346", name="Neha H", email="srishtimishra@pesu.pes.edu", branch="CSE", semester=7, section="C"))
 	db.session.commit()
 
 def teacher_data():

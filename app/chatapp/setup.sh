@@ -1,4 +1,10 @@
 #!/bin/sh
-virtualenv -p python3 chat
-source chat/bin/activate
-pip3 install flask, flask_socketio, eventlet
+DIRECTORY='chat'
+if [ ! -d "$DIRECTORY" ]; then
+	echo 'creating venv chat'
+	virtualenv -p python3 chat
+	sudo pip3 install flask, flask_socketio
+fi
+
+# run 
+# $ source chat/bin/activate to start virtual env
