@@ -66,8 +66,8 @@ class Student(User):
 		lab_marks = {}
 		has_team = {}
 		for course in get_course_names(semester):
-			lab_marks[str(course)] = 0
-			has_team[str(course)] = 0
+			lab_marks[str(course[0])] = 0
+			has_team[str(course[0])] = 0
 
 		self.lab_marks = lab_marks
 		self.has_team = has_team
