@@ -184,17 +184,18 @@
                                                 </tr>
                                               </thead>
                                               <tbody>
+                                              {% for teacher in response %}
                                                 <tr>
-                                                  <td>1</td>
-                                                  <td>01FB15ECS343</td>
-                                                  <td>Herman Beck</td>
-                                                  <td>herman@gmail.com</td>
-                                                  <td>Computer Science</td>
-                                                  <td>Position</td>
-                                                  
+                                                  <td>{{loop.index}}</td>
+                                                  <td>{{teacher.f_id}}</td>
+                                                  <td>{{teacher.name}}</td>
+                                                  <td>{{teacher.email}}</td>
+                                                  <td>{{teacher.branch}}</td>
+                                                  <td>{{teacher.position}}</td>                                                  
                                                 </tr>
+                                              {% endfor %}
+                                            </tbody>
   
-                                              </tbody>
                                             </table>
                                           </div>
                                       </div>
