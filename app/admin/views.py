@@ -14,7 +14,7 @@ from app.models import Student, Teacher, Admin, CourseBase
 
 from sqlalchemy import func, distinct
 
-from .. import db, home
+from .. import db, mail, home
 
 headers = "application/json"
 
@@ -23,7 +23,7 @@ headers = "application/json"
 		renders admin dashboard
 '''
 
-@admin.route('/dashboard', methods = ['GET', 'POST'])
+@admin.route('/dashboard', methods = ['GET'])
 def dashboard():
 	print("Displaying Admin Dashboard")
 	student_count = db.session.query(func.count(Student.usn)).first()
@@ -68,10 +68,20 @@ def dashboard():
 							# 			course_count = course_count,				
 							# )
 
-'''
-	This function
-		renders dashboard to manage courses
-'''
+@admin.route('/dashboard', methods = ['POST'])
+def send_mail():
+	print("Sending Users email notification")
+	data = request.get_json(force = True)
+	users = ["mathuryash5@gmail.com"]
+	with mail.connect() as conn:
+	    for user in users:
+	        message = '...'
+	        subject = "hello, %s" % user.name
+	        msg = Message(recipients=[user.email],
+	                      body=message,
+	                      subject=subject)
+
+	        conn.send(msg)
 
 @admin.route('/courses', methods = ['GET', 'POST'])
 def courses():
@@ -139,39 +149,3 @@ def teachers():
 	teacher_info = db.session.query(Teacher).filter(Teacher.role == 'Teacher').all()
 	print(teacher_info)
 	return render_template('teacherlist.html', response = teacher_info)
-
-'''
-	This function
-		renders login page
-'''
-@admin.route('/login', methods=['GET'])
-def login():
-	return render_template('adminlogin.html')
-
-
-@admin.route('/verify', methods=['POST'])
-def verify():
-	print("Verifying", request.form['admin-email'])
-	print(db.session.query(Admin).filter(Admin.email == "admin@captain.edu").first())
-	user_data = db.session.query(Admin).filter(Admin.email == request.form['admin-email']).first()
-	if user_data:
-		if request.form['admin-pwd'] == user_data.password:
-			current_user.name = user_data.name
-			current_user.email = user_data.email
-			return dashboard()
-		else:
-			return jsonify({"status": "fail", "msg":"wrong password"})
-	else:
-		return jsonify({"status": "fail", "msg":"invalid credentials"})
-
-
-@admin.route("/logout", methods=["GET"])
-@login_required
-def logout():
-    """Logout the current user."""
-    user = current_user
-    user.authenticated = False
-    # db.session.add(user)
-    # db.session.commit()
-    logout_user()
-    return redirect(url_for(home))

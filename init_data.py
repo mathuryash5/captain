@@ -38,22 +38,23 @@ def student_data():
 	db.session.add(Student(usn = "01FB15ECS028", name="Yash Mathur", email="yash.mathur@gmail.com", branch="CSE", semester=3, section="C"))
 	db.session.add(Student(usn = "01FB15ECS029", name="Varuni Sutrave", email="varunisutrave4@gmail.com", branch="CSE", semester=7, section="C"))
 	db.session.add(Student(usn = "01FB15ECS310", name="Srishti Mishra", email="srishtimishra56@gmail.com", branch="CSE", semester=7, section="C"))
-	db.session.add(Student(usn = "01FB15ECS000", name="Test Student", email="captain.se6@gmail.com", branch="CSE", semester=7, section="C"))
+	# db.session.add(Student(usn = "01FB15ECS000", name="Test Student", email="captain.se6@gmail.com", branch="CSE", semester=7, section="C"))
 	db.session.add(Student(usn = "01FB15ECS341", name="Aria Ly", email="air72659@gmail.com", branch="CSE", semester=7, section="C"))
 	db.session.add(Student(usn = "01FB15ECS346", name="Neha H", email="srishtimishra@pesu.pes.edu", branch="CSE", semester=7, section="C"))
 	db.session.commit()
 
 def teacher_data():
 	"""Seeds the Teacher Table."""
-	db.session.add(Teacher(f_id = "F001", name="Anirudh Heda", email="anirudh.heda@gmail.com", branch="CSE", position="Head of Department"))
-	db.session.add(Teacher(f_id = "F002", name="Yash Agarwal", email="yash.agarwal@gmail.com", branch="CSE", position="Assistant Professor"))
-	db.session.add(Teacher(f_id = "F003", name="Saket Marodia", email="saket.marodia@gmail.com", branch="CSE", position="Professor"))
-	db.session.add(Teacher(f_id = "F004", name="Vinay Somani", email="vinay.somani@gmail.com", branch="CSE", position="Assistant Professor"))
-	db.session.add(Teacher(f_id = "F005", name="Sumangal Bhaiya", email="sumangal.bhiya@gmail.com", branch="CSE", position="Assistant Professor"))
-	db.session.add(Teacher(f_id = "F006", name="Akash Boob", email="akash.boob@gmail.com", branch="CSE", position="Assistant Professor"))
-	db.session.add(Teacher(f_id = "F007", name="Kishan Soni", email="kishan.soni@gmail.com", branch="CSE", position="Professor"))
-	db.session.add(Teacher(f_id = "F008", name="Sarthak Banka", email="sarthak.banka@gmail.com", branch="CSE", position="Assistant Professor"))
-	db.session.add(Teacher(f_id = "F009", name="Kritagya Jain", email="kritagya.jain@gmail.com", branch="CSE", position="Assistant Professor"))
+	db.session.add(Teacher(f_id = "F001", name="Anirudh Heda", email="anirudh.heda@gmail.com", branch="CSE", position="Head of Department", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
+	db.session.add(Teacher(f_id = "F002", name="Yash Agarwal", email="yash.agarwal@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
+	db.session.add(Teacher(f_id = "F003", name="Saket Marodia", email="saket.marodia@gmail.com", branch="CSE", position="Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
+	db.session.add(Teacher(f_id = "F004", name="Vinay Somani", email="vinay.somani@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
+	db.session.add(Teacher(f_id = "F005", name="Sumangal Bhaiya", email="sumangal.bhiya@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
+	db.session.add(Teacher(f_id = "F006", name="Akash Boob", email="akash.boob@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
+	db.session.add(Teacher(f_id = "F007", name="Kishan Soni", email="kishan.soni@gmail.com", branch="CSE", position="Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
+	db.session.add(Teacher(f_id = "F008", name="Sarthak Banka", email="sarthak.banka@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
+	db.session.add(Teacher(f_id = "F009", name="Kritagya Jain", email="kritagya.jain@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
+	db.session.add(Teacher(f_id = "F000", name="Test Teacher", email="captain.se6@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
 	db.session.commit()
 
 def coursebase_data():
