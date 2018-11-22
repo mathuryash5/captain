@@ -112,7 +112,6 @@
                               <div class="card-body p-3">
                                   <h6 class="mb-1">{{class_mate.name}}</h6>
                                   <p hidden class="team-mates-usn">{{class_mate.usn}} </p>
-                                  <p hidden class="course-name-uniq"> {{response.course_names[0].course_name}}
                               </div>
                             </div>
                           {% endif %}
@@ -123,6 +122,7 @@
                     </div>
                     <div class="col-md-3 h-100">
                       <div class="bg-light p-4">
+                        <p hidden class="course-name-uniq"> {{response.course_names[0].course_name}}
                         <h6 class="card-title">Subject 1</h6>
                         <div id="profile-list-subj1" class="py-2">
                             
@@ -198,17 +198,21 @@
       console.log(e);
       var courseinfo = $(".course-name-uniq:first").text();
       console.log(courseinfo);
-      var res = $(e).parent().find(".team-mates-usn").text();
+      var res = $.trim($(e).parent().find(".team-mates-usn").text());
       var resArray =res.split(" ");
-      $.ajaxSetup({
-      contentType: "application/json; charset=utf-8"
-      });
+      var data = JSON.stringify({"teamUSN": resArray});
+      console.log(resArray);
       $.ajax({
         type:'POST',
         url:'/student/create_team/'+$.trim(courseinfo),
-        data: {'teamUSN': resArray},
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8",
+        dataType:'json',
         success: function(data){
           console.log(data);
+        },
+        error: function(error){
+          console.log(error);
         }
       })
   };

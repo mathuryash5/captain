@@ -9,12 +9,13 @@ from flask_login import LoginManager, login_required, login_user, logout_user, c
 
 from . import student
 
-from app.models import Student, Teacher, CourseBase, CourseResource, CourseDeliverable
+from app.models import Student, Teacher, CourseBase, CourseResource, CourseDeliverable, Team
 
 from sqlalchemy import func, distinct
 
 from .. import db
 import random
+import json
 
 # Import login related functionality
 from app.login import get_google_auth, checkUser, load_user
@@ -87,8 +88,10 @@ def classmembers(subject_name):
 @student.route('/create_team/<course_name>', methods = ['POST'])
 @login_required
 def create_team(course_name):
-	print("Adding the team")
-	data = request.get_json(force = True)
+	print("Adding the team",  course_name)
+	data = request.get_json()
+	print(json.loads(data))
+	data = json.loads(data)
 	usn_list = data['teamUSN']
 	course_code = db.session.query(CourseBase.course_code).filter(CourseBase.course_name == course_name)
 	session_count = db.session.query(func.count(Team.session_id)).first()

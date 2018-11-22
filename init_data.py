@@ -81,7 +81,7 @@ def course_deliverable_data():
 	db.session.add(CourseDeliverable(course_code = "UE15CS301", deliverable = "Finding the current date and time from the terminal", deliverable_deadline = "2018-11-30"))
 	db.session.commit()
 	db.session.add(CourseDeliverable(course_code = "UE15CS302", deliverable = "Creating and managing a Resaturant Database", deliverable_deadline = "2018-11-29"))
-	db.session.commit()
+	db.session.commit()	
 	db.session.add(CourseDeliverable(course_code = "UE15CS303", deliverable = "Making an algorithm to find the shortest distance to a router from another in a a mesh of routers", deliverable_deadline = "2018-11-28"))
 	db.session.commit()
 	db.session.add(CourseDeliverable(course_code = "UE15CS401", deliverable = "Make an automata for a slot machine with code", deliverable_deadline = "2018-11-30"))
