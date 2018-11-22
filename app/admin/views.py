@@ -141,6 +141,34 @@ def add_data(type):
 			db.session.commit()
 		print("Displaying Courses Page for the Admin")
 		return render_template('courselist.html')
+		
+
+@admin.route('/verify', methods=['POST'])
+def verify():
+	print("Verifying", request.form['admin-email'])
+	print(db.session.query(Admin).filter(Admin.email == "admin@captain.edu").first())
+	user_data = db.session.query(Admin).filter(Admin.email == request.form['admin-email']).first()
+	if user_data:
+		if request.form['admin-pwd'] == user_data.password:
+			current_user.name = user_data.name
+			current_user.email = user_data.email
+			return dashboard()
+		else:
+			return jsonify({"status": "fail", "msg":"wrong password"})
+	else:
+		return jsonify({"status": "fail", "msg":"invalid credentials"})
+
+
+@admin.route("/logout", methods=["GET"])
+@login_required
+def logout():
+    """Logout the current user."""
+    user = current_user
+    user.authenticated = False
+    # db.session.add(user)
+    # db.session.commit()
+    logout_user()
+    return redirect(url_for(home))
 			
 
 @admin.route('/teachers', methods = ['GET'])
