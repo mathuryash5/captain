@@ -258,12 +258,12 @@ def answer_question(post_id):
 
     passage = " ".join([sentences[index] for index in clusters[cluster_number]])
 
-    lst = _answer_questions(passage, question, options)
+    lst1 = _answer_questions(passage, question, options)
+    lst = numpy.argmax(lst1)
+    return render_template('answer_question.html', title = "Answer Question", response = lst)
+    
 
-    #return render_template('answer_question', title = "Answer Key", lst = lst, question = question, option = options)
-    return json_encoder.encode({'message':'Success', 'option_probabilities': lst})
-    #return render_template('answer_question', title = "Answer Question")
-    #return lst
+    
     
 def send_reset_email(user):
     token = User.get_reset_token()
