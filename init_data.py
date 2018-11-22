@@ -55,6 +55,7 @@ def teacher_data():
 	db.session.add(Teacher(f_id = "F008", name="Sarthak Banka", email="sarthak.banka@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
 	db.session.add(Teacher(f_id = "F009", name="Kritagya Jain", email="kritagya.jain@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
 	db.session.add(Teacher(f_id = "F000", name="Test Teacher", email="captain.se6@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
+	#db.session.add(Teacher(f_id = "F010", name="Varuni", email="varunisutrave4@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["F"], "Machine Learning" : "B"}))
 	db.session.commit()
 
 def coursebase_data():
