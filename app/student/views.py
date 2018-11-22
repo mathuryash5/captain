@@ -9,7 +9,7 @@ from flask_login import LoginManager, login_required, login_user, logout_user, c
 
 from . import student
 
-from app.models import Student, Teacher, CourseBase
+from app.models import Student, Teacher, CourseBase, CourseResource, CourseDeliverable
 
 from sqlalchemy import func, distinct
 
@@ -44,13 +44,20 @@ def course(subject_name):
 	user_info = db.session.query(Student).filter(Student.email == current_user.email).first()
 	course_info = db.session.query(CourseBase.description).filter(CourseBase.course_name == subject_name).first()
 	course_names = db.session.query(CourseBase.course_name).filter(CourseBase.semester == user_info.semester).all()
+	course_code = db.session.query(CourseBase.course_code).filter(CourseBase.course_name == subject_name).first()
+	resources = db.session.query(CourseResource).filter(CourseResource.course_code == course_code[0]).all()
+	deliverables = db.session.query(CourseDeliverable).filter(CourseDeliverable.course_code == course_code[0]).all()
 	print("="*30)
 	print(user_info)
 	print(user_info.semester)
 	print(user_info.lab_marks)
 	print(course_info)
+	print("Resources", resources)
 	print("="*30)
-	response = {"student_name" : user_info.name, "lab_marks" : user_info.lab_marks, "course_info" : course_info[0], "course_names" : course_names, "current_course" : subject_name}
+
+	response = {"student_name" : user_info.name, "lab_marks" : user_info.lab_marks, "course_info" : course_info[0], 
+				"course_names" : course_names, "current_course" : subject_name,
+				"resources" : resources, "deliverables" : deliverables}
 	return render_template("course.html", response = response)
 
 @student.route('/classmembers', methods = ['GET', 'POST'])

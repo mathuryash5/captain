@@ -172,7 +172,7 @@ class CourseDeliverable(db.Model):
 		self.deliverable_id = get_deliverables_count() + 1
 
 	def __repr__(self):
-		return '<Course {}>'.format(self.course_name)
+		return '<Course {}>'.format(self.course_code)
 
 	__table_args__ = (PrimaryKeyConstraint(course_code, global_deliverable_id),)
 
@@ -187,11 +187,11 @@ class CourseResource(db.Model):
 
 	def __init__(self, course_code, resource_desc, resource_url):
 		self.course_code = course_code
-		self.rsource_desc = resource_desc
+		self.resource_desc = resource_desc
 		self.resource_url = resource_url
 
 	def __repr__(self):
-		return '<CourseResources{}>'.format(self.course_name)
+		return '<CourseResources{}>'.format(self.course_code)
 
 	__table_args__ = (PrimaryKeyConstraint(course_code, resource_url),) 	 
 
