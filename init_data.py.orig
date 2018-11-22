@@ -1,5 +1,9 @@
 from app import db
-from app.models import User, Student, Teacher, Admin, CourseBase, CourseDeliverable, CourseResource, Team
+<<<<<<< HEAD
+from app.models import User, Student, Teacher, Admin, CourseBase, Course, Team
+=======
+from app.models import User, Student, Teacher, CourseBase, CourseDeliverable, CourseResource, Team
+>>>>>>> 03c6adb1e9a43f928e5efae055becc8e411a8717
 
 
 def student_data():
@@ -45,16 +49,15 @@ def student_data():
 
 def teacher_data():
 	"""Seeds the Teacher Table."""
-	db.session.add(Teacher(f_id = "F001", name="Anirudh Heda", email="anirudh.heda@gmail.com", branch="CSE", position="Head of Department", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
-	db.session.add(Teacher(f_id = "F002", name="Yash Agarwal", email="yash.agarwal@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
-	db.session.add(Teacher(f_id = "F003", name="Saket Marodia", email="saket.marodia@gmail.com", branch="CSE", position="Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
-	db.session.add(Teacher(f_id = "F004", name="Vinay Somani", email="vinay.somani@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
-	db.session.add(Teacher(f_id = "F005", name="Sumangal Bhaiya", email="sumangal.bhiya@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
-	db.session.add(Teacher(f_id = "F006", name="Akash Boob", email="akash.boob@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
-	db.session.add(Teacher(f_id = "F007", name="Kishan Soni", email="kishan.soni@gmail.com", branch="CSE", position="Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
-	db.session.add(Teacher(f_id = "F008", name="Sarthak Banka", email="sarthak.banka@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
-	db.session.add(Teacher(f_id = "F009", name="Kritagya Jain", email="kritagya.jain@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
-	# db.session.add(Teacher(f_id = "F000", name="Test Teacher", email="captain.se6@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
+	db.session.add(Teacher(f_id = "F001", name="Anirudh Heda", email="anirudh.heda@gmail.com", branch="CSE", position="Head of Department"))
+	db.session.add(Teacher(f_id = "F002", name="Yash Agarwal", email="yash.agarwal@gmail.com", branch="CSE", position="Assistant Professor"))
+	db.session.add(Teacher(f_id = "F003", name="Saket Marodia", email="saket.marodia@gmail.com", branch="CSE", position="Professor"))
+	db.session.add(Teacher(f_id = "F004", name="Vinay Somani", email="vinay.somani@gmail.com", branch="CSE", position="Assistant Professor"))
+	db.session.add(Teacher(f_id = "F005", name="Sumangal Bhaiya", email="sumangal.bhiya@gmail.com", branch="CSE", position="Assistant Professor"))
+	db.session.add(Teacher(f_id = "F006", name="Akash Boob", email="akash.boob@gmail.com", branch="CSE", position="Assistant Professor"))
+	db.session.add(Teacher(f_id = "F007", name="Kishan Soni", email="kishan.soni@gmail.com", branch="CSE", position="Professor"))
+	db.session.add(Teacher(f_id = "F008", name="Sarthak Banka", email="sarthak.banka@gmail.com", branch="CSE", position="Assistant Professor"))
+	db.session.add(Teacher(f_id = "F009", name="Kritagya Jain", email="kritagya.jain@gmail.com", branch="CSE", position="Assistant Professor"))
 	db.session.commit()
 
 def coursebase_data():
@@ -144,6 +147,5 @@ def team_data():
 	db.session.add(Team(course_code = "UE15CS403", session_id = "26", usn_list = "{member_1 : Aayushman Arora, member_2 : Rahil Arora ,member_3 : Armaan Imaam}", github_user = "Rahil Arora", github_repo = "https://github.com/RahilArora/captain"))
 	db.session.add(Team(course_code = "UE15CS403", session_id = "27", usn_list = "{member_1 : Yash Mathur, member_2 : Varuni Sutrave, member_3 : Srishti Mishra}", github_user = "Yash Mathur", github_repo = "https://github.com/mathuryash5/captain"))
 
-
 def admin_data():
-	db.session.add(Admin(roleno= '1', password= 'secret'))
+	db.session.add(Admin(roleno = "a1", password = "secret"))
