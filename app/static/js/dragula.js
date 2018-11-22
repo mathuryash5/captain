@@ -4,7 +4,6 @@
    
     dragula([document.getElementById("profile-list-all1"), document.getElementById("profile-list-subj1"),document.getElementById("profile-list-subj2"),document.getElementById("profile-list-subj3")], {
         copy: function (el, source) {
-          console.log("copy",document.getElementById("profile-list-subj1") )
           return source === document.getElementById("profile-list-all1")
         },
         removeOnSpill: true,

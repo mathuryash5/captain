@@ -60,28 +60,20 @@ def course(subject_name):
 				"resources" : resources, "deliverables" : deliverables}
 	return render_template("course.html", response = response)
 
-@student.route('/classmembers/<subject_name>', methods = ['GET', 'POST'])
+@student.route('/classmembers', methods = ['GET', 'POST'])
 @login_required
-def classmembers(subject_name):
-	print("Displaying classmembers")
+def classmembers():
 	user_info = db.session.query(Student).filter(Student.email == current_user.email).first()
 	course_info = db.session.query(CourseBase).filter(CourseBase.semester == user_info.semester)
-	class_mates = db.session.query(Student).filter(Student.semester == user_info.semester and Student.section == user_info.section).all()
+	class_mates = db.session.query(Student).filter(Student.semester == user_info.semester).all()
 	course_names = db.session.query(CourseBase.course_name).filter(CourseBase.semester == user_info.semester).all()	
-	#Filter students out who already have a team.
-	# print(Student.has_team[subject_name])
-	# available_students = db.session.query(Student).filter(Student.has_team[subject_name].astext.cast(Unicode) == str(0)).all()
-
 	print("="*30)
-
 	print(user_info)
 	print(user_info.semester)
 	print(user_info.lab_marks)
-	# print(available_students)
 	print(course_info)
 	print("="*30)
-	response = {"student_name" : user_info.name, "lab_marks" : user_info.lab_marks, "course_info" : course_info, "class_mates" : class_mates
-				, "course_names" : course_names, "subject_name" : subject_name}
+	response = {"student_name" : user_info.name, "lab_marks" : user_info.lab_marks, "course_info" : course_info, "class_mates" : class_mates, "course_names" : course_names}
 	return render_template('classmembers.html', response = response)
 
  
