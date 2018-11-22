@@ -170,30 +170,15 @@
                                   <small class=" ml-1 mb-0">Updated: 9:10am</small>
                                 </div>
                               </div>
+                              {% for resource in response.resources %}
                               <div class="col-12 results">
                                   <div class="pt-4 border-bottom">
-                                    <span class="d-block h4 mb-0" href="#">Resource Title</span>
-                                    <a class="page-url text-primary" href="#">resource url</a>
-                                    <p class="page-description mt-1 w-75 text-muted">Resource description</p>
+                                    <span class="d-block h4 mb-0" href="#">Resource {{loop.index}}</span>
+                                    <a class="page-url text-primary" href="#">{{resource.resource_url}}</a>
+                                    <p class="page-description mt-1 w-75 text-muted">{{resource.resource_desc}}</p>
                                   </div>
                                 </div>
-                                <div class="col-12 results">
-                                    <div class="pt-4 border-bottom">
-                                      <span class="d-block h4 mb-0" href="#">Resource Title</span>
-                                      <a class="page-url text-primary" href="#">resource url</a>
-                                      <p class="page-description mt-1 w-75 text-muted">Resource description</p>
-                                    </div>
-                                  </div>
-                                  <div class="col-12 results">
-                                      <div class="pt-4 border-bottom">
-                                        <span class="d-block h4 mb-0" href="#">Resource Title</span>
-                                        <a class="page-url text-primary" href="#">resource url</a>
-                                        <p class="page-description mt-1 w-75 text-muted">Resource description</p>
-                                      </div>
-                                    </div>
-                                    
-                            </div>
-            
+                              {% endfor %}
                           </div>
                         </div>
                       </div> 
@@ -211,29 +196,15 @@
                                   <small class=" ml-1 mb-0">Updated: 9:10am</small>
                                 </div>
                               </div>
+                              {% for deliverable in response.deliverables %}
                               <div class="col-12 results">
                                   <div class="pt-4 border-bottom">
-                                    <span class="d-block h4 mb-0" href="#">Deliverable title</span>
-                                    <a class="page-url text-primary" href="#">Deiverable url</a>
-                                    <p class="page-description mt-1 w-75 text-muted">Description</p>
+                                    <span class="d-block h4 mb-0" href="#">Deliverable {{loop.index}}</span>
+                                    <a class="page-url text-primary" href="#">{{deliverable.deliverable}}</a>
+                                    <p class="page-description mt-1 w-75 text-muted">{{deliverable.deadline}}</p>
                                   </div>
                                 </div>
-                                <div class="col-12 results">
-                                  <div class="pt-4 border-bottom">
-                                    <span class="d-block h4 mb-0" href="#">Deliverable title</span>
-                                    <a class="page-url text-primary" href="#">Deiverable url</a>
-                                    <p class="page-description mt-1 w-75 text-muted">Description</p>
-                                  </div>
-                                </div>
-                                <div class="col-12 results">
-                                  <div class="pt-4 border-bottom">
-                                    <span class="d-block h4 mb-0" href="#">Deliverable title</span>
-                                    <a class="page-url text-primary" href="#">Deiverable url</a>
-                                    <p class="page-description mt-1 w-75 text-muted">Description</p>
-                                  </div>
-                                </div>
-          
-                                    
+                              {% endfor %}                                    
                             </div>
             
                           </div>
