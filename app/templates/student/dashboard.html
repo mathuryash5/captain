@@ -26,7 +26,6 @@
   <!-- functionality -->
   <script type="text/javascript">
     
-
   </script>
 
 </head>
@@ -74,7 +73,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url_for('student.classmembers')}}">
+              <a class="nav-link" href="{{url_for('student.classmembers', subject_name = response.course_names[0].course_name)}}">
                 <span class="menu-title">Classmates</span>
                 <i class="icon-people menu-icon"></i>
               </a>
@@ -95,7 +94,7 @@
               <span class="nav-link">MISCELLANEOUS</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost:1234">
+              <a class="nav-link" href="{{url_for('student.classmembers', subject_name = response.course_names[0].course_name)}}">
                 <span class="menu-title">Practice Viva Questions</span>
                 <i class=" icon-magic-wand menu-icon"></i>
               </a>

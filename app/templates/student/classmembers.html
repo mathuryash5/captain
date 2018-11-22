@@ -65,7 +65,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url_for('student.classmembers')}}">
+              <a class="nav-link" href="{{url_for('student.classmembers', subject_name = response.course_names[0].course_name)}}">
                 <span class="menu-title">Classmates</span>
                 <i class="icon-people menu-icon"></i>
               </a>
@@ -86,7 +86,7 @@
               <span class="nav-link">MISCELLANEOUS</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost:1234">
+              <a class="nav-link" href="{{url_for('student.classmembers', subject_name = response.course_names[0].course_name)}}">
                 <span class="menu-title">Practice Viva Questions</span>
                 <i class=" icon-magic-wand menu-icon"></i>
               </a>
@@ -107,11 +107,14 @@
                         <h6 class="card-title">Classmates </h6>
                         <div id="profile-list-all1" class="py-2">
                           {% for class_mate in response.class_mates %}
+                          {% if class_mate.has_team[response.subject_name] == 0%}
                             <div class="card rounded mb-2">
                               <div class="card-body p-3">
                                   <h6 class="mb-1">{{class_mate.name}}</h6>
+                                  <p hidden class="team-mates-usn">{{class_mate.usn}} </p>
                               </div>
                             </div>
+                          {% endif %}
                           {% endfor %}
 
                         </div>
@@ -119,11 +122,12 @@
                     </div>
                     <div class="col-md-3 h-100">
                       <div class="bg-light p-4">
+                        <p hidden class="course-name-uniq"> {{response.course_names[0].course_name}}
                         <h6 class="card-title">Subject 1</h6>
                         <div id="profile-list-subj1" class="py-2">
                             
                         </div>
-                        <button type="button"  id = "teamcnfrm1" onclick="showSwal('warning-message-and-cancel','#teamcnfrm1')" class="btn btn-success btn-rounded btn-fw">Submit</button>
+                        <button type="button"  id = "teamcnfrm1" onclick="submitTeam(this)" class="btn btn-success btn-rounded btn-fw">Submit</button>
                       </div>
                     </div>
                     <div class="col-md-3 h-100">
@@ -187,6 +191,31 @@
   <script src="{{url_for('static',filename='js/alerts.js')}}"></script>
   <script src="{{url_for('static',filename='js/avgrund.js')}}"></script>
   <!-- End custom js for this page-->'
+  <!-- Script to send the data back to the back end -->
+  <script type="text/javascript">
+    function submitTeam(e){
+      console.log(e);
+      var courseinfo = $(".course-name-uniq:first").text();
+      console.log(courseinfo);
+      var res = $.trim($(e).parent().find(".team-mates-usn").text());
+      var resArray =res.split(" ");
+      var data = JSON.stringify({"teamUSN": resArray});
+      console.log(resArray);
+      $.ajax({
+        type:'POST',
+        url:'/student/create_team/'+$.trim(courseinfo),
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8",
+        dataType:'json',
+        success: function(data){
+          console.log(data);
+        },
+        error: function(error){
+          console.log(error);
+        }
+      })
+  };
+  </script>
 </body>
 
 </html>
