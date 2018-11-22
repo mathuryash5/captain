@@ -84,4 +84,17 @@ def classmembers(subject_name):
 				, "course_names" : course_names, "subject_name" : subject_name}
 	return render_template('classmembers.html', response = response)
 
+@student.route('/create_team/<course_name>', methods = ['POST'])
+@login_required
+def create_team(course_name):
+	print("Adding the team")
+	data = request.get_json(force = True)
+	usn_list = data['teamUSN']
+	course_code = db.session.query(CourseBase.course_code).filter(CourseBase.course_name == course_name)
+	session_count = db.session.query(func.count(Team.session_id)).first()
+	db.session.add(Team(course_code = course_code[0], session_id = session_count[0], usn_list = {"member_1" : usn_list[0], "member_2" : usn_list[1], "member_3" : usn_list[2]}))
+	db.session.commit()
+	print("Done adding")
+	return jsonify({"status":200})
+
  
