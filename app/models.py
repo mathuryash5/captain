@@ -221,14 +221,14 @@ class Team(db.Model):
 	github_user = db.Column(db.String(64))
 	github_repo = db.Column(db.String(128))
 	marks = db.Column(db.Integer)
-
+	
 	#Class constructor
-	def __init__(self, course_code, session_id, usn_list, github_user, github_repo):
+	def __init__(self, course_code, session_id, usn_list):
 		self.course_code = course_code
 		self.session_id = session_id
 		self.usn_list = usn_list
-		self.github_user = github_user
-		self.github_repo = github_repo
+		# self.github_user = github_user
+		# self.github_repo = github_repo
 		def get_team_count():
 			team_count = db.session.query(Team).filter(Team.course_code == course_code).count()
 			return team_count
