@@ -141,7 +141,6 @@ class CourseBase(db.Model):
 	calendar_id = db.Column(db.String(128))
 	# teams = db.relationship('Team', backref = 'course', lazy = True)
 
-	Class constructor
 	def __init__(self, course_name, course_code, description, semester, branch, no_of_max_members, calendar_id):
 		self.course_name = course_name
 		self.course_code = course_code
