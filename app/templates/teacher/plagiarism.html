@@ -1,6 +1,4 @@
-
-
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,50 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Stellar Admin</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="node_modules/simple-line-icons/css/simple-line-icons.css">
-  <link rel="stylesheet" href="node_modules/flag-icon-css/css/flag-icon.min.css">
-  <link rel="stylesheet" href="node_modules/perfect-scrollbar/css/perfect-scrollbar.css">
+  
+<link rel="stylesheet" href="{{url_for('static',filename='node_modules/mdi/css/materialdesignicons.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/simple-line-icons/css/simple-line-icons.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/flag-icon-css/css/flag-icon.min.css')}}">
+  <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+
+
   <!-- endinject -->
   <!-- plugin css for this page -->
-  <link rel="stylesheet" href="node_modules/dragula/dist/dragula.min.css" />
-  <link rel="stylesheet" type="text/css" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
-  <link rel="stylesheet" href="node_modules/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
-  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="node_modules/jsgrid/dist/jsgrid.min.css" />
-  <link rel="stylesheet" href="node_modules/jsgrid/dist/jsgrid-theme.min.css" />
-  <link rel="stylesheet" href="node_modules/quill/dist/quill.snow.css">
-  
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/chartist/dist/chartist.min.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/jvectormap/jquery-jvectormap.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='node_modules/fullcalendar/dist/fullcalendar.min.css')}}" />
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="images/favicon.png" />
-</head>
+<link rel="shortcut icon" href="{{url_for('static',filename='images/favicon.png')}}" />
+  <!-- functionality -->
+  <script type="text/javascript">
+    
 
+  </script>
+
+</head>
 <body>
+
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper">
-        <a class="navbar-brand brand-logo" href="{{url_for('teacher.dashboard')}}"><img src="{{url_for('static',filename='images/logo.png')}}" alt="logo"></a>
-        <a class="navbar-brand brand-logo-mini" href="{{url_for('teacher.dashboard')}}"><img src="{{url_for('static',filename='images/logo_mini.svg')}}" alt="logo"></a>
+          <i class="icon-anchor icons"></i>
+        <a class="navbar-brand brand-logo" href="teacher.html"><img src="images/logo.png" alt="logo"></a>
+        <a class="navbar-brand brand-logo-mini" href="teacher.html"><img src="images/logo_mini.svg" alt="logo"></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
-
-        <p class="page-name d-none d-lg-block">Hi, </p>
-        <ul class="navbar-nav ml-lg-auto">
-
-          <li class="nav-item d-none d-sm-block profile-img">
-            <a class="nav-link profile-image" href="#">
-              <img src="{{url_for('static',filename='images/faces-clipart/pic-3.png')}}" alt="profile-img">
-              <span class="online-status online bg-success"></span>
-            </a>
-          </li>
-          <li>
-            <button type="button" class="btn btn-inverse-light btn-fw" onclick="signout()">Sign Out</button>
-          </li>
-        </ul>
+        
+        
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center ml-auto" type="button" data-toggle="offcanvas">
           <span class="icon-menu icons"></span>
         </button>
@@ -61,32 +52,27 @@
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <div class="row row-offcanvas row-offcanvas-right">
+        <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item nav-category">
               <span class="nav-link">GENERAL</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url_for('teacher.dashboard')}}">
+               <a class="nav-link" href="{{url_for('teacher.dashboard')}}">
                 <span class="menu-title">Dashboard</span>
                 <i class="icon-speedometer menu-icon"></i>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{url_for('teacher.plagiarism')}}">
-                <span class="menu-title">Plagiarism Checker</span>
-                <i class="icon-speedometer menu-icon"></i>
-              </a>
-            </li>
             
-
+            
             </li>
-  <li class="nav-item nav-category">
+	<li class="nav-item nav-category">
               <span class="nav-link">STUDENTS</span>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="{{url_for('teacher.evaluate')}}">
+             <a class="nav-link" href="{{url_for('teacher.evaluate')}}">
                 <span class="menu-title">Mark Students</span>
                 <i class="icon-notebook menu-icon"></i>
               </a>
@@ -95,64 +81,59 @@
         </nav>
         <!-- partial -->
         <div class="content-wrapper">
-                <div class = "row">
-                        <div class="col-lg-12">
-                          <div class="card">
-                            <div class="card-body">
-                              <h4 class = "mb-0 h4 ">Plagiarism Check</h4>
-				
-                            </div>
-                        </div>
-				
-                      <div class="row"><p>&nbsp;</p></div>
-                      <div class = "row">
-                      <div class="col-lg-12">
-                        <div class="card">
-                          <div class="card-body">
-                        <div class="row">
-                                <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="sel1">Select File 1:</label>
-                                            <select class="form-control" id="sel1">
-                                              <option>1</option>
-                                              <option>2</option>
-                                              <option>3</option>
-                                              <option>4</option>
-                                            </select>
-                                          </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label for="sel1">Select File 2:</label>
-                                            <select class="form-control" id="sel1">
-                                              <option>1</option>
-                                              <option>2</option>
-                                              <option>3</option>
-                                              <option>4</option>
-                                            </select>
-                                          </div>
-                                          <button type="button" style="float: right;"class="btn btn-warning"><i class="fa fa-upload"></i>Upload</button> 
-                                    </div>
-                                    
-                        </div>
-                            
-              
-                          </div>
-                      </div>
-              
+
+
+          <!-- ROW ENDS -->
+          <div class="row">
+            <div class="col-lg-12 grid-margin">
+              <div class="card performance-cards">
+                <div class="card-body">
+                    <h4 class="card-title">Compare Codes  <button class="btn btn-info" onclick="notes()">?</button> </h4>
+           	
+                   
+
+                    <FORM action="#" onsubmit="return false;">
+		<TABLE WIDTH="100%"><TR>
+		  <TD WIDTH="50%">
+		<H3>Text  1:</H3>
+		<TEXTAREA ID="text1" STYLE="width: 100%" ROWS=10>
+
+
+		</TEXTAREA></TD>
+ 		 <TD WIDTH="50%">
+		<H3>Text 2:</H3>
+
+		<TEXTAREA ID="text2" STYLE="width: 100%" ROWS=10>
+
+
+		</TEXTAREA></TD>
+		</TR></TABLE>
+		</br>
+		<P><INPUT TYPE="button" class="btn btn-primary" onClick="launch();" VALUE="Compute Diff"></P>
+		</FORM>
+
+		<DIV ID="outputdiv"></DIV>
 
 
 
-        </div>  
+                </div>
+              </div>
+            </div>
 
 
+           
+
+          <!-- ROW ENDS -->
+           
+          
+          <!-- ROW ENDS -->
+         
+                  
+          <!-- ROW ENDS -->
+        </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-          <div class="container-fluid clearfix">
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
-          </div>
-        </footer>
+
         <!-- partial -->
       </div>
       <!-- row-offcanvas ends -->
@@ -160,35 +141,55 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
+
   <!-- plugins:js -->
-  <script src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+  <script src="{{url_for('static',filename='node_modules/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
+<script src="{{url_for('static',filename='node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
   <!-- endinject -->
   <!-- Plugin js for this page-->
-  <script src="node_modules/dragula/dist/dragula.min.js"></script>
-  <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="node_modules/jquery.avgrund/jquery.avgrund.min.js"></script>
-  <script src="node_modules/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-  <script src="node_modules/chart.js/dist/Chart.min.js"></script>
-  <script src="node_modules/quill/dist/quill.min.js"></script>
-  <script src="node_modules/jsgrid/dist/jsgrid.min.js"></script>
+  <script src="{{url_for(''static',filename='snode_modules/flot/jquery.flot.js')}}"></script>
+  <script src="{{url_for(''static',filename='node_modules/flot/jquery.flot.resize.js')}}"></script>
+  <script src="{{url_for(''static',filename='node_modules/flot.curvedlines/curvedLines.js')}}"></script>
+   <script src="{{url_for(''static',filename='node_modules/moment/moment.js')}}"></script>
+  <script src="{{url_for(''static',filename='node_modules/fullcalendar/dist/fullcalendar.min.js')}}"></script>
+<!-- plagarism-->
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript" SRC="{{url_for('static',filename='diff_match_patch.js')}}"></SCRIPT>
+
+
   <!-- End plugin js for this page-->
   <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/hoverable-collapse.js"></script>
-  <script src="js/misc.js"></script>
-  <script src=""></script>
+   <script src="{{url_for('static',filename='js/off-canvas.js')}}"></script>
+  <script src="{{url_for('static',filename='js/misc.js')}}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-
-  <script src="js/js-grid.js"></script>
-  <script src="js/db.js"></script>
- 
+  <script src="{{url_for('static',filename='js/dashboard.js')}}"></script>
   <!-- End custom js for this page-->
+
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
+
+function notes(){
+window.alert("Plain Text - Same in both Samples\nLight Orange - Only in Text Sample 1\nLight Green - Only in Text Sample 2\nStriked Out - Present in 1 but not in 2\nUnderlined - Present in 2 but not in 1\n¶ - New Line");
+
+
+}
+function launch() {
+  var text1 = document.getElementById('text1').value;
+  var text2 = document.getElementById('text2').value;
+
+  var dmp = new diff_match_patch();
+  //dmp.Diff_Timeout = 0;
+
+  // No warmup loop since it risks triggering an 'unresponsive script' dialog
+  // in client-side JavaScript
+  //var ms_start = (new Date()).getTime();
+  var d = dmp.diff_main(text1, text2, false);
+  //var ms_end = (new Date()).getTime();
+
+  var ds = dmp.diff_prettyHtml(d);
+  document.getElementById('outputdiv').innerHTML = ds ;
+}
+</SCRIPT>
 </body>
 
 </html>
-
-
