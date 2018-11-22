@@ -43,7 +43,7 @@
         <a class="navbar-brand brand-logo-mini" href="teacher.html"><img src="{{url_for('static',filename = 'images/logo_mini.svg')}}" alt="logo"></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
-        <p class="page-name d-none d-lg-block">Hi, Dave Mattew</p>
+        <p class="page-name d-none d-lg-block">Hi, {{response.teacher_name}}</p>
         <ul class="navbar-nav ml-lg-auto">
 
           <li class="nav-item dropdown mail-dropdown">
@@ -238,21 +238,23 @@
                     </tr>
                   </thead>
                   <tbody>
+                    {% for student in response.students_taught %}
                     <tr>
                       <td class="py-1">
-                       	<h4>01FB15ECS309</h4>
+                        <h4>{{student.usn}}</h4>
                       </td>
                       <td>
-                        fsa  sad 
+                        {{student.name}}
                       </td>
                        <td>
-                        <label class="badge badge-success">Sec F</label>
+                        <label class="badge badge-success">{{student.section}}</label>
                       </td>
                       <td>
-                        <label class="badge badge-danger">Subject2</label>
+                        <label class="badge badge-danger">{{response.student_to_course[student.name]}}</label>
                       </td>
-			<td>
-			
+                    }
+      <td>
+      
                     <select id="example-1to10" name="rating" autocomplete="off" >
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -266,129 +268,11 @@
                       <option value="10">10</option>
                     </select>
                  
-			</td>
+      </td>
                      
                     </tr>
-                    <tr>
-                      <td class="py-1">
-                        <h4>01FB15ECS309</h4>
-                      </td>
-                      <td>
-                        Asfdafs Gsdaas
-                      </td>
-                      <td>
-                        <label class="badge badge-success">Sec F</label>
-                      </td>
-                      <td>
-                        <label class="badge badge-danger">Subject2</label>
-                      </td>
-                     	<td>
-			
-                    <select id="example-1to10" name="rating" autocomplete="off" >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5" selected="selected">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                 
-			</td>
-                    </tr>
-                    <tr>
-                      <td class="py-1">
-                       <h4>01FB15ECS319</h4>
-                      </td>
-                      <td>
-                        Basd awsaw
-                      </td>
-                      <td>
-                        <label class="badge badge-success">Sec F</label>
-                      </td>
-                      <td>
-                        <label class="badge badge-danger">Subject2</label>
-                      </td>
-                     	<td>
-			
-                    <select id="example-1to10" name="rating" autocomplete="off" >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5" selected="selected">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                 
-			</td>
-                    </tr>
-                    <tr>
-                      <td class="py-1">
-                        <h4>01FB15ECS3022</h4>
-                      </td>
-                      <td>
-                        Erasd faerda
-                      </td>
-                     <td>
-                        <label class="badge badge-success">Sec F</label>
-                      </td>
-                      <td>
-                        <label class="badge badge-danger">Subject2</label>
-                      </td>
-                      	<td>
-			
-                    <select id="example-1to10" name="rating" autocomplete="off" >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5" selected="selected">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                 
-			</td>
-                    </tr>
-                    <tr>
-                      <td class="py-1">
-                     <h4>01FB15ECS030</h4>
-                      </td>
-                      <td>
-                        Awrfas wetasd
-                      </td>
-                      <td>
-                        <label class="badge badge-success">Sec F</label>
-                      </td>
-                      <td>
-                        <label class="badge badge-danger">Subject2</label>
-                      </td>
-                      	<td>
-			
-                    <select id="example-1to10" name="rating" autocomplete="off" >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5" selected="selected">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                 
-			</td>
-                    </tr>
+
+                    {% endfor %}
                     
                   </tbody>
                 </table>
