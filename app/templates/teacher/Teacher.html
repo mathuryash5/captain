@@ -37,120 +37,22 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper">
-          <i class="icon-anchor icons"></i>
-        <a class="navbar-brand brand-logo" href="Teacher.html"><img src="{{url_for('static',filename = 'images/logo.png')}}" alt="logo"></a>
-        <a class="navbar-brand brand-logo-mini" href="Teacher.html"><img src="{{url_for('static',filename = 'images/logo_mini.svg')}}" alt="logo"></a>
+        <a class="navbar-brand brand-logo" href="{{url_for('teacher.dashboard')}}"><img src="{{url_for('static',filename='images/logo.png')}}" alt="logo"></a>
+        <a class="navbar-brand brand-logo-mini" href="{{url_for('teacher.dashboard')}}"><img src="{{url_for('static',filename='images/logo_mini.svg')}}" alt="logo"></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
-        <p class="page-name d-none d-lg-block">Hi, {{response.teacher_name}}</p>
+
+        <p class="page-name d-none d-lg-block">Hi,{{response.teacher_name}} </p>
         <ul class="navbar-nav ml-lg-auto">
 
-          <li class="nav-item dropdown mail-dropdown">
-            <a class="nav-link count-indicator" id="MailDropdown" href="#" data-toggle="dropdown">
-                <i class="icon-envelope-letter icons"></i>
-                <span class="count bg-danger"></span>
-            </a>
-            <div class="dropdown-menu navbar-dropdown mail-notification dropdownAnimation" aria-labelledby="MailDropdown">
-              <a class="dropdown-item" href="#">
-                <div class="sender-img">
-                  <img src="{{url_for('static',filename = 'images/faces/face6.jpg')}}" alt="">
-                  <span class="badge badge-success">&nbsp;</span>
-                </div>
-                <div class="sender">
-                  <p class="Sende-name">John Doe</p>
-                  <p class="Sender-message">Hey, We have a meeting planned at the end of the day.</p>
-                </div>
-              </a>
-              <a class="dropdown-item" href="#">
-                <div class="sender-img">
-                  <img src="{{url_for('static',filename = 'images/faces/face2.jpg')}}" alt="">
-                  <span class="badge badge-success">&nbsp;</span>
-                </div>
-                <div class="sender">
-                  <p class="Sende-name">Leanne Jones</p>
-                  <p class="Sender-message">Can we schedule a call this afternoon?</p>
-                </div>
-              </a>
-              <a class="dropdown-item" href="#">
-                <div class="sender-img">
-                  <img src="{{url_for('static',filename = 'images/faces/face3.jpg')}}" alt="">
-                  <span class="badge badge-primary">&nbsp;</span>
-                </div>
-                <div class="sender">
-                  <p class="Sende-name">Stella</p>
-                  <p class="Sender-message">Great presentation the other day. Keep up the good work!</p>
-                </div>
-              </a>
-              <a class="dropdown-item" href="#">
-                <div class="sender-img">
-                  <img src="{{url_for('static',filename = 'images/faces/face4.jpg')}}" alt="">
-                  <span class="badge badge-warning">&nbsp;</span>
-                </div>
-                <div class="sender">
-                  <p class="Sende-name">James Brown</p>
-                  <p class="Sender-message">Need the updates of the project at the end of the week.</p>
-                </div>
-              </a>
-              <a href="#" class="dropdown-item view-all">View all</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown notification-dropdown">
-            <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-toggle="dropdown">
-              <i class="icon-speech icons"></i>
-              <span class="count"></span>
-            </a>
-            <div class="dropdown-menu navbar-dropdown preview-list notification-drop-down dropdownAnimation" aria-labelledby="notificationDropdown">
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon">
-                    <i class="icon-info mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject font-weight-medium">Application Error</p>
-                  <p class="font-weight-light small-text">
-                    Just now
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon">
-                    <i class="icon-speech mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject">Settings</p>
-                  <p class="font-weight-light small-text">
-                    Private message
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon">
-                    <i class="icon-envelope mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject">New user registration</p>
-                  <p class="font-weight-light small-text">
-                    2 days ago
-                  </p>
-                </div>
-              </a>
-            </div>
-          </li>
-          <li class="nav-item lang-dropdown d-none d-sm-block">
-            <a class="nav-link" href="#">
-              <p class="mb-0">English <i class="flag-icon flag-icon-gb"></i></p>
-            </a>
-          </li>
           <li class="nav-item d-none d-sm-block profile-img">
             <a class="nav-link profile-image" href="#">
-              <img src="{{url_for('static',filename = 'images/faces/face4.jpg')}}" alt="profile-img">
+              <img src="{{url_for('static',filename='images/faces-clipart/pic-3.png')}}" alt="profile-img">
               <span class="online-status online bg-success"></span>
             </a>
+          </li>
+          <li>
+            <button type="button" class="btn btn-inverse-light btn-fw" onclick="signout()">Sign Out</button>
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center ml-auto" type="button" data-toggle="offcanvas">
@@ -168,35 +70,19 @@
               <span class="nav-link">GENERAL</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="Teacher.html">
+              <a class="nav-link" href="{{url_for('teacher.dashboard')}}">
                 <span class="menu-title">Dashboard</span>
                 <i class="icon-speedometer menu-icon"></i>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('teacher.plagiarism')}}">
+                <span class="menu-title">Plagiarism Checker</span>
+                <i class="icon-speedometer menu-icon"></i>
+              </a>
+            </li>
             
-            <li class="nav-item nav-category">
-              <span class="nav-link">MY COURSES</span>
-            </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{{url_for('teacher.course')}}">
-                <span class="menu-title">Subject1</span>
-                <i class="icon-notebook menu-icon"></i>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="course.html">
-                <span class="menu-title">Subject2</span>
-                <i class="icon-notebook menu-icon"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="course.html">
-                <span class="menu-title">Subject3</span>
-                <i class="icon-notebook  menu-icon"></i>
-              </a>
-            </li>
             </li>
   <li class="nav-item nav-category">
               <span class="nav-link">STUDENTS</span>
@@ -210,6 +96,7 @@
             </li>
           </ul>
         </nav>
+     
         <!-- partial -->
         <div class="content-wrapper">
 
@@ -267,7 +154,7 @@
                   </div>
                 </div>
               </div>
-          </div>
+          
 
 <div class="row">
   <div class="col-lg-12 grid-margin">
@@ -281,157 +168,7 @@
            
           
           <!-- ROW ENDS -->
-          <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Recent Submissions</h4>
 
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>
-                        Team
-                      </th>
-                      <th>
-                        Team name
-                      </th>
-                      <th>
-                        Section
-                      </th>
-                      <th>
-                        Subject
-                      </th>
-      <th>
-                        View
-                      </th>
-      <th>
-                        Evaluate
-                      </th>
-                     
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="py-1">
-                        <img src="{{url_for('static',filename = 'images/faces-clipart/pic-1.png')}}" alt="image"/>
-                        <img src="{{url_for('static',filename = 'images/faces-clipart/pic-1.png')}}" alt="image"/>
-                        <img src="{{url_for('static',filename = 'images/faces-clipart/pic-1.png')}}" alt="image"/>
-                      </td>
-                      <td>
-                        Team 11
-                      </td>
-                      <td>
-                       <label class="badge badge-success">Sec F</label>
-                      </td>
-                      <td>
-                        <label class="badge badge-success">Subject1</label>
-                      </td>
-      <td>
-      <button class="btn btn-info"  >View</button>
-      </td>
-      <td>
-      <button class="btn btn-primary">Evaluate</button>
-      </td> 
-                     
-                    </tr>
-                    <tr>
-                      <td class="py-1">
-                        <img src="{{url_for('static',filename = 'images/faces-clipart/pic-2.png')}}" alt="image"/>
-                        <img src="{{url_for('static',filename = 'images/faces-clipart/pic-2.png')}}" alt="image"/>
-                        <img src="{{url_for('static',filename = 'images/faces-clipart/pic-2.png')}}" alt="image"/>
-                      </td>
-                      <td>
-                        Team 3
-                      </td>
-                      <td>
-                        <label class="badge badge-success">Sec F</label>
-                      </td>
-                      <td>
-                        <label class="badge badge-warning">Subject2</label>
-                      </td>
-      <td>
-      <button class="btn btn-info"  >View</button>
-      </td>
-      <td>
-      <button class="btn btn-primary">Evaluate</button>
-      </td> 
-                     
-                    </tr>
-                    <tr>
-                      <td class="py-1">
-                        <img src="{{url_for('static',filename = 'images/faces-clipart/pic-3.png')}}" alt="image"/>
-      <img src="{{url_for('static',filename = 'images/faces-clipart/pic-3.png')}}" alt="image"/>
-      <img src="{{url_for('static',filename = 'images/faces-clipart/pic-3.png')}}" alt="image"/>
-                      </td>
-                      <td>
-                        Team 12
-                      </td>
-                      <td>
-                        <label class="badge badge-warning">Sec B</label>
-                      </td>
-                      <td>
-                        <label class="badge badge-danger">Subject3</label>
-                      </td>
-      <td>
-      <button class="btn btn-info"  >View</button>
-      </td>
-      <td>
-      <button class="btn btn-primary">Evaluate</button>
-      </td> 
-                     
-                    </tr>
-                    <tr>
-                      <td class="py-1">
-                        <img src="{{url_for('static',filename = 'images/faces-clipart/pic-4.png')}}" alt="image"/>
-                        <img src="{{url_for('static',filename = 'images/faces-clipart/pic-4.png')}}" alt="image"/>
-                        <img src="{{url_for('static',filename = 'images/faces-clipart/pic-4.png')}}" alt="image"/>
-                      </td>
-                      <td>
-                        Team 10
-                      </td>
-                      <td>
-                        <label class="badge badge-danger">Sec A</label>
-                      </td>
-                      <td>
-                        <label class="badge badge-danger">Subject3</label>
-                      </td>
-      <td>
-      <button class="btn btn-info"  >View</button>
-      </td>
-      <td>
-      <button class="btn btn-primary">Evaluate</button>
-      </td> 
-                      
-                    </tr>
-                    <tr>
-                      <td class="py-1">
-                        <img src="{{url_for('static',filename = 'images/faces-clipart/pic-1.png')}}" alt="image"/>
-      <img src="{{url_for('static',filename = 'images/faces-clipart/pic-1.png')}}" alt="image"/>
-      <img src="{{url_for('static',filename = 'images/faces-clipart/pic-1.png')}}" alt="image"/>
-                      </td>
-                      <td>
-                        Team 1
-                      </td>
-                      <td>
-                        <label class="badge badge-success">Sec F</label>
-                      </td>
-                      <td>
-                        <label class="badge badge-danger">Subject3</label>
-                      </td>
-      <td>
-      <button class="btn btn-info"  >View</button>
-      </td>
-      <td>
-      <button class="btn btn-primary">Evaluate</button>
-      </td> 
-                      
-                    </tr>
-                    
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
          
                   
           <!-- ROW ENDS -->
@@ -479,7 +216,7 @@ function fillframe(e)
   var f =document.getElementById("frame");
   if(f.style.display=='block')
   { f.style.display='none';return;}
-  f.src="course_min.html";
+  f.src="{{url_for('teacher.course')}}";
   f.style.display='block';
 }
 
@@ -488,7 +225,7 @@ function fillframe_sec(e)
   var f =document.getElementById("frame_sec");
   if(f.style.display=='block')
   { f.style.display='none';return;}
-  f.src="submission_min.html";
+  f.src="{{url_for('teacher.submission')}}";
   f.style.display='block';
 }
 

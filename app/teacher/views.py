@@ -66,11 +66,18 @@ def dashboard():
 
 @teacher.route('/course', methods = ['GET', 'POST'])
 @login_required
-def course(variable):
+def course():
+	return render_template("course_min.html")
 
-	
+@teacher.route('/submission', methods = ['GET', 'POST'])
+@login_required
+def submission():
+	return render_template("submission_min.html")
 
-	return render_template("course.html")
+@teacher.route('/plagiarism', methods = ['GET', 'POST'])
+@login_required
+def plagiarism():
+	return render_template("plagiarism.html")
 
 @teacher.route('/evaluate', methods = ['GET', 'POST'])
 @login_required
@@ -111,5 +118,11 @@ def stats():
 	response['repo_name'] = repo
 	print(response, "\n\n")
 	return render_template("gitstats.html", response = response)
+
+@teacher.route('/deadline', methods = ['GET', 'POST'])
+def deadline():
+	# replace with db calls
+	return render_template("new_deadline.html")
+
 
 
