@@ -1,7 +1,7 @@
 from requests_oauthlib import OAuth2Session
 
 from app import login_manager
-from app.models import User, Student, Teacher
+from app.models import User, Student, Teacher, Admin
 
 
 from . import db
@@ -27,6 +27,9 @@ class Auth:
 @login_manager.user_loader
 def load_user(email):
 	print(email)
+	a = db.session.query(Admin).filter(Admin.email==email).first()
+	if a:
+		return a
 	u, isTeacher = checkUser(email)
 	return u
 

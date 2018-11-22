@@ -1,5 +1,5 @@
 from app import db
-from app.models import User, Student, Teacher, CourseBase, CourseDeliverable, CourseResource, Team
+from app.models import User, Student, Teacher, Admin, CourseBase, CourseDeliverable, CourseResource, Team
 
 
 def student_data():

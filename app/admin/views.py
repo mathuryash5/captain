@@ -5,15 +5,23 @@
 from flask import request, render_template, \
       				session, redirect, url_for, Response, jsonify, flash
 
+from flask_login import LoginManager, login_required, login_user, logout_user, current_user
+
+
 from . import admin
 
-from app.models import Student, Teacher, CourseBase
+from app.models import Student, Teacher, Admin, CourseBase
 
 from sqlalchemy import func, distinct
 
-from .. import db, mail
+from .. import db, mail, home
 
 headers = "application/json"
+
+'''
+	This function
+		renders admin dashboard
+'''
 
 @admin.route('/dashboard', methods = ['GET'])
 def dashboard():
@@ -80,6 +88,11 @@ def courses():
 	print("Displaying Courses Page for the Admin")
 	return render_template('courselist.html')
 
+'''
+	This function
+		renders dashboard to manage students
+'''
+
 @admin.route('/students', methods = ['GET'])
 def students():
 	print("Displaying Students Page for the Admin")
@@ -136,6 +149,3 @@ def teachers():
 	teacher_info = db.session.query(Teacher).filter(Teacher.role == 'Teacher').all()
 	print(teacher_info)
 	return render_template('teacherlist.html', response = teacher_info)
-
-
-

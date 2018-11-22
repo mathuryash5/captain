@@ -2,7 +2,7 @@
 
 
 # Import flask dependencies
-from flask import request, render_template, \
+from flask import request, render_template, make_response, \
 					session, redirect, url_for, Response, jsonify
 
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user, UserMixin
@@ -14,6 +14,7 @@ from app.models import Student, Teacher, CourseBase
 from sqlalchemy import func, distinct
 
 from .. import db
+import random
 
 # Import login related functionality
 from app.login import get_google_auth, checkUser, load_user
