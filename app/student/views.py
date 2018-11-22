@@ -9,12 +9,13 @@ from flask_login import LoginManager, login_required, login_user, logout_user, c
 
 from . import student
 
-from app.models import Student, Teacher, CourseBase, CourseResource, CourseDeliverable
+from app.models import Student, Teacher, CourseBase, CourseResource, CourseDeliverable, Team
 
 from sqlalchemy import func, distinct
 
 from .. import db
 import random
+import json
 
 # Import login related functionality
 from app.login import get_google_auth, checkUser, load_user
