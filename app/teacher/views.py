@@ -82,12 +82,16 @@ def evaluate():
 	# Get all users regiestered for their course
 	sections_taught = user_info.course_to_section.values()
 	print(sections_taught)
+	print(courses_taken)
 	students_taught = []
-	for course_code in courses_taken:
-		semester_taught = db.session.query(CourseBase.semester).filter(CourseBase.course_code == course_code).first()
+	student_to_subject = {}
+	for course_name in courses_taken:
+		semester_taught = db.session.query(CourseBase.semester).filter(CourseBase.course_name == course_name).first()
 		print(semester_taught)
 		temp_student = db.session.query(Student).filter(Student.semester == semester_taught[0] and Student.section in sections_taught).all()
 		students_taught += temp_student
+		for student in temp_student:
+			student_to_subject[student.name] = course_name
 	print("="*30)
 	print(user_info)
 	# print(user_info.semester)
@@ -95,8 +99,8 @@ def evaluate():
 	# print(course_names)
 	# print(all_course_names)
 	print("="*30)
-	response = {"teacher_name" : user_info.name, "courses_taken" : courses_taken, "course_to_section" : user_info.course_to_section, "students_taught" : students_taught}
-	return render_template("marks.html")
+	response = {"teacher_name" : user_info.name, "courses_taken" : courses_taken, "course_to_section" : user_info.course_to_section, "students_taught" : students_taught, "student_to_course" : student_to_subject}
+	return render_template("marks.html", response = response)
 
 @teacher.route('/gitstats', methods = ['GET', 'POST'])
 def stats():

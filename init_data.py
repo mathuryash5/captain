@@ -38,7 +38,7 @@ def student_data():
 	db.session.add(Student(usn = "01FB15ECS028", name="Yash Mathur", email="yash.mathur@gmail.com", branch="CSE", semester=3, section="C"))
 	db.session.add(Student(usn = "01FB15ECS029", name="Varuni Sutrave", email="varunisutrave4@gmail.com", branch="CSE", semester=7, section="C"))
 	db.session.add(Student(usn = "01FB15ECS310", name="Srishti Mishra", email="srishtimishra56@gmail.com", branch="CSE", semester=7, section="C"))
-	# db.session.add(Student(usn = "01FB15ECS000", name="Test Student", email="captain.se6@gmail.com", branch="CSE", semester=7, section="C"))
+	#db.session.add(Student(usn = "01FB15ECS000", name="Test Student", email="captain.se6@gmail.com", branch="CSE", semester=7, section="C"))
 	db.session.add(Student(usn = "01FB15ECS341", name="Aria Ly", email="air72659@gmail.com", branch="CSE", semester=7, section="C"))
 	db.session.add(Student(usn = "01FB15ECS346", name="Neha H", email="srishtimishra@pesu.pes.edu", branch="CSE", semester=7, section="C"))
 	db.session.commit()
@@ -55,7 +55,6 @@ def teacher_data():
 	db.session.add(Teacher(f_id = "F008", name="Sarthak Banka", email="sarthak.banka@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
 	db.session.add(Teacher(f_id = "F009", name="Kritagya Jain", email="kritagya.jain@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
 	db.session.add(Teacher(f_id = "F000", name="Test Teacher", email="captain.se6@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["A","B"], "Machine Learning" : "C"}))
-	#db.session.add(Teacher(f_id = "F010", name="Varuni", email="varunisutrave4@gmail.com", branch="CSE", position="Assistant Professor", course_to_section={"Web Technologies" : ["F"], "Machine Learning" : "B"}))
 	db.session.commit()
 
 def coursebase_data():
@@ -144,3 +143,7 @@ def team_data():
 	db.session.add(Team(course_code = "UE15CS403", session_id = "25", usn_list = "{member_1 : Aditya Ramani, member_2 : Anvith Shetty, member_3 : Saket Golyan}", github_user = "Aditya Ramani", github_repo = "https://github.com/AdityaRamani/captain"))
 	db.session.add(Team(course_code = "UE15CS403", session_id = "26", usn_list = "{member_1 : Aayushman Arora, member_2 : Rahil Arora ,member_3 : Armaan Imaam}", github_user = "Rahil Arora", github_repo = "https://github.com/RahilArora/captain"))
 	db.session.add(Team(course_code = "UE15CS403", session_id = "27", usn_list = "{member_1 : Yash Mathur, member_2 : Varuni Sutrave, member_3 : Srishti Mishra}", github_user = "Yash Mathur", github_repo = "https://github.com/mathuryash5/captain"))
+
+
+def admin_data():
+	pass
