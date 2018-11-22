@@ -28,7 +28,7 @@ jQuery.fn.pop = [].pop;
 jQuery.fn.shift = [].shift;
 
 $BTN.click(function () {
-  // alert("Clicked!");
+  alert("Clicked!");
   var $rows = $TABLE.find('tr:not(:hidden)');
   var headers = [];
   var data = [];
@@ -49,15 +49,17 @@ $BTN.click(function () {
     });
     
     data.push(h);
+    alert(h);
   });
   $.ajaxSetup({
   contentType: "application/json; charset=utf-8"
   });
   // Output the result
-  $EXPORT.text(JSON.stringify(data));
+ // $EXPORT.text(JSON.stringify(data));
   console.log(data);
-  console.log(JSON.stringify(data))
-  $.post("/admin/students", JSON.stringify(data), function(){
+  console.log(JSON.stringify(data));
+
+  $.post("/admin/add/student", JSON.stringify(data), function(){
 
   });
   // stop link reloading the page

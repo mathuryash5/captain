@@ -5,17 +5,25 @@
 from flask import request, render_template, \
       				session, redirect, url_for, Response, jsonify, flash
 
+from flask_login import LoginManager, login_required, login_user, logout_user, current_user
+
+
 from . import admin
 
-from app.models import Student, Teacher, CourseBase
+from app.models import Student, Teacher, Admin, CourseBase
 
 from sqlalchemy import func, distinct
 
-from .. import db
+from .. import db, mail, home
 
 headers = "application/json"
 
-@admin.route('/dashboard', methods = ['GET', 'POST'])
+'''
+	This function
+		renders admin dashboard
+'''
+
+@admin.route('/dashboard', methods = ['GET'])
 def dashboard():
 	print("Displaying Admin Dashboard")
 	student_count = db.session.query(func.count(Student.usn)).first()
@@ -60,11 +68,30 @@ def dashboard():
 							# 			course_count = course_count,				
 							# )
 
+@admin.route('/dashboard', methods = ['POST'])
+def send_mail():
+	print("Sending Users email notification")
+	data = request.get_json(force = True)
+	users = ["mathuryash5@gmail.com"]
+	with mail.connect() as conn:
+	    for user in users:
+	        message = '...'
+	        subject = "hello, %s" % user.name
+	        msg = Message(recipients=[user.email],
+	                      body=message,
+	                      subject=subject)
+
+	        conn.send(msg)
 
 @admin.route('/courses', methods = ['GET', 'POST'])
 def courses():
 	print("Displaying Courses Page for the Admin")
 	return render_template('courselist.html')
+
+'''
+	This function
+		renders dashboard to manage students
+'''
 
 @admin.route('/students', methods = ['GET'])
 def students():
@@ -74,10 +101,10 @@ def students():
 	return render_template('studentlist.html', response = student_info)
 
 @admin.route('/add/<type>', methods = ['POST'])
-def add_user():
+def add_data(type):
 	print("Adding new user")
-	data = request.get_json(force = True)
-	print(data)
+	data = request.get_json(force = True)	
+	print(type(data))
 	if(type == "student"):
 		exists = db.session.query(Student.usn).filter_by(usn=data['usn']).scalar() is not None
 		# If student exists
@@ -86,7 +113,7 @@ def add_user():
 		#add student
 		else:
 			flash("New User added")
-			db.session.add(Student(usn = data['usn'], name=data['name'], email=data['email'], branch=data['branch'], semester=data['semester'], section=data['section']))
+			db.session.add(Student(usn=data['usn'], name=data['name'], email=data['email'], branch=data['branch'], semester=data['semester'], section=data['section']))
 			db.session.commit()
 		student_info = db.session.query(Student).filter(Student.role == 'Student').all()
 		return render_template('studentlist.html', response = student_info)

@@ -43,7 +43,7 @@
         <a class="navbar-brand brand-logo-mini" href="{{url_for('student.dashboard')}}"><img src="{{url_for('static',filename='images/logo_mini.svg')}}" alt="logo"></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
-        <p class="page-name d-none d-lg-block">Hi, Dave Mattew</p>
+        <p class="page-name d-none d-lg-block">Hi, {{response.student_name}}</p>
         <ul class="navbar-nav ml-lg-auto">
 
           <li class="nav-item d-none d-sm-block profile-img">
@@ -86,25 +86,23 @@
               <span class="nav-link">MY COURSES</span>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{{url_for('student.course')}}">
-                <span class="menu-title">Subject1</span>
-                <i class="icon-notebook menu-icon"></i>
-              </a>
+            {% for course_name in response.course_names %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('student.course', subject_name = course_name[0])}}">
+                  <span class="menu-title">{{course_name[0]}}</span>
+                  <i class="icon-notebook menu-icon"></i>
+                </a>
+              </li>            
+            {% endfor %}
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="{{url_for('student.course')}}">
-                <span class="menu-title">Subject2</span>
-                <i class="icon-notebook menu-icon"></i>
-              </a>
+            <li class="nav-item nav-category">
+              <span class="nav-link">MISCELLANEOUS</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url_for('student.course')}}">
-                <span class="menu-title">Subject3</span>
-                <i class="icon-notebook  menu-icon"></i>
+              <a class="nav-link" href="{{url_for('student.classmembers')}}">
+                <span class="menu-title">Practice Viva Questions</span>
+                <i class=" icon-magic-wand menu-icon"></i>
               </a>
-            </li>
             </li>
           </ul>
         </nav>  
@@ -114,7 +112,7 @@
         <div class="col-lg-12">
           <div class = "card">
               <div class="card-body">
-              <h1 class="display-4">Course 1</h1>
+              <h1 class="display-4">{{response.current_course}}</h1>
               </div>
           </div>
            
@@ -264,177 +262,257 @@
                         <div class="card-body">
                             <h4 class="card-title mb-0">Deliverable 1</h4>
                         </div>
+                      <form>
                         <table class="table table-hover">
                   
-                              <tr>
-                                <td>Submission Status</td>
-                                <td>Photoshop</td>
-                              
-                              </tr>
-                              <tr>
-                                <td>Grading Status</td>
-                                <td>Flash</td>
-                                
-                              </tr>
-                              <tr>
-                                <td>Due Date</td>
-                                <td>Premier</td>
-                                
-                              </tr>
-                              <tr>
-                                <td>Time Left</td>
-                                <td>After effects</td>
-                               
-                              </tr>
-                              <tr>
-                                <td>Last Modified</td>
-                                <td>53275535</td>
-                               
-                              </tr>
-
+                          <tr>
+                            <td>Submission Status</td>
+                            <td>Photoshop</td>
+                          
+                          </tr>
+                          <tr>
+                            <td>Grading Status</td>
+                            <td>Flash</td>
                             
-                          </table>
-                          <input type="file" class="dropify" />
-                          <button type="button" class="btn btn-success btn-fw">Save Changes</button>
-                          <button type="button" class="btn btn-secondary btn-fw">Cancel</button>
+                          </tr>
+                          <tr>
+                            <td>Due Date</td>
+                            <td>Premier</td>
+                            
+                          </tr>
+                          <tr>
+                            <td>Time Left</td>
+                            <td>After effects</td>
+                           
+                          </tr>
+                          <tr>
+                            <td>Last Modified</td>
+                            <td>53275535</td>
+                           
+                          </tr>
+                          <tr>
+                            <td>URL</td>
+                            <td><input class="form-control" name="url"
+                              type="url" data-bv-uri-message="The website address is not valid" />
+                            </td>
+                           
+                          </tr>
+
+                        
+                      </table>
+                      
+                      
+                    </form>
+                      <button type="submit" class="btn btn-success btn-fw">Save Changes</button>
+                      <button type="reset" class="btn btn-secondary btn-fw">Cancel</button>
+                     
+
                 
                     </div>
                     
                     
                   </div>
                   <div class="col-lg-6">
-                      <div class="card">
-                          <div class="card-body">
-                              <h4 class="card-title  mb-0">Deliverable 2 </h4>
-                          </div>
-                          <table class="table table-hover">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-0">Deliverable 2</h4>
+                        </div>
+                      <form>
+                        <table class="table table-hover">
                   
-                              <tr>
-                                <td>Submission Status</td>
-                                <td>Photoshop</td>
-                              
-                              </tr>
-                              <tr>
-                                <td>Grading Status</td>
-                                <td>Flash</td>
-                                
-                              </tr>
-                              <tr>
-                                <td>Due Date</td>
-                                <td>Premier</td>
-                                
-                              </tr>
-                              <tr>
-                                <td>Time Left</td>
-                                <td>After effects</td>
-                               
-                              </tr>
-                              <tr>
-                                <td>Last Modified</td>
-                                <td>53275535</td>
-                               
-                              </tr>
-
+                          <tr>
+                            <td>Submission Status</td>
+                            <td>Photoshop</td>
+                          
+                          </tr>
+                          <tr>
+                            <td>Grading Status</td>
+                            <td>Flash</td>
                             
-                          </table>
-                          <input type="file" class="dropify" />
-                          <button type="button" class="btn btn-success btn-fw">Save Changes</button>
-                          <button type="button" class="btn btn-secondary btn-fw">Cancel</button>
-                  
-                      </div>
+                          </tr>
+                          <tr>
+                            <td>Due Date</td>
+                            <td>Premier</td>
+                            
+                          </tr>
+                          <tr>
+                            <td>Time Left</td>
+                            <td>After effects</td>
+                           
+                          </tr>
+                          <tr>
+                            <td>Last Modified</td>
+                            <td>53275535</td>
+                           
+                          </tr>
+                          <tr>
+                            <td>URL</td>
+                            <td><input class="form-control" name="url"
+                              type="url" data-bv-uri-message="The website address is not valid" />
+                            </td>
+                           
+                          </tr>
+
+                        
+                      </table>
                       
                       
+                    
+                      </form>
+                      <button type="submit" class="btn btn-success btn-fw">Save Changes</button>
+                      <button type="reset" class="btn btn-secondary btn-fw">Cancel</button>
+
+                
                     </div>
+                    
+                    
+                  </div>
                 </div>
                 <div class = "row">
-                    <div class="col-lg-6">
-                      <div class="card">
-                          <div class="card-body">
-                              <h4 class="card-title mb-0">Deliverable 3</h4>
-                          </div>
-                          <table class="table table-hover">
-                  
-                              <tr>
-                                <td>Submission Status</td>
-                                <td>Photoshop</td>
-                              
-                              </tr>
-                              <tr>
-                                <td>Grading Status</td>
-                                <td>Flash</td>
-                                
-                              </tr>
-                              <tr>
-                                <td>Due Date</td>
-                                <td>Premier</td>
-                                
-                              </tr>
-                              <tr>
-                                <td>Time Left</td>
-                                <td>After effects</td>
-                               
-                              </tr>
-                              <tr>
-                                <td>Last Modified</td>
-                                <td>53275535</td>
-                               
-                              </tr>
-
-                            
-                          </table>
-                          <input type="file" class="dropify" />
-                          <button type="button" class="btn btn-success btn-fw">Save Changes</button>
-                          <button type="button" class="btn btn-secondary btn-fw">Cancel</button>
-                  
-                      </div>
-                      
-                      
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title mb-0">Deliverable 4</h4>
-                            </div>
-                            <table class="table table-hover">
-                  
-                                <tr>
-                                  <td>Submission Status</td>
-                                  <td>Photoshop</td>
-                                
-                                </tr>
-                                <tr>
-                                  <td>Grading Status</td>
-                                  <td>Flash</td>
-                                  
-                                </tr>
-                                <tr>
-                                  <td>Due Date</td>
-                                  <td>Premier</td>
-                                  
-                                </tr>
-                                <tr>
-                                  <td>Time Left</td>
-                                  <td>After effects</td>
-                                 
-                                </tr>
-                                <tr>
-                                  <td>Last Modified</td>
-                                  <td>53275535</td>
-                                 
-                                </tr>
-  
-                              
-                            </table>
-                            <input type="file" class="dropify" />
-                            <button type="button" class="btn btn-success btn-fw">Save Changes</button>
-                            <button type="button" class="btn btn-secondary btn-fw">Cancel</button>
-                    
+                  <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-0">Deliverable 3</h4>
                         </div>
+                      <form>
+                        <table class="table table-hover">
+                  
+                          <tr>
+                            <td>Submission Status</td>
+                            <td>Photoshop</td>
+                          
+                          </tr>
+                          <tr>
+                            <td>Grading Status</td>
+                            <td>Flash</td>
+                            
+                          </tr>
+                          <tr>
+                            <td>Due Date</td>
+                            <td>Premier</td>
+                            
+                          </tr>
+                          <tr>
+                            <td>Time Left</td>
+                            <td>After effects</td>
+                           
+                          </tr>
+                          <tr>
+                            <td>Last Modified</td>
+                            <td>53275535</td>
+                           
+                          </tr>
+                          <tr>
+                            <td>URL</td>
+                            <td><input class="form-control" name="url"
+                              type="url" data-bv-uri-message="The website address is not valid" />
+                            </td>
+                           
+                          </tr>
 
                         
+                      </table>
+                      
+                      
+                        
+                     
+                      </form>
+                      <button type="submit" class="btn btn-success btn-fw">Save Changes</button>
+                      <button type="reset" class="btn btn-secondary btn-fw">Cancel</button>
+
+                
+                    </div>
+                    
+                    
+                  </div>                  
+                  <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-0">Deliverable 4</h4>
+                        </div>
+                      <form>
+                        <table class="table table-hover">
+                  
+                          <tr>
+                            <td>Submission Status</td>
+                            <td>Photoshop</td>
+                          
+                          </tr>
+                          <tr>
+                            <td>Grading Status</td>
+                            <td>Flash</td>
+                            
+                          </tr>
+                          <tr>
+                            <td>Due Date</td>
+                            <td>Premier</td>
+                            
+                          </tr>
+                          <tr>
+                            <td>Time Left</td>
+                            <td>After effects</td>
+                           
+                          </tr>
+                          <tr>
+                            <td>Last Modified</td>
+                            <td>53275535</td>
+                           
+                          </tr>
+                          <tr>
+                            <td>URL</td>
+                            <td><input class="form-control" name="url"
+                              type="url" data-bv-uri-message="The website address is not valid" />
+                            </td>
+                           
+                          </tr>
+
+                        
+                      </table>
+                      
+                    </form>
+                        
+                      <button type="submit" class="btn btn-success btn-fw">Save Changes</button>
+                      <button type="reset" class="btn btn-secondary btn-fw">Cancel</button>
+                     
+
+                
+                    </div>
+                    
+                    
+                  </div>
+                  </div>
+                  <div class="row"><p>&nbsp;</p></div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="card">
+                        <div class="card-body">
+               
+                                <h4 class="mb-0 ">Feedback from the teacher</h4>
+                             
+                            
+                        </div>
                         
                       </div>
+                    </div>
                   </div>
+                  <div class="row"><p>&nbsp;</p></div>
+                  <div class="row">
+                      <div class="col-lg-12">
+                        <div class="card">
+                          <div class="card-body">
+                              <div class="card-title">
+    
+                                        <h4>FeedBack title</h4>
+                                </div> 
+  
+                                 
+                                    Feedback
+                              
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
             </div>
             <div class="tab-pane fade" id="team" role="tabpanel" aria-labelledby="team-tab">
                 <div class = "row">
@@ -470,9 +548,7 @@
                                           <div class="row">
                                               <div class="col-lg-3"><img src="{{url_for('static',filename='images/faces-clipart/pic-2.png')}}" alt="image"/></div>
                                               <div class="col-lg-9"> <h4>Member 1</h4></div>
-                                              <div class="row">
-                                                  <div class="col-lg-9 text-center card-subtitle"> <p>USN</p></div>
-                                              </div>
+                                              
                                                
               
                                         </div>
@@ -483,9 +559,7 @@
                                     <div class="row">
                                         <div class="col-lg-3"><img src="{{url_for('static',filename='images/faces-clipart/pic-1.png')}}" alt="image"/></div>
                                         <div class="col-lg-9"> <h4>Member 2</h4></div>
-                                        <div class="row">
-                                            <div class="col-lg-9 text-center card-subtitle"> <p>USN</p></div>
-                                        </div>
+                                        
                                          
                                     </div>
                                       
@@ -497,9 +571,7 @@
                                       <div class="row">
                                           <div class="col-lg-3"><img src="{{url_for('static',filename='images/faces-clipart/pic-3.png')}}" alt="image"/></div>
                                           <div class="col-lg-9"> <h4>Member 3  </h4></div>
-                                          <div class="row">
-                                              <div class="col-lg-9 text-center card-subtitle"> <p>USN</p></div>
-                                          </div>
+                                          
               
                                     </div>
                              
@@ -523,31 +595,15 @@
                             <h4>Chat with Team</h4>
                           </div>
                           <div class="row">
-                              <div class="col-lg-8">
-                                  <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="Enter Message">
-                                    </div>
-                              </div>
-                              <div class="col-lg-4">
-                                  <button type="submit" class="btn btn-success form-group btn-rounded btn-fw ">Send</button>
-                              </div>
-                          </div>
-                          
-                          
-  
-  
+                            <div class="embed-responsive embed-responsive-4by3">
+                              <iframe width="100%" height = "100%" src="https://localhost:8000"> </iframe>
+                            </div>
+                          </div> 
                         </div>
                       </div>
-  
                     </div>
-                  </div>
-
-
-
-          </div>
+                </div>
   
-
-
         </div>
 
 

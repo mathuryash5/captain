@@ -36,6 +36,29 @@ class User(db.Model, UserMixin, AbstractConcreteBase):
 		"""Return the email address to satisfy Flask-Login's requirements."""
 		return self.email
 
+#Creates class for superuser who can access everything
+class Admin(User):
+	__tablename__ = "admin"
+
+	roleno = db.Column(db.String(128), primary_key = True)
+	password = db.Column(db.String(128), nullable=False)
+
+	__mapper_args__ = {
+		'polymorphic_identity': 'admin',
+	}
+	
+	#class constructor
+	def __init__(self, roleno, password):
+		self.roleno = roleno
+		self.name = "admin"
+		self.email = "admin@captain.edu"
+		self.branch = "NA"
+		self.role = "Admin"
+		self.active = True
+		self.password = password
+
+	def __repr__(self):
+		return '<AdminProfile {}>'.format(self.email)
 
 #Student User model
 class Student(User):
@@ -68,8 +91,8 @@ class Student(User):
 		lab_marks = {}
 		has_team = {}
 		for course in get_course_names(semester):
-			lab_marks[str(course)] = 0
-			has_team[str(course)] = 0
+			lab_marks[str(course[0])] = 0
+			has_team[str(course[0])] = 0
 
 		self.lab_marks = lab_marks
 		self.has_team = has_team
@@ -88,14 +111,16 @@ class Teacher(User):
 	__mapper_args__ = {
 		'polymorphic_identity': 'teacher',
 	}
+
 	
 	#Class constructor
-	def __init__(self, f_id, name, email, branch, position):
+	def __init__(self, f_id, name, email, branch, position, course_to_section):
 		self.f_id = f_id
 		self.name = name
 		self.email = email
 		self.branch = branch
 		self.position = position
+		self.course_to_section = course_to_section
 		self.role = "Teacher"
 
 	def __repr__(self):
@@ -131,30 +156,28 @@ class CourseBase(db.Model):
 		return '<CourseBase {}>'.format(self.course_name)
 
 
+
 #Model for course, with only deadlines, deliverables and resources
 #Part of the course that is visible to students
-class Course(db.Model):
-	__tablename__ = "course"
-
+class CourseDeliverable(db.Model):
+	__tablename__ = "course_deliverable"
 	course_code = db.Column(db.String, db.ForeignKey('course_base.course_code'))
 	global_deliverable_id = db.Column(db.Integer, unique = True, autoincrement = True) 
 	deliverable_id = db.Column(db.Integer, nullable = False)
-	deliverables = db.Column(db.String(256))
+	deliverable = db.Column(db.String(256))
 	deliverable_deadline = db.Column(db.DateTime(timezone = True))
-	# Resources supplied by the teacher for the students. 
-	teacher_resources = db.Column(db.JSON)
+
 
 	#Class constructor
-	def __init__(self, course_code, deliverables, deliverable_deadline, teacher_resources):
+	def __init__(self, course_code, deliverable, deliverable_deadline):
 		self.course_code = course_code
-		self.deliverables = deliverables
+		self.deliverable = deliverable
 		self.deliverable_deadline = deliverable_deadline
-		self.teacher_resources = teacher_resources
 
 		#Get number of all deliverables for the course
 		def get_deliverables_count():
 			# print(course_code)
-			deliverables_count = db.session.query(Course).filter(Course.course_code == course_code).count()
+			deliverables_count = db.session.query(CourseDeliverable).filter(CourseDeliverable.course_code == course_code).count()
 			# print(deliverables_count)
 			return deliverables_count
 
@@ -164,7 +187,26 @@ class Course(db.Model):
 	def __repr__(self):
 		return '<Course {}>'.format(self.course_name)
 
-	__table_args__ = (PrimaryKeyConstraint(course_code, global_deliverable_id),) 
+	__table_args__ = (PrimaryKeyConstraint(course_code, global_deliverable_id),)
+
+class CourseResource(db.Model):
+	__tablename__ = "course_resource"
+
+	course_code = db.Column(db.String, db.ForeignKey('course_base.course_code'))
+	# Resources supplied by the teacher for the students. 
+	resource_desc = db.Column(db.String(256))
+	resource_url = db.Column(db.String(256))
+	upload_time = db.Column(db.DateTime(timezone = True), default=datetime.datetime.utcnow)
+
+	def __init__(self, course_code, resource_desc, resource_url):
+		self.course_code = course_code
+		self.rsource_desc = resource_desc
+		self.resource_url = resource_url
+
+	def __repr__(self):
+		return '<CourseResources{}>'.format(self.course_name)
+
+	__table_args__ = (PrimaryKeyConstraint(course_code, resource_url),) 	 
 
 #Model for constructing project teams for a course
 class Team(db.Model):
@@ -196,18 +238,21 @@ class Team(db.Model):
 
 	__table_args__ = (PrimaryKeyConstraint(global_team_id, course_code),) 
 	
+
 #Model for team submission, has marks information, uploaded file information
-class TeamSubmissions(db.Model):
-	__tablename__ = "team_submissions"
+class TeamSubmission(db.Model):
+	__tablename__ = "team_submission"
+
 
 	global_team_id = db.Column(db.Integer, db.ForeignKey('team.global_team_id'))
 	course_code = db.Column(db.String, db.ForeignKey('course_base.course_code'))
-	global_deliverable_id = db.Column(db.Integer, db.ForeignKey('course.global_deliverable_id'))
+	global_deliverable_id = db.Column(db.Integer, db.ForeignKey('course_deliverable.global_deliverable_id'))
 	resource_url = db.Column(db.String(128))
 	grading_status = db.Column(db.Boolean, default = False)
 	submission_time = db.Column(db.DateTime(timezone = True), default=datetime.datetime.utcnow)
 	teacher_eval = db.Column(db.String(256))
 	teacher_eval_time = db.Column(db.DateTime())
+
 	#Class constructor
 	def __init__(self, global_team_id, course_code, global_deliverable_id, resource_url, grading_status, submission_time):
 		self.global_team_id = global_team_id
@@ -216,13 +261,3 @@ class TeamSubmissions(db.Model):
 		self.resource_url = resource_url
 
 	__table_args__ = (PrimaryKeyConstraint(global_team_id, course_code, global_deliverable_id),) 
-
-
-
-
-# # @login_manager.user_loader
-# # def load_user(id):
-# # 	try: 
-# # 		return User.query.get(int(id))
-# # 	except:
-# # 		return None

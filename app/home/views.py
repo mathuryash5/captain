@@ -55,9 +55,16 @@ def login():
             }
             u, isTeacher = checkUser(current_user.email)
             if isTeacher:
-                return render_template("Teacher.html")
+                user_info = db.session.query(Teacher).filter(Teacher.email == current_user.email).first()
+                courses_taken = user_info.course_to_section.keys()
+                response = {"teacher_name" : user_info.name, "courses_taken" : courses_taken, "course_to_section" : user_info.course_to_section}
+                return render_template("Teacher.html", response = response)
             else:
-                return render_template("dashboard.html")
+                user_info = db.session.query(Student).filter(Student.email == current_user.email).first()
+                course_names = db.session.query(CourseBase.course_name).filter(CourseBase.semester == user_info.semester)
+                all_course_names = db.session.query(CourseBase.course_name).all()
+                response = {"student_name" : user_info.name, "lab_marks" : user_info.lab_marks, "course_names" : course_names}
+                return render_template("dashboard.html", response = response)
             # Check if current_user is teacher or student
             return jsonify(response_object)
             #return redirect(url_for('users.index'))
@@ -151,7 +158,7 @@ def callback():
             # current_user.is_authenticated = True
             current_user.name = user_data['name']
             current_user.email = user_data['email']
-            current_user.tid = 2
+            # current_user.tid = 2
             # current_user.token = token
             login_user(user)
             # except: 
@@ -200,14 +207,14 @@ def logout():
     return redirect(url_for('index.html'))
 
 
-@home.route("/chat/<courseid>", methods=["GET"])
-@login_required
-def chat(courseid):
-    # Find which team id from querying current_user.has_team for courseid's teamValue.
-    teamID = random.randint(1,2)
-    response = make_response(render_template('chat.html'))
-    response.set_cookie('tid', str(teamID), max_age=60*5)
-    response.set_cookie('usn', str(current_user.email), max_age=60*5)
-    return response
-    # return redirect("http://localhost:")
-    # return jsonify({'name': current_user.email })
+# @home.route("/chat/<courseid>", methods=["GET"])
+# @login_required
+# def chat(courseid):
+#     # Find which team id from querying current_user.has_team for courseid's teamValue.
+#     teamID = random.randint(1,2)
+#     response = make_response(render_template('chat.html'))
+#     response.set_cookie('tid', str(teamID), max_age=60*5)
+#     response.set_cookie('usn', str(current_user.email), max_age=60*5)
+#     return response
+#     # return redirect("http://localhost:")
+#     # return jsonify({'name': current_user.email })

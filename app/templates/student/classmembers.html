@@ -32,7 +32,7 @@
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
 
-        <p class="page-name d-none d-lg-block">Hi, Dave Mattew</p>
+        <p class="page-name d-none d-lg-block">Hi, {{response.student_name}}</p>
         <ul class="navbar-nav ml-lg-auto">
 
           <li class="nav-item d-none d-sm-block profile-img">
@@ -73,26 +73,23 @@
             <li class="nav-item nav-category">
               <span class="nav-link">MY COURSES</span>
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="{{url_for('student.course')}}">
-                <span class="menu-title">Subject1</span>
-                <i class="icon-notebook menu-icon"></i>
-              </a>
+            {% for course_name in response.course_names %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('student.course', subject_name = course_name[0])}}">
+                  <span class="menu-title">{{course_name[0]}}</span>
+                  <i class="icon-notebook menu-icon"></i>
+                </a>
+              </li>            
+            {% endfor %}
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="{{url_for('student.course')}}">
-                <span class="menu-title">Subject2</span>
-                <i class="icon-notebook menu-icon"></i>
-              </a>
+            <li class="nav-item nav-category">
+              <span class="nav-link">MISCELLANEOUS</span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url_for('student.course')}}">
-                <span class="menu-title">Subject3</span>
-                <i class="icon-notebook  menu-icon"></i>
+              <a class="nav-link" href="{{url_for('student.classmembers')}}">
+                <span class="menu-title">Practice Viva Questions</span>
+                <i class=" icon-magic-wand menu-icon"></i>
               </a>
-            </li>
             </li>
           </ul>
         </nav>  
