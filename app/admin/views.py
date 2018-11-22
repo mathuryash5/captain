@@ -149,3 +149,40 @@ def teachers():
 	teacher_info = db.session.query(Teacher).filter(Teacher.role == 'Teacher').all()
 	print(teacher_info)
 	return render_template('teacherlist.html', response = teacher_info)
+
+
+'''
+	This function
+		renders login page
+'''
+@admin.route('/login', methods=['GET'])
+def login():
+	return render_template('adminlogin.html')
+
+
+@admin.route('/verify', methods=['POST'])
+def verify():
+	print("Verifying", request.form['admin-email'])
+	print(db.session.query(Admin).filter(Admin.email == "admin@captain.edu").first())
+	user_data = db.session.query(Admin).filter(Admin.email == request.form['admin-email']).first()
+	if user_data:
+		if request.form['admin-pwd'] == user_data.password:
+			current_user.name = user_data.name
+			current_user.email = user_data.email
+			return dashboard()
+		else:
+			return jsonify({"status": "fail", "msg":"wrong password"})
+	else:
+		return jsonify({"status": "fail", "msg":"invalid credentials"})
+
+
+@admin.route("/logout", methods=["GET"])
+@login_required
+def logout():
+    """Logout the current user."""
+    user = current_user
+    user.authenticated = False
+    # db.session.add(user)
+    # db.session.commit()
+    logout_user()
+    return redirect(url_for(home))
