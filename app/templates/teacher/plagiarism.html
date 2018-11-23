@@ -38,8 +38,8 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper">
           <i class="icon-anchor icons"></i>
-        <a class="navbar-brand brand-logo" href="teacher.html"><img src="images/logo.png" alt="logo"></a>
-        <a class="navbar-brand brand-logo-mini" href="teacher.html"><img src="images/logo_mini.svg" alt="logo"></a>
+        <a class="navbar-brand brand-logo" href="{{url_for('teacher.dashboard')}}"><img src="{{url_for('static',filename='images/logo.png')}}" alt="logo"></a>
+        <a class="navbar-brand brand-logo-mini" href="{{url_for('teacher.dashboard')}}"><img src="{{url_for('static',filename='images/logo_mini.svg')}}" alt="logo"></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
         
@@ -64,6 +64,12 @@
                 <i class="icon-speedometer menu-icon"></i>
               </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('teacher.plagiarism')}}">
+                 <span class="menu-title">Plagiarism</span>
+                 <i class="icon-speedometer menu-icon"></i>
+               </a>
+             </li>
             
             
             </li>
@@ -109,7 +115,7 @@
 		</TEXTAREA></TD>
 		</TR></TABLE>
 		</br>
-		<P><INPUT TYPE="button" class="btn btn-primary" onClick="launch();" VALUE="Compute Diff"></P>
+		<P><INPUT TYPE="button" class="btn btn-primary" onclick="launch();" VALUE="Compute Diff"></P>
 		</FORM>
 
 		<DIV ID="outputdiv"></DIV>
@@ -148,13 +154,13 @@
 <script src="{{url_for('static',filename='node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
   <!-- endinject -->
   <!-- Plugin js for this page-->
-  <script src="{{url_for(''static',filename='snode_modules/flot/jquery.flot.js')}}"></script>
-  <script src="{{url_for(''static',filename='node_modules/flot/jquery.flot.resize.js')}}"></script>
-  <script src="{{url_for(''static',filename='node_modules/flot.curvedlines/curvedLines.js')}}"></script>
-   <script src="{{url_for(''static',filename='node_modules/moment/moment.js')}}"></script>
-  <script src="{{url_for(''static',filename='node_modules/fullcalendar/dist/fullcalendar.min.js')}}"></script>
+  <script src="{{url_for('static',filename='snode_modules/flot/jquery.flot.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/flot/jquery.flot.resize.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/flot.curvedlines/curvedLines.js')}}"></script>
+   <script src="{{url_for('static',filename='node_modules/moment/moment.js')}}"></script>
+  <script src="{{url_for('static',filename='node_modules/fullcalendar/dist/fullcalendar.min.js')}}"></script>
 <!-- plagarism-->
-<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript" SRC="{{url_for('static',filename='diff_match_patch.js')}}"></SCRIPT>
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript" SRC="{{url_for('static',filename='js/diff_match_patch.js')}}"></SCRIPT>
 
 
   <!-- End plugin js for this page-->

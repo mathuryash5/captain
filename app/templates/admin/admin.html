@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,7 +53,7 @@
             </a>
           </li>
           <li>
-            <a href={{url_for('admin.logout')}}><button type="button" class="btn btn-inverse-light btn-fw" onclick="signout()">Sign Out</button>
+            <a href="{{url_for('admin.logout')}}"><button type="button" class="btn btn-inverse-light btn-fw" onclick="signout()">Sign Out</button>
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center ml-auto" type="button" data-toggle="offcanvas">
@@ -178,7 +179,10 @@
                                     </div>
                                 
                                 </div>
-                                <button type="submit" class="btn btn-success form-group btn-rounded btn-fw">Send Notification</button>
+                                <form action = "{{url_for('admin.dashboard')}}" method="POST">
+                                  <button type="submit" class="btn btn-success form-group btn-rounded btn-fw" onclick = "send()">Send Notification</button>
+                                </form>
+                               
                               </form>
                               </div>
                       </div>
@@ -194,6 +198,7 @@
                                 <div class="card-body">
                                   <h4 class="card-title">Assign Teachers to Courses</h4>
 			<div class="row">
+<form class ="forms-sample" action="" method= "POST" >        
 <div class="col-md-4">
 	<h4 class="card-title">Teachers</h4>					
 <select name="Teacher" size="5"  style="width:200px;">
@@ -219,10 +224,11 @@
     {% endfor %}
     </select> 
 </div>
+
 				</div>
 	</br>
 	<button type="submit" class="btn btn-success form-group btn-rounded btn-fw">Add Mapping</button>
-			
+</form>	
 			</div>
 			</div>
 		</div>
@@ -268,6 +274,9 @@
  
   <!-- End custom js for this page-->
   <script>
+    function send(){
+      alert('sent');
+    }
     function signout(){
      swal({
            title: 'Sign out?',

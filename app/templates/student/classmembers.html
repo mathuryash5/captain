@@ -95,60 +95,136 @@
         </nav>  
         <!-- partial -->
         <div class="content-wrapper">
+
           <div class="row">
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Team Formation</h4>
                   <p class="card-description">Drag and drop your team members</p>
-                  <div class="row">
-                    <div class="col-md-3 h-100">
-                      <div class="bg-light p-4">
-                        <h6 class="card-title">Classmates </h6>
-                        <div id="profile-list-all1" class="py-2">
-                          {% for class_mate in response.class_mates %}
-                          {% if class_mate.has_team[response.subject_name] == 0%}
-                            <div class="card rounded mb-2">
-                              <div class="card-body p-3">
-                                  <h6 class="mb-1">{{class_mate.name}}</h6>
-                                  <p hidden class="team-mates-usn">{{class_mate.usn}} </p>
-                              </div>
-                            </div>
-                          {% endif %}
-                          {% endfor %}
-
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-3 h-100">
-                      <div class="bg-light p-4">
-                        <p hidden class="course-name-uniq"> {{response.course_names[0].course_name}}
-                        <h6 class="card-title">Subject 1</h6>
-                        <div id="profile-list-subj1" class="py-2">
-                            
-                        </div>
-                        <button type="button"  id = "teamcnfrm1" onclick="submitTeam(this)" class="btn btn-success btn-rounded btn-fw">Submit</button>
-                      </div>
-                    </div>
-                    <div class="col-md-3 h-100">
-                        <div class="bg-light p-4">
-                          <h6 class="card-title">Subject 2</h6>
-                          <div id="profile-list-subj2" class="py-2">
-                              
+                  <div class = "row"> 
+                      <div class="col-lg-12">
+                          <div class="card">
+                              <ul class="nav nav-tabs tab-basic" role="tablist">
+                              <li class="nav-item">
+                                <a class="nav-link active" id="subject1-tab" data-toggle="tab" href="#subj1" role="tab" aria-controls="subj1" aria-selected="true">{{response.course_names[0][0]}}</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" id="subject2-tab" data-toggle="tab" href="#subj2" role="tab" aria-controls="subj2" aria-selected="false">{{response.course_names[1][0]}}</a>
+                              </li>
+                              <li class="nav-item">
+                                  <a class="nav-link" id="subject3-tab" data-toggle="tab" href="#subj3" role="tab" aria-controls="subj3" aria-selected="false">{{response.course_names[2][0]}}</a>
+                                </li>
+                            </ul>
                           </div>
-                          <button type="button"  id = "teamcnfrm2"onclick="showSwal('warning-message-and-cancel','#teamcnfrm2')" class="btn btn-success btn-rounded btn-fw">Submit</button>
-                        </div>
                       </div>
-                      <div class="col-md-3 h-100">
-                          <div class="bg-light p-4">
-                            <h6 class="card-title">Subject 3</h6>
-                            <div id="profile-list-subj3" class="py-2">
-                                
-                            </div>
-                            <button type="button" id = "teamcnfrm3" onclick="showSwal('warning-message-and-cancel','#teamcnfrm3')" class="btn btn-success btn-rounded btn-fw">Submit</button>
-                          </div>
-                        </div>
                   </div>
+                  <div class="tab-content tab-content-basic">
+                      <div class="tab-pane fade show active" id="subj1" role="tabpanel" aria-labelledby="subject1-tab">
+                          <div class="row">
+                              <div class="col-md-6 h-100">
+                                <div class="bg-light p-4">
+                                  <h6 class="card-title">Classmates </h6>
+                                  <div id="profile-list-all1" class="py-2">
+                                    {% for class_mate in response.class_mates %}
+                                    {% if class_mate.has_team[response.subject_name] == 0%}
+                                      <div class="card rounded mb-2">
+                                        <div class="card-body p-3">
+                                            <h6 class="mb-1">{{class_mate.name}}</h6>
+                                            <p hidden class="team-mates-usn">{{class_mate.usn}} </p>
+                                        </div>
+                                      </div>
+                                    {% endif %}
+                                    {% endfor %}
+          
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6 h-100">
+                                <div class="bg-light p-4">
+                                  <p hidden class="course-name-uniq"> {{response.course_names[0].course_name}}</p>
+                                  <h6 class="card-title">{{response.course_names[0].course_name}}</h6>
+                                  <div id="profile-list-subj1" class="py-2">
+                                      
+                                  </div>
+                                  <button type="button"  id = "teamcnfrm1" onclick="submitTeam(this)" class="btn btn-success btn-rounded btn-fw">Submit</button>
+                                </div>
+                              </div>
+
+                            </div>
+                      </div>
+                      <div class="tab-pane fade" id="subj2" role="tabpanel" aria-labelledby="subject2-tab">
+                          <div class="row">
+                              <div class="col-md-6 h-100">
+                                <div class="bg-light p-4">
+                                  <h6 class="card-title">Classmates </h6>
+                                  <div id="profile-list-all2" class="py-2">
+                                    {% for class_mate in response.class_mates %}
+                                    {% if class_mate.has_team[response.subject_name] == 0%}
+                                      <div class="card rounded mb-2">
+                                        <div class="card-body p-3">
+                                            <h6 class="mb-1">{{class_mate.name}}</h6>
+                                            <p hidden class="team-mates-usn">{{class_mate.usn}} </p>
+                                        </div>
+                                      </div>
+                                    {% endif %}
+                                    {% endfor %}
+          
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6 h-100">
+                                <div class="bg-light p-4">
+                                  <p hidden class="course-name-uniq"> {{response.course_names[1].course_name}}
+                                  <h6 class="card-title">{{response.course_names[1].course_name}}</h6>
+                                  <div id="profile-list-subj1" class="py-2">
+                                      
+                                  </div>
+                                  <button type="button"  id = "teamcnfrm1" onclick="submitTeam(this)" class="btn btn-success btn-rounded btn-fw">Submit</button>
+                                </div>
+                              </div>
+
+                            </div>
+
+                      </div>
+                      <div class="tab-pane fade" id="subj3" role="tabpanel" aria-labelledby="subject3-tab">
+                          <div class="row">
+                              <div class="col-md-6 h-100">
+                                <div class="bg-light p-4">
+                                  <h6 class="card-title">Classmates </h6>
+                                  <div id="profile-list-all3" class="py-2">
+                                    {% for class_mate in response.class_mates %}
+                                    {% if class_mate.has_team[response.subject_name] == 0%}
+                                      <div class="card rounded mb-2">
+                                        <div class="card-body p-3">
+                                            <h6 class="mb-1">{{class_mate.name}}</h6>
+                                            <p hidden class="team-mates-usn">{{class_mate.usn}} </p>
+                                        </div>
+                                      </div>
+                                    {% endif %}
+                                    {% endfor %}
+          
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6 h-100">
+                                <div class="bg-light p-4">
+                                  <p hidden class="course-name-uniq"> {{response.course_names[2].course_name}}
+                                  <h6 class="card-title">{{response.course_names[2].course_name}}</h6>
+                                  <div id="profile-list-subj1" class="py-2">
+                                      
+                                  </div>
+                                  <button type="button"  id = "teamcnfrm1" onclick="submitTeam(this)" class="btn btn-success btn-rounded btn-fw">Submit</button>
+                                </div>
+                              </div>
+
+                            </div>
+            
+                  </div>
+          
+          
+                   </div>  
+
                 </div>
               </div>
             </div>
